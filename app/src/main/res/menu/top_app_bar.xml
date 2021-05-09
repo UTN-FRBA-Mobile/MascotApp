@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/button_buscar_mascotas_perdidas"
+        android:icon="@drawable/outline_search_24"
+        android:title="@string/str_perdi_mi_mascota"
+        android:contentDescription="Buscar mascotas"
+        app:showAsAction="ifRoom" />
+
+</menu>
