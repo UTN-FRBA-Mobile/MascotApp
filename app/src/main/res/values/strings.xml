@@ -5,4 +5,9 @@
     <string name="str_buscar_mascotas_perdidas">Buscar Mascotas Perdidas</string>
     <string name="str_mis_publicaciones">Mis Publicaciones</string>
     <string name="page_title">MascotApp</string>
+
+    <string name="card_descripcion_mascota">Descripcion Mascota</string>
+    <string name="card_ver_detalles">Ver Detalles</string>
+    <string name="card_title">Titulo de Tarjeta</string>
+    <string name="card_secondary_text">Texto Secundario de Tarjeta</string>
 </resources>
