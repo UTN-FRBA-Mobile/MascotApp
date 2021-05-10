@@ -1,0 +1,6 @@
+
+<resources>
+    <style name="Theme.MascotApp.BrandedLaunch" parent="Theme.MascotApp">
+        <item name="android:windowBackground">@drawable/branded_logo</item>
+    </style>
+</resources>

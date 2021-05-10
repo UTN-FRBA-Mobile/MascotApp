@@ -7,6 +7,21 @@
         android:icon="@drawable/outline_search_24"
         android:title="@string/str_perdi_mi_mascota"
         android:contentDescription="Buscar mascotas"
+        android:iconTint="@color/white"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/asd"
+        android:icon="@drawable/outline_search_24"
+        android:title="@string/str_perdi_mi_mascota"
+        android:contentDescription="Buscar mascotas"
+        android:iconTint="@color/white"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/asd2"
+        android:icon="@drawable/outline_search_24"
+        android:title="@string/str_perdi_mi_mascota"
+        android:contentDescription="Buscar mascotas"
+        android:iconTint="@color/white"
         app:showAsAction="ifRoom" />
 
 </menu>
