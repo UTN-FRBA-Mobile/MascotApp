@@ -1,13 +1,13 @@
 package com.utn.MascotApp
 
 import java.util.*
+import com.google.gson.annotations.SerializedName
+
+data class Mascota(@SerializedName("status") var status: String,
+                   @SerializedName("images") var message: List<String>){
+}
 
 /*
-data class Mascota(val message: String, val status: String){
-
-}
-*/
-
 data class Mascota(val foto_mascota: String,
                    val tipo_mascota: String?,
                    val descripcion_busqueda: String?,
@@ -34,3 +34,4 @@ data class Mascota(val foto_mascota: String,
         return colores.contentHashCode()
     }
 }
+ */
