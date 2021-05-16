@@ -81,27 +81,4 @@ class MascotaVistasFragment: Fragment(){
         Toast.makeText(context, "Ha ocurrido un error inesperado", Toast.LENGTH_SHORT).show()
     }
 
-//    fun obtenerListaPerros(service: IDogsApi, cant_perros_a_obtener: Int): List<MascotasResponse>{
-//        Log.e("BEHRI_DEBUGGING","obtenerListaPerros")
-//        var lista_mascotasResponses: MutableList<MascotasResponse> = arrayListOf()
-//        var index = 1
-//        while (index <= cant_perros_a_obtener){
-//            Log.e("BEHRI_DEBUGGING","while ${index.toString()}")
-//            service.get_dog().enqueue(object: Callback<MascotasResponse>{
-//                override fun onResponse(call: Call<MascotasResponse>, response: Response<MascotasResponse>) {
-//                    Log.e("BEHRI_DEBUGGING","onResponse")
-//                    Log.e("BEHRI_DEBUGGING",response.body()!!.toString())
-//                    var message:String = response.body()!!.message
-//                    var status:String = response.body()!!.status
-//                    lista_mascotasResponses.add(MascotasResponse(message=message, status=status))
-//                }
-//                override fun onFailure(call: Call<MascotasResponse>, error: Throwable) {
-//                    Log.e("BEHRI_DEBUGGING_onFailure",call.toString())
-//                    Log.e("BEHRI_DEBUGGING_onFailure",error.toString())
-//                }
-//            })
-//            index += 1
-//        }
-//        return lista_mascotasResponses
-//    }
 }
