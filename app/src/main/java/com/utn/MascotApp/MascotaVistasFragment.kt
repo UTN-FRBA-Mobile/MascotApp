@@ -1,10 +1,17 @@
 package com.utn.MascotApp
 
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.utn.MascotApp.databinding.FragmentMascotaVistasBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -12,41 +19,89 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-class MascotaVistasFragment: Fragment(R.layout.tarjeta_mascota){
+class MascotaVistasFragment: Fragment(){
     //private var listener: OnFragmentInteractionListener? = null
     private lateinit var mascotaAdapter: MascotaAdapter
     private var _binding: FragmentMascotaVistasBinding? = null
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    private val dogImages = mutableListOf<String>()
     private val binding get() = _binding!!
 
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentMascotaVistasBinding.inflate(inflater, container, false)
+        return binding.root
+    }
     override fun onStart(){
         super.onStart()
+        initRecyclerViewMascotasVista()
 
-        val service = Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create()) // Para parsear el json
-            .baseUrl("https://dog.ceo/api/breeds/image/random")
-            .build()
-            .create(IDogsApi::class.java)
 
-        service.get_dog_image().enqueue(object: Callback<Mascotas>{
-
-            override fun onResponse(call: Call<Mascotas>, response: Response<Mascotas>) {
-                Toast.makeText(activity, response.body()!!.toString(), Toast.LENGTH_SHORT).show()
-
-                mascotaAdapter = MascotaAdapter(response.body()!!.mascotas)
-                binding.list.apply {
-                    layoutManager = LinearLayoutManager(context)
-                    adapter = mascotaAdapter
-                }
-                binding.list.visibility = View.VISIBLE
-                binding.progressBar.visibility = View.GONE
-            }
-            override fun onFailure(call: Call<Mascotas>, error: Throwable) {
-                Toast.makeText(activity, error.toString(), Toast.LENGTH_SHORT).show()
-                //Toast.makeText(activity, "No se encontraron mascotas! :(", Toast.LENGTH_SHORT).show()
-            }
-        })
     }
 
+    fun initRecyclerViewMascotasVista(){
+        mascotaAdapter = MascotaAdapter(dogImages)
+        binding.listaTarjetasMascotas.layoutManager = LinearLayoutManager(context)
+        binding.listaTarjetasMascotas.adapter = mascotaAdapter
+        binding.listaTarjetasMascotas.visibility = View.VISIBLE
+        searchPetsByBreed("boxer")
+
+    }
+
+    private fun getRetrofit():Retrofit{
+        return Retrofit.Builder()
+            .baseUrl("https://dog.ceo/api/breed/")
+            .addConverterFactory(GsonConverterFactory.create()) // Para parsear el json
+            .build()
+    }
+
+    private fun searchPetsByBreed(breed:String){
+        CoroutineScope(Dispatchers.IO).launch {
+            val call = getRetrofit().create(IDogsApi::class.java).get_dogs_image_by_breed("$breed/images")
+            val dogs = call.body()
+            activity?.runOnUiThread{
+                binding.progressBar.visibility = View.VISIBLE
+                // Esto correrá en el hilo principal, y como lo debemos rellenar con las imgs en este ultimo...
+                if (call.isSuccessful){
+                    val images : List<String> = dogs?.images ?: emptyList()
+                    dogImages.clear()
+                    dogImages.addAll(images)
+                    mascotaAdapter.notifyDataSetChanged()
+                    binding.progressBar.visibility = View.GONE
+                }else{
+                    showError()
+                    binding.progressBar.visibility = View.GONE
+                }
+            }
+        }
+    }
+
+    private fun showError(){
+        Toast.makeText(context, "Ha ocurrido un error inesperado", Toast.LENGTH_SHORT).show()
+    }
+
+//    fun obtenerListaPerros(service: IDogsApi, cant_perros_a_obtener: Int): List<MascotasResponse>{
+//        Log.e("BEHRI_DEBUGGING","obtenerListaPerros")
+//        var lista_mascotasResponses: MutableList<MascotasResponse> = arrayListOf()
+//        var index = 1
+//        while (index <= cant_perros_a_obtener){
+//            Log.e("BEHRI_DEBUGGING","while ${index.toString()}")
+//            service.get_dog().enqueue(object: Callback<MascotasResponse>{
+//                override fun onResponse(call: Call<MascotasResponse>, response: Response<MascotasResponse>) {
+//                    Log.e("BEHRI_DEBUGGING","onResponse")
+//                    Log.e("BEHRI_DEBUGGING",response.body()!!.toString())
+//                    var message:String = response.body()!!.message
+//                    var status:String = response.body()!!.status
+//                    lista_mascotasResponses.add(MascotasResponse(message=message, status=status))
+//                }
+//                override fun onFailure(call: Call<MascotasResponse>, error: Throwable) {
+//                    Log.e("BEHRI_DEBUGGING_onFailure",call.toString())
+//                    Log.e("BEHRI_DEBUGGING_onFailure",error.toString())
+//                }
+//            })
+//            index += 1
+//        }
+//        return lista_mascotasResponses
+//    }
 }
