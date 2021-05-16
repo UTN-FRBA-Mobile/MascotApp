@@ -3,8 +3,9 @@ package com.utn.MascotApp
 import java.util.*
 import com.google.gson.annotations.SerializedName
 
-data class Mascota(@SerializedName("status") var status: String,
-                   @SerializedName("images") var message: List<String>){
+data class MascotasResponse(
+    @SerializedName("status") var status: String,
+    @SerializedName("message") var images: List<String>){
 }
 
 /*
