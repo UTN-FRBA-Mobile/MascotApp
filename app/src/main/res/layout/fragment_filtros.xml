@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="bottom"
+    tools:context=".Filtros">
+
+
+    <Button
+        android:id="@+id/btnCamara"
+        android:layout_width="100dp"
+        android:layout_height="82dp"
+        android:text="Camara"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerTipoMascota"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.803" />
+
+    <Spinner
+        android:id="@+id/spinnerTipoMascota"
+        android:layout_width="344dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="184dp"
+        android:background="@drawable/estilo_botones"
+        android:entries="@array/TipoMascota"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintStart_toStartOf="parent"
+        android:popupBackground="#D3D3D3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerRazaMascota"
+        android:layout_width="344dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/estilo_botones"
+        android:entries="@array/RazaMascotaVacio"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerTipoMascota" />
+
+    <Spinner
+        android:id="@+id/spinnerSexoMascota"
+        android:layout_width="344dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/estilo_botones"
+        android:entries="@array/SexoMascota"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerRazaMascota" />
+
+    <Spinner
+        android:id="@+id/spinnerTamañoMascota"
+        android:layout_width="344dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/estilo_botones"
+        android:entries="@array/TamañoMascota"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerSexoMascota" />
+
+    <EditText
+        android:id="@+id/editTextEdad"
+        android:layout_width="344dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/estilo_botones"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:singleLine = "true"
+        android:hint=" Color"
+        android:textColorHint="@color/black"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerTamañoMascota" />
+
+    <EditText
+        android:id="@+id/editTextColor"
+        android:layout_width="344dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/estilo_botones"
+        android:ems="10"
+        android:inputType="number"
+        android:maxLength="5"
+        android:textColorHint="@color/black"
+        android:singleLine = "true"
+        android:hint=" Edad"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEdad" />
+
+    <EditText
+        android:id="@+id/calendario"
+        android:layout_width="344dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="32dp"
+        android:background="@drawable/estilo_botones"
+        android:clickable="false"
+        android:focusable="false"
+        android:hint="  Seleccionar fecha"
+        android:textAlignment="center"
+        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextColor"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintVertical_bias="0.518">
+
+    </EditText>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

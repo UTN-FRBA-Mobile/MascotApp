@@ -5,4 +5,47 @@
     <string name="str_buscar_mascotas_perdidas">Buscar Mascotas Perdidas</string>
     <string name="str_mis_publicaciones">Mis Publicaciones</string>
     <string name="page_title">MascotApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="TipoMascota">
+        <item>Tipo de mascota</item>
+        <item>Perro</item>
+        <item>Gato</item>
+    </string-array>
+    <string-array name="TamañoMascota">
+        <item>Tamaño de la mascota</item>
+        <item>Grande</item>
+        <item>Mediano</item>
+        <item>Chico</item>
+    </string-array>
+    <string-array name="SexoMascota">
+        <item>Sexo de la mascota</item>
+        <item>Macho</item>
+        <item>Hembra</item>
+    </string-array>
+    <string-array name="RazaMascotaVacio">
+        <item>Raza</item>
+    </string-array>
+    <string-array name="RazaMascotaPerro">
+        <item>Raza</item><item>Mestizo</item><item>Afgano</item><item>Airedale Terrier</item><item>Akita</item><item>American Stafford Terrier</item><item>Basenji</item><item>Basset</item><item>Beagle</item><item>Bichon Frisse</item><item>Bloodhound</item><item>Border Collie</item>
+        <item>BORDER COLLIE</item><item>Boston Terrier</item><item>Boxer</item><item>Boyero De Berna</item><item>Braco</item><item>Breton</item><item>bull dog frances</item><item>Bull Dog Ingles</item><item>Bull Terrier</item><item>Bullmastiff</item><item>Cairn Terrier</item>
+        <item>Cane Corso</item><item>Caniche</item><item>cavalier king charles spaniel</item><item>Chihuahua</item><item>Chow Chow</item><item>Cocker</item><item>Collie</item><item>CRESTADO CHINO</item><item>Dalmata</item><item>Doberman</item><item>Dogo</item><item>Dogo De Burdeos</item>
+        <item>Earlier Terrier</item><item>Faraon</item><item>Fila Brasilero</item><item>Fox Terrier</item><item>Galgo</item><item>Golden</item><item>Gran Danes</item><item>Grifon De Bruselas</item><item>Jack Russell</item><item>Jindo Coreano</item><item>Kuvasz</item><item>Labrador</item>
+        <item>Lasha Apso</item><item>lebrel</item><item>Malamute</item><item>Maltes</item><item>Mastiff Ingles</item><item>Mastin Español</item><item>Mastin Napolitano</item><item>Ovejero Aleman</item><item>Ovejero Belga</item><item>Ovejero Tervueren</item><item>Papillon</item>
+        <item>Pastor Australiano</item><item>Pastor De Brie</item><item>pastor del caucaso</item><item>Pastor Escoces</item><item>Pastor Ingles</item><item>Pastor Suizo</item><item>Pequines</item><item>perro de agua español</item><item>Pila</item><item>Pincher</item><item>Pit Bull</item>
+        <item>Pointer</item><item>pomerania</item><item>Presa Canario</item><item>Pug</item><item>Rodhesian</item><item>Rottweiler</item><item>Salchicha</item><item>Samoyedo</item><item>San Bernardo</item><item>Schnautzer Grande</item><item>Schnautzer Mini</item><item>Schnautzer Standar</item>
+        <item>Scottish Terrier</item><item>Setter Irlandes</item><item>Sharpei</item><item>Shiba Inu</item><item>Shitzu</item><item>Siberiano</item><item>Springer Spaniel Ingles</item><item>Terranova</item><item>Vizla</item><item>Weimaraner</item><item>Welsh Corgi</item><item>Welsh Terrier</item>
+        <item>West Highland White</item><item>Whippet</item><item>Yorkshire Terrier</item>
+    </string-array>
+
+    <string-array name="RazaMascotaGato">
+        <item>Raza</item><item>Angora</item><item>Bengal</item><item>bosques de noruega</item><item>Himalayo</item><item>Mestizo</item><item>Persa</item><item>Ragdoll</item><item>Sagrado De Birmania</item><item>Siames</item>
+    </string-array>
+
+
+
+    <string name="hint_resource">MascotApp</string>
+    <string name="tipo_de_mascota">Tipo de mascota</string>
+
+
 </resources>

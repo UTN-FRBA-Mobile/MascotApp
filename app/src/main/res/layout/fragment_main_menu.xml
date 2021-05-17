@@ -9,7 +9,7 @@
 
     <Button
         android:id="@+id/button_encontre_una_mascota"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:background="@drawable/estilo_botones"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/str_encontre_una_mascota"

@@ -8,5 +8,15 @@
     <fragment
         android:id="@+id/mainMenuFragment"
         android:name="com.utn.MascotApp.MainMenuFragment"
-        android:label="MainMenuFragment" />
+        android:label="MainMenuFragment" >
+        <action
+            android:id="@+id/action_mainMenuFragment_to_filtros"
+            app:destination="@id/filtros" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/filtros"
+        android:name="com.utn.MascotApp.Filtros"
+        android:label="fragment_filtros"
+        tools:layout="@layout/fragment_filtros" />
 </navigation>
