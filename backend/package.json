@@ -1,0 +1,26 @@
+{
+    "name": "mascotapp-backend",
+    "version": "1.0.0",
+    "description": "Backend services for MascotApp",
+    "main": "index.js",
+    "author": "",
+    "license": "ISC",
+    "scripts": {
+        "start": "cross-env NODE_ENV=production node app",
+        "dev": "cross-env NODE_ENV=development nodemon app",
+        "postinstall": "node ./src/scripts/post-install.js"
+    },
+    "dependencies": {
+        "connect-mongo": "^3.2.0",
+        "express": "^4.17.1",
+        "express-session": "^1.17.1",
+        "fs-extra": "^9.0.1",
+        "mongoose": "^5.9.19",
+        "passport": "^0.4.1",
+        "passport-google-oauth20": "^2.0.0"
+    },
+    "devDependencies": {
+        "cross-env": "^7.0.2",
+        "nodemon": "^2.0.4"
+    }
+}

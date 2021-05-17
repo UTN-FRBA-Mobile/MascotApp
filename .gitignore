@@ -69,3 +69,6 @@ fastlane/readme.md
 #.idea
 .idea
 .idea/*
+
+#backend
+backend/node_modules
