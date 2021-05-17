@@ -8,5 +8,18 @@
     <fragment
         android:id="@+id/mainMenuFragment"
         android:name="com.utn.MascotApp.MainMenuFragment"
-        android:label="MainMenuFragment" />
+        tools:layout="@layout/fragment_main_menu"
+        android:label="MainMenuFragment" >
+        <action
+            android:id="@+id/action_mainMenuFragment_to_foundAndLostFragment"
+            app:destination="@id/foundAndLostFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/foundAndLostFragment"
+        android:name="com.utn.MascotApp.FoundAndLostFragment"
+        tools:layout="@layout/fragment_found_lost"
+        android:label="FoundAndLostFragment" >
+    </fragment>
+
+
 </navigation>
