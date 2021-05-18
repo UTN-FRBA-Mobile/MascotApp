@@ -16,10 +16,21 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import com.utn.MascotApp.databinding.FragmentFoundLostBinding
 import java.util.jar.Manifest
 
 class FoundAndLostFragment : Fragment() {
+
+
+
+
+    private var _binding: FragmentFoundLostBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle? ): View {
+        _binding = FragmentFoundLostBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
 
     private lateinit var btnCamera: Button
@@ -29,14 +40,9 @@ class FoundAndLostFragment : Fragment() {
     private val REQUEST_GALLERY = 1001
     private val REQUEST_CAMERA = 1002
 
-    lateinit var imageview: ImageView
 
     var photo: Uri? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_found_lost, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -44,16 +50,14 @@ class FoundAndLostFragment : Fragment() {
         btnCamera = view.findViewById(R.id.button_camera)
         btnCamera.setOnClickListener() {
 //            findNavController().navigate(R.id.cameraFragment)
-            openCamera()
+            openCamera_click()
         }
 
         btnUpdatePhoto = view.findViewById(R.id.button_upload_photo)
         btnUpdatePhoto.setOnClickListener() {
 //            findNavController().navigate(R.id.uploadPhotoFragment)
-            viewGallery()
+            openGallery_click()
         }
-
-
     }
 
 
@@ -62,7 +66,6 @@ class FoundAndLostFragment : Fragment() {
             viewGallery()
 //             verificar q version de android esta instalada en el telefono
 //            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
 
                 if (context?.let { it1 -> ActivityCompat.checkSelfPermission(it1, android.Manifest.permission.READ_EXTERNAL_STORAGE) } == PackageManager.PERMISSION_DENIED) {
 //                if(checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED ){
@@ -76,17 +79,21 @@ class FoundAndLostFragment : Fragment() {
 
 
     private fun openCamera_click() {
-        // verificar q version de android esta instalada en el telefono
+//         verificar q version de android esta instalada en el telefono
 //            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+
+                if (context?.let { it1 -> ActivityCompat.checkSelfPermission(it1, android.Manifest.permission.CAMERA) } == PackageManager.PERMISSION_DENIED
+                        || context?.let { it1 -> ActivityCompat.checkSelfPermission(it1, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) } == PackageManager.PERMISSION_DENIED
+                        ) {
 //                if(ContextCompat.checkSelfPermission(android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED
-        //                || .checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
-//                    val permissionFiles = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-//                    requestPermissions(permissionFiles, REQUEST_GALLERY)
-//                }else{
-//                        viewGallery()
-//                }
+//                        || .checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
+                    val permissionFiles = arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    requestPermissions(permissionFiles, REQUEST_GALLERY)
+                }else{
+                        openCamera()
+                }
 //            }else{
-//                viewGallery()
+//                openCamera()
 //            }
     }
 
@@ -106,7 +113,6 @@ class FoundAndLostFragment : Fragment() {
         val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photo)
         startActivityForResult(cameraIntent, REQUEST_CAMERA)
-
     }
 
 
@@ -132,19 +138,14 @@ class FoundAndLostFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_GALLERY) {
 
+        binding.imgPhoto.setImageURI(data?.data)
+        }
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CAMERA) {
+            binding.imgPhoto.setImageURI(photo)
+        }
 
-//        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_GALLERY) {
-
-//            Bitmap bitmap
-//            ic_menu_camera.setImageURI(data?.data)
-
-////            imgPhoto.setImageURI(data?.data)
-//        }
-//        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CAMERA) {
-////            imgPhoto.setImageURI(foto)  TODO
-//
-//        }
     }
 }
 
