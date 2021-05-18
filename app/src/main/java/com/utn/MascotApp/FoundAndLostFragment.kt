@@ -5,29 +5,24 @@ import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.utn.MascotApp.databinding.FragmentFoundLostBinding
-import java.util.jar.Manifest
 
 class FoundAndLostFragment : Fragment() {
-
-
 
 
     private var _binding: FragmentFoundLostBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle? ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentFoundLostBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -36,7 +31,6 @@ class FoundAndLostFragment : Fragment() {
     private lateinit var btnCamera: Button
     private lateinit var btnUpdatePhoto: Button
 
-    // codigos para ver quien esta pidiendo permiso.
     private val REQUEST_GALLERY = 1001
     private val REQUEST_CAMERA = 1002
 
@@ -62,19 +56,16 @@ class FoundAndLostFragment : Fragment() {
 
 
     private fun openGallery_click() {
-        btnUpdatePhoto.setOnClickListener() {
-            viewGallery()
 //             verificar q version de android esta instalada en el telefono
 //            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
-                if (context?.let { it1 -> ActivityCompat.checkSelfPermission(it1, android.Manifest.permission.READ_EXTERNAL_STORAGE) } == PackageManager.PERMISSION_DENIED) {
-//                if(checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED ){
-                    var permissionFiles = arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE)
-                    requestPermissions(permissionFiles, REQUEST_GALLERY)
-                } else {
-                    viewGallery()
-                }
-        }
+            if (context?.let { it1 -> ActivityCompat.checkSelfPermission(it1, android.Manifest.permission.READ_EXTERNAL_STORAGE) } == PackageManager.PERMISSION_DENIED) {
+                var permissionFiles = arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+                requestPermissions(permissionFiles, REQUEST_GALLERY)
+            } else {
+                viewGallery()
+            }
+//        }
     }
 
 
@@ -82,16 +73,14 @@ class FoundAndLostFragment : Fragment() {
 //         verificar q version de android esta instalada en el telefono
 //            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
 
-                if (context?.let { it1 -> ActivityCompat.checkSelfPermission(it1, android.Manifest.permission.CAMERA) } == PackageManager.PERMISSION_DENIED
-                        || context?.let { it1 -> ActivityCompat.checkSelfPermission(it1, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) } == PackageManager.PERMISSION_DENIED
-                        ) {
-//                if(ContextCompat.checkSelfPermission(android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED
-//                        || .checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
-                    val permissionFiles = arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    requestPermissions(permissionFiles, REQUEST_GALLERY)
-                }else{
-                        openCamera()
-                }
+        if (context?.let { it1 -> ActivityCompat.checkSelfPermission(it1, android.Manifest.permission.CAMERA) } == PackageManager.PERMISSION_DENIED
+                || context?.let { it1 -> ActivityCompat.checkSelfPermission(it1, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) } == PackageManager.PERMISSION_DENIED
+        ) {
+            val permissionCamera = arrayOf(android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            requestPermissions(permissionCamera, REQUEST_CAMERA)
+        } else {
+            openCamera()
+        }
 //            }else{
 //                openCamera()
 //            }
@@ -102,8 +91,6 @@ class FoundAndLostFragment : Fragment() {
         intentGalery.type = "image/*"
         startActivityForResult(intentGalery, REQUEST_GALLERY)
     }
-
-
 
 
     private fun openCamera() {
@@ -139,8 +126,7 @@ class FoundAndLostFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_GALLERY) {
-
-        binding.imgPhoto.setImageURI(data?.data)
+            binding.imgPhoto.setImageURI(data?.data)
         }
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CAMERA) {
             binding.imgPhoto.setImageURI(photo)
