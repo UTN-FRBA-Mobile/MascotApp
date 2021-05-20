@@ -5,4 +5,8 @@
     <string name="str_buscar_mascotas_perdidas">Buscar Mascotas Perdidas</string>
     <string name="str_mis_publicaciones">Mis Publicaciones</string>
     <string name="page_title">MascotApp</string>
+    <string name="buscar_mascota">Buscar Mascota</string>
+    <string name="mascotas_buscadas">Mascotas Buscadas</string>
+    <string name="mis_publicaciones">Mis Publicaciones</string>
+    <string name="plus">+</string>
 </resources>
