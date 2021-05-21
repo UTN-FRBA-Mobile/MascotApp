@@ -5,4 +5,13 @@
     <string name="str_buscar_mascotas_perdidas">Buscar Mascotas Perdidas</string>
     <string name="str_mis_publicaciones">Mis Publicaciones</string>
     <string name="page_title">MascotApp</string>
+
+    <string name="card_descripcion_mascota">Descripcion Mascota</string>
+    <string name="card_ver_detalles">INFO</string>
+    <string name="card_title">Titulo de Tarjeta</string>
+    <string name="card_secondary_text">Texto Secundario de Tarjeta</string>
+    <string name="card_commentary_text">Comentario Lorem Ipsum is simply dummy text of the printing and typesetting indus...</string>
+    <string name="card_me_perdi_en">ME PERDI EN</string>
+    <string name="card_pet_name">Pet Name</string>
+    <string name="card_pet_sex_and_age">HEMBRA - 2 AÑOS</string>
 </resources>
