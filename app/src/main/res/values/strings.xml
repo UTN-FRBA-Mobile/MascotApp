@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">MascotApp</string>
+    <string name="tab_listado">Listado</string>
+    <string name="tab_map">Mapa</string>
     <string name="str_encontre_una_mascota">Encontre una Mascota</string>
     <string name="str_perdi_mi_mascota">Perdi Mi Mascota</string>
     <string name="str_buscar_mascotas_perdidas">Buscar Mascotas Perdidas</string>

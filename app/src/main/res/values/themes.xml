@@ -14,5 +14,13 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="android:editTextColor">@color/black</item>
+<!--        <style name="Theme.TabbedActivity.NoActionBar">-->
+<!--            <item name="windowActionBar">false</item>-->
+<!--            <item name="windowNoTitle">true</item>-->
+<!--        </style>-->
+
+<!--        <style name="Theme.TabbedActivity.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />-->
+
+<!--        <style name="Theme.TabbedActivity.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />-->
     </style>
 </resources>
