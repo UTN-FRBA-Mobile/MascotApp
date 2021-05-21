@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mapsFragment">
+    app:startDestination="@id/mainMenuFragment">
+
     <fragment
-        android:id="@+id/mapsFragment"
-        android:name="com.utn.MascotApp.fragments.MapsFragment"
-        android:label="MapsFragment" />
+        android:id="@+id/mainMenuFragment"
+        android:name="com.utn.MascotApp.fragments.MainMenuFragment"
+        android:label="MainMenuFragment" />
 </navigation>
