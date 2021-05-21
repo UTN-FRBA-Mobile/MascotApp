@@ -10,7 +10,10 @@ class TarjetaMascotaHolder(view: View): RecyclerView.ViewHolder(view) {
 
     fun bind(image:String){
         Picasso.get().load(image).into(binding.cardImagenMascota)
-        binding.cardTitle.text = "Card Title"
-        binding.cardSecondaryText.text = "Secondary Text"
+        binding.cardTitle.text = "ME PERDI EN"
+        binding.cardDireccion.text = "Av. Directorio 1524"
+        binding.fechaPublicacion.text = "12 Marzo 2021"
+        binding.petName.text = "Puchini"
+        binding.petSexAndAge.text = "Hembra - 2 Años"
     }
 }
