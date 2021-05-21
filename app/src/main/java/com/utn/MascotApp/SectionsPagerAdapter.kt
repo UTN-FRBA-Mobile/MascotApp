@@ -17,6 +17,7 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager): F
     }
 
     override fun getItem(position: Int): Fragment {
+        // check which pages should be destroyed and which should be kept
         return PlaceholderFragment.newInstance(position + 1)
     }
 
