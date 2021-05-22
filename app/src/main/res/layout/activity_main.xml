@@ -8,26 +8,21 @@
     android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:background="@color/blue_grey_300"
-        android:layout_height="wrap_content"
         android:theme="@style/Theme.MascotApp">
 
         <ImageView
             android:id="@+id/title"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="40dp"
             android:gravity="center"
             android:layout_marginTop="9dp"
             android:minHeight="?actionBarSize"
             app:srcCompat="@drawable/branded_logo"
-            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
 
-<!--        <com.google.android.material.tabs.TabLayout-->
-<!--            android:id="@+id/tabs"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:background="@color/blue_grey_600" />-->
+            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
 
         <LinearLayout
             android:id="@+id/lin"
