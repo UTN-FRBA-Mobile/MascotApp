@@ -4,34 +4,29 @@
 
     <item
         android:id="@+id/button_perdi_mi_mascota"
-        android:icon="@drawable/outline_search_24"
+        android:icon="@drawable/home"
         android:title="@string/str_perdi_mi_mascota"
+        android:iconTint="@color/white"
         android:contentDescription="@string/mascotas_buscadas"
         app:showAsAction="ifRoom"
         />
 
     <item
         android:id="@+id/button_encontre_una_mascota"
-        android:icon="@drawable/outline_location_on_24"
+        android:icon="@drawable/add"
         android:title="@string/str_encontre_una_mascota"
         android:iconTint="@color/white"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/button_mis_publicaciones"
-        android:icon="@drawable/outline_search_24"
+        android:icon="@drawable/user"
         android:title="@string/str_mis_publicaciones"
+        android:iconTint="@color/white"
         android:contentDescription="@string/mis_publicaciones"
         app:showAsAction="ifRoom"
         />
 
-    <item
-        android:id="@+id/button_buscar_mascotas_perdidas"
-        android:icon="@drawable/outline_search_24"
-        android:title="@string/str_buscar_mascotas_perdidas"
-        android:contentDescription="@string/str_buscar_mascotas_perdidas"
-        app:showAsAction="ifRoom"
-        />
 
 
 </menu>

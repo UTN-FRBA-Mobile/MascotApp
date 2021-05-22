@@ -36,10 +36,10 @@
             android:background="@color/blue_grey_300">
 
             <ImageButton
-                android:id="@+id/listadoBtn"
+                android:id="@+id/mapaBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/list"
+                android:src="@drawable/map"
                 android:text="@string/tab_listado"
                 android:textSize="20sp"
                 android:drawableStart="@drawable/list"
@@ -49,10 +49,10 @@
                 android:background="@android:color/transparent" />
 
             <ImageButton
-                android:id="@+id/mapaBtn"
+                android:id="@+id/listadoBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/map"
+                android:src="@drawable/list"
                 android:text="@string/tab_map"
                 android:textSize="20sp"
                 android:drawableStart="@drawable/map"
