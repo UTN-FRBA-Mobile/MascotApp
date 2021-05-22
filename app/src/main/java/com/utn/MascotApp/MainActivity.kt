@@ -1,20 +1,20 @@
 package com.utn.MascotApp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
-import androidx.navigation.fragment.NavHostFragment
+import android.widget.ImageButton
+import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.tabs.TabLayout
 import com.utn.MascotApp.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var listadoBtn: ImageButton
+    private lateinit var mapaBtn: ImageButton
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var mViewPager: ViewPager
+    private lateinit var mPagerViewAdapter: PagerViewAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,12 +25,51 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
         supportActionBar!!.hide()
 
-        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
-        val viewPager: ViewPager = binding.viewPager
-        viewPager.adapter = sectionsPagerAdapter
-        val tabs: TabLayout = binding.tabs
-        tabs.setupWithViewPager(viewPager)
+        listadoBtn = binding.listadoBtn
+        mapaBtn = binding.mapaBtn
+        mViewPager = binding.viewPager
+
+        listadoBtn.setOnClickListener {
+            mViewPager.currentItem = 0
+        }
+
+        mapaBtn.setOnClickListener {
+            mViewPager.currentItem = 1
+        }
+
+        mPagerViewAdapter = PagerViewAdapter(supportFragmentManager)
+        mViewPager.adapter = mPagerViewAdapter
+        mViewPager.offscreenPageLimit = 2
+
+
+        mViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrolled(
+                    position: Int,
+                    positionOffset: Float,
+                    positionOffsetPixels: Int
+            ) {
+            }
+
+            override fun onPageSelected(position: Int) {
+                changeTabs(position)
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {}
+        })
+
+        mViewPager.currentItem = 0
+        listadoBtn.setImageResource(R.drawable.list_white)
     }
 
+    private fun changeTabs(position: Int) {
+        if (position == 0) {
+            listadoBtn.setImageResource(R.drawable.list_white)
+            mapaBtn.setImageResource(R.drawable.map)
+        }
 
+        if (position == 1) {
+            listadoBtn.setImageResource(R.drawable.list)
+            mapaBtn.setImageResource(R.drawable.map_white)
+        }
+    }
 }
