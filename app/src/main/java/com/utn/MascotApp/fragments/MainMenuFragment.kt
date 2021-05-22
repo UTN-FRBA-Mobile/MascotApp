@@ -35,11 +35,11 @@ class MainMenuFragment : Fragment() {
         mapaBtn = binding.mapaBtn
         mViewPager = binding.viewPager
 
-        listadoBtn.setOnClickListener {
+        mapaBtn.setOnClickListener {
             mViewPager.currentItem = 0
         }
 
-        mapaBtn.setOnClickListener {
+        listadoBtn.setOnClickListener {
             mViewPager.currentItem = 1
         }
 
@@ -64,18 +64,18 @@ class MainMenuFragment : Fragment() {
         })
 
         mViewPager.currentItem = 0
-        listadoBtn.setImageResource(R.drawable.list_white)
+        mapaBtn.setImageResource(R.drawable.list_white)
     }
 
     private fun changeTabs(position: Int) {
         if (position == 0) {
-            listadoBtn.setImageResource(R.drawable.list_white)
-            mapaBtn.setImageResource(R.drawable.map)
+            mapaBtn.setImageResource(R.drawable.map_white)
+            listadoBtn.setImageResource(R.drawable.list)
         }
 
         if (position == 1) {
-            listadoBtn.setImageResource(R.drawable.list)
-            mapaBtn.setImageResource(R.drawable.map_white)
+            listadoBtn.setImageResource(R.drawable.list_white)
+            mapaBtn.setImageResource(R.drawable.map)
         }
     }
 }
