@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:background="@color/blue_grey_300"
-        android:theme="@style/Theme.MascotApp">
+        android:theme="@style/Theme.MascotApp"
+        >
 
         <ImageView
             android:id="@+id/title"
@@ -21,7 +22,6 @@
             android:layout_marginTop="9dp"
             android:minHeight="?actionBarSize"
             app:srcCompat="@drawable/branded_logo"
-
             android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
 
         <LinearLayout
@@ -42,7 +42,6 @@
                 android:src="@drawable/map"
                 android:text="@string/tab_listado"
                 android:textSize="20sp"
-                android:drawableStart="@drawable/list"
                 android:drawableTint="@color/white"
                 android:gravity="center"
                 android:layout_weight="1"
@@ -55,21 +54,38 @@
                 android:src="@drawable/list"
                 android:text="@string/tab_map"
                 android:textSize="20sp"
-                android:drawableStart="@drawable/map"
                 android:drawableTint="@color/white"
                 android:gravity="center"
                 android:layout_weight="1"
                 android:background="@android:color/transparent" />
-
         </LinearLayout>
 
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_pager"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:orientation="vertical">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:menu="@menu/botton_app_bar"
+            app:itemIconTint="@color/white"
+            app:itemTextColor="@color/white"
+            android:background="@color/blue_grey_300"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
