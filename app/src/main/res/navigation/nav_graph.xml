@@ -8,5 +8,34 @@
     <fragment
         android:id="@+id/mainMenuFragment"
         android:name="com.utn.MascotApp.fragments.MainMenuFragment"
-        android:label="MainMenuFragment" />
+        android:label="MainMenuFragment" >
+        <action
+            android:id="@+id/action_mainMenuFragment_to_publicarFragment2"
+            app:destination="@id/publicarFragment2" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_misPublicacionesFragment"
+            app:destination="@id/misPublicacionesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/publicarFragment2"
+        android:name="com.utn.MascotApp.fragments.PublicarFragment"
+        android:label="PublicarFragment" >
+        <action
+            android:id="@+id/action_publicarFragment2_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
+        <action
+            android:id="@+id/action_publicarFragment2_to_misPublicacionesFragment"
+            app:destination="@id/misPublicacionesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/misPublicacionesFragment"
+        android:name="com.utn.MascotApp.fragments.MisPublicacionesFragment"
+        android:label="MisPublicacionesFragment" >
+        <action
+            android:id="@+id/action_misPublicacionesFragment_to_publicarFragment2"
+            app:destination="@id/publicarFragment2" />
+        <action
+            android:id="@+id/action_misPublicacionesFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
+    </fragment>
 </navigation>
