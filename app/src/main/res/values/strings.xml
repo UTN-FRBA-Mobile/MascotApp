@@ -21,4 +21,6 @@
     <string name="card_pet_name">Pet Name</string>
     <string name="card_pet_sex_and_age">HEMBRA - 2 AÑOS</string>
 
+    <string name="prefs_file">com.utn.MascotApp.PREFERENCES_FILE_KEY</string>
+
 </resources>

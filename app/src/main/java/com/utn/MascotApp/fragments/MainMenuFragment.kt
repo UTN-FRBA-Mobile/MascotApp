@@ -1,15 +1,20 @@
 package com.utn.MascotApp.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.Button
 import android.widget.ImageButton
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.ktx.Firebase
 import com.utn.MascotApp.PagerViewAdapter
 import com.utn.MascotApp.R
 import com.utn.MascotApp.databinding.FragmentMainMenuBinding
@@ -27,6 +32,7 @@ class MainMenuFragment : Fragment() {
 
     private lateinit var listadoBtn: ImageButton
     private lateinit var mapaBtn: ImageButton
+    private lateinit var logOutBtn: Button
 
     private lateinit var mViewPager: ViewPager
     private lateinit var mPagerViewAdapter: PagerViewAdapter
@@ -56,6 +62,18 @@ class MainMenuFragment : Fragment() {
         listadoBtn = binding.listadoBtn
         mapaBtn = binding.mapaBtn
         mViewPager = binding.viewPager
+
+        //TODO: Mover esto a donde se ponga el boton de logOut
+        logOutBtn = binding.logOut
+
+        logOutBtn.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            val prefs = this.requireActivity().getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
+            prefs.clear()
+            prefs.apply()
+            findNavController().navigate(R.id.authFragment)
+        }
+        //Fin TODO
 
         mapaBtn.setOnClickListener {
             mViewPager.currentItem = 0
@@ -87,6 +105,7 @@ class MainMenuFragment : Fragment() {
 
         mViewPager.currentItem = 0
         mapaBtn.setImageResource(R.drawable.map_white)
+
     }
 
     private fun changeTabs(position: Int) {
