@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -28,4 +29,39 @@
         app:layout_constraintRight_toRightOf="parent">
 
     </TextView>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/floatingActionButton_PerdiMiMascota"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="40dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="invisible"
+        android:tint="@android:color/white"
+        android:text="@string/str_perdi_mi_mascota"
+        android:padding="20dp"
+        app:layout_constraintLeft_toLeftOf="@+id/bottom_navigation"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/floatingActionButton_EncontreUnaMascota"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="40dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="invisible"
+        android:tint="@android:color/white"
+        android:text="@string/str_encontre_una_mascota"
+        android:padding="20dp"
+        app:layout_constraintLeft_toRightOf="@+id/floatingActionButton_PerdiMiMascota"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
