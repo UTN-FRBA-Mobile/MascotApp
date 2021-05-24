@@ -28,6 +28,17 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <Button
+        android:id="@+id/logOut"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:backgroundTint="@color/orange"
+        android:text="Cerrar Sesion"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="-16dp" />
+
+    <Button
         android:id="@+id/button_buscar_mascotas_perdidas"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="match_parent"
