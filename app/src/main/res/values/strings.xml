@@ -1,10 +1,16 @@
 <resources>
     <string name="app_name">MascotApp</string>
+    <string name="tab_listado">Listado</string>
+    <string name="tab_map">Mapa</string>
     <string name="str_encontre_una_mascota">Encontre una Mascota</string>
     <string name="str_perdi_mi_mascota">Perdi Mi Mascota</string>
     <string name="str_buscar_mascotas_perdidas">Buscar Mascotas Perdidas</string>
     <string name="str_mis_publicaciones">Mis Publicaciones</string>
     <string name="page_title">MascotApp</string>
+    <string name="buscar_mascota">Buscar Mascota</string>
+    <string name="mascotas_buscadas">Mascotas Buscadas</string>
+    <string name="mis_publicaciones">Mis Publicaciones</string>
+    <string name="plus">+</string>
 
     <string name="card_descripcion_mascota">Descripcion Mascota</string>
     <string name="card_ver_detalles">INFO</string>
@@ -14,4 +20,5 @@
     <string name="card_me_perdi_en">ME PERDI EN</string>
     <string name="card_pet_name">Pet Name</string>
     <string name="card_pet_sex_and_age">HEMBRA - 2 AÑOS</string>
+
 </resources>

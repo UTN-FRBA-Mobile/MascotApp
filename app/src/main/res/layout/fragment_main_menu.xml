@@ -1,61 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@null"
     android:orientation="vertical">
 
-
-    <Button
-        android:id="@+id/button_encontre_una_mascota"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_width="match_parent"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_height="wrap_content"
-        android:text="@string/str_encontre_una_mascota"
-        app:layout_constraintBottom_toTopOf="@+id/button_perdi_mi_mascota"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
-
-    <Button
-        android:id="@+id/button_mis_publicaciones"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/str_mis_publicaciones"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_buscar_mascotas_perdidas"
-        tools:layout_editor_absoluteX="0dp" />
+        android:background="@color/blue_grey_300"
+        android:theme="@style/Theme.MascotApp"
+        >
 
-    <Button
-        android:id="@+id/logOut"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
+        <ImageView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:layout_marginTop="9dp"
+            android:minHeight="?actionBarSize"
+            app:srcCompat="@drawable/branded_logo"
+            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
+
+        <LinearLayout
+            android:id="@+id/lin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:padding="5dp"
+            android:elevation="5dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:background="@color/blue_grey_300">
+
+            <ImageButton
+                android:id="@+id/mapaBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/map"
+                android:text="@string/tab_listado"
+                android:textSize="20sp"
+                android:drawableTint="@color/white"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:background="@android:color/transparent" />
+
+            <ImageButton
+                android:id="@+id/listadoBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/list"
+                android:text="@string/tab_map"
+                android:textSize="20sp"
+                android:drawableTint="@color/white"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:background="@android:color/transparent" />
+        </LinearLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:backgroundTint="@color/orange"
-        android:text="Cerrar Sesion"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="-16dp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/button_buscar_mascotas_perdidas"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/str_buscar_mascotas_perdidas"
-        app:layout_constraintBottom_toTopOf="@+id/button_mis_publicaciones"
-        app:layout_constraintTop_toBottomOf="@+id/button_perdi_mi_mascota"
-        tools:layout_editor_absoluteX="0dp" />
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <Button
-        android:id="@+id/button_perdi_mi_mascota"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/str_perdi_mi_mascota"
-        app:layout_constraintBottom_toTopOf="@+id/button_buscar_mascotas_perdidas"
-        app:layout_constraintTop_toBottomOf="@+id/button_encontre_una_mascota"
-        tools:layout_editor_absoluteX="0dp" />
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:menu="@menu/button_app_bar"
+            app:itemIconTint="@color/white"
+            app:itemTextColor="@color/white"
+            android:background="@color/blue_grey_300"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/floatingActionButton_PerdiMiMascota"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="40dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="invisible"
+            android:tint="@android:color/white"
+            android:text="@string/str_perdi_mi_mascota"
+            android:padding="20dp"
+            app:layout_constraintLeft_toLeftOf="@+id/bottom_navigation"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+            />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/floatingActionButton_EncontreUnaMascota"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="100dp"
+            android:layout_marginBottom="40dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="invisible"
+            android:tint="@android:color/white"
+            android:text="@string/str_encontre_una_mascota"
+            android:padding="20dp"
+            app:layout_constraintLeft_toRightOf="@+id/floatingActionButton_PerdiMiMascota"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

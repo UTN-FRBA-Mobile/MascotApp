@@ -1,4 +1,4 @@
-package com.utn.MascotApp
+package com.utn.MascotApp.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.utn.MascotApp.R
 import com.utn.MascotApp.databinding.FragmentAuthBinding
 
 class AuthFragment: Fragment() {
