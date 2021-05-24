@@ -106,14 +106,6 @@ class MainMenuFragment : Fragment() {
         mViewPager.currentItem = 0
         mapaBtn.setImageResource(R.drawable.map_white)
 
-        //TODO: Borrar esto, solo esta para indicar que se guarda la sesion
-        val alertBuilder = context?.let {
-            AlertDialog.Builder(it)
-                .setTitle("Info")
-                .setMessage("El usuario logueado es, " + FirebaseAuth.getInstance().currentUser?.email.toString())
-                .setPositiveButton("Aceptar", null)
-        }
-        alertBuilder?.create()?.show()
     }
 
     private fun changeTabs(position: Int) {
