@@ -13,11 +13,14 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
-
+plugins {
+    id("com.google.secrets_gradle_plugin") version "0.6"
+}
 allprojects {
     repositories {
         google()
         jcenter()
+
     }
 }
 
