@@ -52,6 +52,11 @@ class MainMenuFragment : Fragment() {
             when(it.itemId){
                 R.id.publicarItem -> {
                     onPublicarButtonClicked()
+
+                    floatingActionButton_PerdiMiMascota.setOnClickListener() {
+                        findNavController().navigate(R.id.action_mainMenuFragment_to_filtros)
+                    }
+
                 }
                 R.id.misPublicacionesItem -> {
                     findNavController().navigate(R.id.action_mainMenuFragment_to_misPublicacionesFragment)
