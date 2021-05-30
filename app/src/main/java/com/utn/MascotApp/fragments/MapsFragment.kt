@@ -2,8 +2,6 @@ package com.utn.MascotApp.fragments
 
 
 import android.Manifest
-import android.app.Activity
-import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
@@ -13,17 +11,19 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.CameraPosition
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
+import com.utn.MascotApp.BitmapHelper
+import com.utn.MascotApp.MarkerInfoWindowAdapter
+import com.utn.MascotApp.Pet
+import com.utn.MascotApp.PetReader
+import com.utn.MascotApp.R.drawable.*
+import com.utn.MascotApp.R.color.*
 
 import com.utn.MascotApp.databinding.FragmentMapsBinding
 
@@ -38,6 +38,14 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private var lastKnownLocation: Location? = null
     private val defaultLocation = LatLng(-34.62718052757213, -58.45845530464802)
+    private val petIcon: BitmapDescriptor by lazy {
+        val color = ContextCompat.getColor(requireContext(), blue_grey_900)
+        BitmapHelper.vectorToBitmap(requireContext(), pet_footprint, color)
+    }
+
+    private val pet_locations: List<Pet> by lazy {
+        PetReader(requireContext()).read()
+    }
 
     val requestPermissionLauncher =
         registerForActivityResult(
@@ -168,6 +176,8 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
 
         // Get the current location of the device and set the position of the map.
         getDeviceLocation()
+
+        addMarkers(map)
     }
 
     /**
@@ -197,6 +207,20 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
      */
     private fun getLocationPermission() {
         requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+    }
+
+    private fun addMarkers(googleMap: GoogleMap) {
+        // Set custom info window adapter
+        googleMap.setInfoWindowAdapter(MarkerInfoWindowAdapter(requireContext()))
+        pet_locations.forEach { pet ->
+            val marker = googleMap.addMarker(
+                MarkerOptions()
+                    .title(pet.name)
+                    .position(pet.latLng)
+                    .icon(petIcon)
+            )
+            marker?.tag = pet
+        }
     }
 
     companion object {
