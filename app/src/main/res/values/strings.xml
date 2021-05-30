@@ -65,6 +65,7 @@
     <string name="color">Color</string>
     <string name="edad">Edad</string>
     <string name="seleccionar_fecha">Seleccionar fecha</string>
+    <string name="mi_ubicacion">Mi ubicacion</string>
 
 
 </resources>
