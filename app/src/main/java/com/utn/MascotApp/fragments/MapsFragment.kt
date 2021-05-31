@@ -18,10 +18,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
-import com.utn.MascotApp.BitmapHelper
-import com.utn.MascotApp.MarkerInfoWindowAdapter
-import com.utn.MascotApp.Pet
-import com.utn.MascotApp.PetReader
+import com.utn.MascotApp.*
 import com.utn.MascotApp.R.drawable.*
 import com.utn.MascotApp.R.color.*
 
@@ -87,6 +84,9 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
         mapFragment?.getMapAsync(this)
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+        requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+        updateLocationUI()
+        getDeviceLocation()
 
         binding.miLocation.setOnClickListener{
             requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -165,7 +165,10 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
                 return infoWindow
             }
         })*/
-        // [END map_current_place_set_info_window_adapter]
+         map.setMapStyle(
+                MapStyleOptions.loadRawResourceStyle(
+                    requireContext(), R.raw.style_json));
+
 
         // Prompt the user for permission.
         requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -225,7 +228,7 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
 
     companion object {
         private val TAG = MapsFragment::class.java.simpleName
-        private const val DEFAULT_ZOOM = 15
+        private const val DEFAULT_ZOOM = 16
         private const val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1
 
         // Keys for storing activity state.
