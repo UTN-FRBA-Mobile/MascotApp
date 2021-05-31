@@ -10,7 +10,7 @@ import kotlin.collections.ArrayList
 data class Publication(
     var type: String? = "",
     var species: String? = "",
-    var race: String? = "",
+    var breed: String? = "",
     var createdAt: Date = Date(),
     var lastSeen: Date = Date(),
     var color: String? = "",
@@ -28,7 +28,7 @@ data class Publication(
         return mapOf(
             "type" to type,
             "species" to species,
-            "race" to race,
+            "breed" to breed,
             "createdAt" to createdAt,
             "lastSeen" to lastSeen,
             "color" to color,

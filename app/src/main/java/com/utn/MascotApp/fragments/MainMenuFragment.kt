@@ -140,13 +140,14 @@ class MainMenuFragment : Fragment() {
 //        val publication: Publication = Publication(
 //            type = "found",
 //            species = "dog",
-//            race = "Galgo",
+//            breed = "Galgo",
 //            createdAt = Date(),
 //            lastSeen = Date(),
 //            color = "blue",
 //            size = "large",
 //            name = "Firulais",
 //            description = "Encontramos a Firulais en Parque Las Heras",
+//            imagePath = "url",
 //            address = "Parque Las Heras",
 //            geolocation = GeoPoint(-34.5837944, -58.4091335),
 //            createdBy = FirebaseAuth.getInstance().currentUser?.uid
