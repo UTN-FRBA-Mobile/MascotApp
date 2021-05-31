@@ -9,21 +9,35 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageButton
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.utn.MascotApp.PagerViewAdapter
 import com.utn.MascotApp.R
 import com.utn.MascotApp.databinding.FragmentMainMenuBinding
+import com.utn.MascotApp.models.Publication
 import kotlinx.android.synthetic.main.fragment_main_menu.*
+import java.util.*
 
 
 class MainMenuFragment : Fragment() {
-    private val fromBotton: Animation by lazy{ AnimationUtils.loadAnimation(context, R.anim.from_bottom_anim)}
-    private val toBotton: Animation by lazy{ AnimationUtils.loadAnimation(context, R.anim.to_bottom_anim)}
+    private val fromBotton: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            context,
+            R.anim.from_bottom_anim
+        )
+    }
+    private val toBotton: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            context,
+            R.anim.to_bottom_anim
+        )
+    }
 
     private var publicar_button_clicked = false
 
@@ -37,19 +51,18 @@ class MainMenuFragment : Fragment() {
     private lateinit var mViewPager: ViewPager
     private lateinit var mPagerViewAdapter: PagerViewAdapter
 
-
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMainMenuBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?){
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         bottom_navigation.setOnNavigationItemSelectedListener {
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.publicarItem -> {
                     onPublicarButtonClicked()
 
@@ -73,7 +86,8 @@ class MainMenuFragment : Fragment() {
 
         logOutBtn.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-            val prefs = this.requireActivity().getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
+            val prefs = this.requireActivity()
+                .getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
             prefs.clear()
             prefs.apply()
             findNavController().navigate(R.id.authFragment)
@@ -95,9 +109,9 @@ class MainMenuFragment : Fragment() {
 
         mViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
-                    position: Int,
-                    positionOffset: Float,
-                    positionOffsetPixels: Int
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
             ) {
             }
 
@@ -111,7 +125,60 @@ class MainMenuFragment : Fragment() {
         mViewPager.currentItem = 0
         mapaBtn.setImageResource(R.drawable.map_white)
 
+
+//        DESCARGAR Imagen
+//        private val storage = Firebase.storage
+//
+//        private val imagesRef = storage.reference.child("publication-images")
+//        imagesRef.child("chihuahua-sombrero.jpg").downloadUrl.addOnSuccessListener {
+//            println("downloaded successfully -> " + it)
+//        }.addOnFailureListener {
+//            println("Error downloading file -> " + it.message)
+//        }
+
+
+//        val publication: Publication = Publication(
+//            type = "found",
+//            species = "dog",
+//            breed = "Galgo",
+//            createdAt = Date(),
+//            lastSeen = Date(),
+//            color = "blue",
+//            size = "large",
+//            name = "Firulais",
+//            description = "Encontramos a Firulais en Parque Las Heras",
+//            imagePath = "url",
+//            address = "Parque Las Heras",
+//            geolocation = GeoPoint(-34.5837944, -58.4091335),
+//            createdBy = FirebaseAuth.getInstance().currentUser?.uid
+//        )
+
+        // AGREGAR PUBLICACION
+
+//        private val db = FirebaseFirestore.getInstance()
+//
+//        db.collection("publications").add(publication)
+//            .addOnSuccessListener {
+//                println("Added document succesfully")
+//            }
+//            .addOnFailureListener { exception ->
+//                println("Error adding document: $exception")
+//            }
+//
+        // LEER PUBLICACIONES DE LA DB
+
+//        db.collection("publications")
+//            .get()
+//            .addOnSuccessListener { documents ->
+//                for (document in documents) {
+//                    println("${document.id} => ${document.data}")
+//                }
+//            }
+//            .addOnFailureListener { exception ->
+//                println("Error getting documents: $exception")
+//            }
     }
+
 
     private fun changeTabs(position: Int) {
         if (position == 0) {
@@ -132,8 +199,8 @@ class MainMenuFragment : Fragment() {
         publicar_button_clicked = !publicar_button_clicked
     }
 
-    private fun setVisibility(clicked: Boolean){
-        if (!clicked){
+    private fun setVisibility(clicked: Boolean) {
+        if (!clicked) {
             binding.floatingActionButtonEncontreUnaMascota.visibility = View.VISIBLE
             binding.floatingActionButtonPerdiMiMascota.visibility = View.VISIBLE
         } else {
@@ -142,8 +209,8 @@ class MainMenuFragment : Fragment() {
         }
     }
 
-    private fun setAnimation(clicked: Boolean){
-        if (!clicked){
+    private fun setAnimation(clicked: Boolean) {
+        if (!clicked) {
             binding.floatingActionButtonEncontreUnaMascota.startAnimation(fromBotton)
             binding.floatingActionButtonPerdiMiMascota.startAnimation(fromBotton)
         } else {
@@ -152,8 +219,8 @@ class MainMenuFragment : Fragment() {
         }
     }
 
-    private fun setClickable(clicked: Boolean){
-        if (!clicked){
+    private fun setClickable(clicked: Boolean) {
+        if (!clicked) {
             binding.floatingActionButtonEncontreUnaMascota.isClickable = true
             binding.floatingActionButtonPerdiMiMascota.isClickable = true
         } else {
