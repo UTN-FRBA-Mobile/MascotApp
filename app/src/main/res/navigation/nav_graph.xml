@@ -54,5 +54,13 @@
         android:id="@+id/filtros"
         android:name="com.utn.MascotApp.Filtros"
         android:label="fragment_filtros"
-        tools:layout="@layout/fragment_filtros" />
+        tools:layout="@layout/fragment_filtros" >
+        <action
+            android:id="@+id/action_filtros_to_photosFragment"
+            app:destination="@id/photosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/photosFragment"
+        android:name="com.utn.MascotApp.fragments.PhotosFragment"
+        android:label="PhotosFragment" />
 </navigation>
