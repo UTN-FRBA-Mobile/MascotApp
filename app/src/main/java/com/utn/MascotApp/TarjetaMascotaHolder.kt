@@ -8,12 +8,17 @@ import com.utn.MascotApp.databinding.TarjetaMascotaBinding
 class TarjetaMascotaHolder(view: View): RecyclerView.ViewHolder(view) {
     private val binding = TarjetaMascotaBinding.bind(view)
 
-    fun bind(image:String){
-        Picasso.get().load(image).into(binding.cardImagenMascota)
-        binding.cardTitle.text = "ME PERDI EN"
-        binding.cardDireccion.text = "Av. Directorio 1524"
-        binding.fechaPublicacion.text = "12 Marzo 2021"
-        binding.petName.text = "Puchini"
-        binding.petSexAndAge.text = "Hembra - 2 Años"
+    fun bind(publications: Publications){
+        Picasso.get().load(publications.imagePath).into(binding.cardImagenMascota)
+        binding.cardTitle.text = publications.breed
+        binding.cardDireccion.text = publications.address
+        binding.cardCommentary.text = publications.description
+        binding.fechaPublicacion.text = publications.createdAt.toDate().toString()
+        binding.petName.text = publications.name
+        binding.petSexAndAge.text = publications.species + " " +publications.color
+
     }
+
+
+
 }

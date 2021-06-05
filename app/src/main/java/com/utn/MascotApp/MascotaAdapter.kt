@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 
-class MascotaAdapter(private val images: List<String>): RecyclerView.Adapter<TarjetaMascotaHolder>(){
+class MascotaAdapter(private val publications_list: List<Publications>): RecyclerView.Adapter<TarjetaMascotaHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TarjetaMascotaHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -17,10 +17,10 @@ class MascotaAdapter(private val images: List<String>): RecyclerView.Adapter<Tar
     }
 
     override fun onBindViewHolder(holder: TarjetaMascotaHolder, position: Int) {
-        val item = images[position]
+        val item = publications_list[position]
         holder.bind(item)
     }
 
-    override fun getItemCount(): Int = images.size
+    override fun getItemCount(): Int = publications_list.size
 
 }
