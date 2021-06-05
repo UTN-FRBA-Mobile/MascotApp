@@ -1,6 +1,7 @@
 package com.utn.MascotApp.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.GeoPoint
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 
 class MascotaVistasFragment: Fragment(){
@@ -47,18 +50,18 @@ class MascotaVistasFragment: Fragment(){
     private fun getPublicationsFromDB(){
         var collection_publications : MutableList<Publications> = arrayListOf()
         val db = FirebaseFirestore.getInstance()
+        val storage = Firebase.storage
+        val imagesRef = storage.reference.child("publication-images")
         db.collection("publications")
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
                     var map : Map<String, Any> = document.data
-                    var publication = Publications(
+                    imagesRef.child(map.get("imagePath").toString()).downloadUrl.addOnSuccessListener {
+                        var publication = Publications(
                             address = map.get("address").toString(),
                             color = map.get("color").toString(),
-                            imagePath = map.get("imagePath").toString(),
-//                          TODO hay que cargar las imágenes de la URL real.
-//                          dejo esta hardcodeada  imagePath = "https://laughingcolours.com/wp-content/uploads/2019/06/k-s-pets-services-ecil-hyderabad-pet-care-takers-1knoqwn9vh-1.jpg",
-//                          FIN TODO
+                            imagePath = it.toString(),
                             description = map.get("description").toString(),
                             type = map.get("type").toString(),
                             breed = map.get("breed").toString(),
@@ -69,13 +72,15 @@ class MascotaVistasFragment: Fragment(){
                             species = map.get("species").toString(),
                             name = map.get("name").toString(),
                             geolocation = map.get("geolocation") as GeoPoint
-                    )
-                    collection_publications.add(publication)
+                        )
+                        collection_publications.add(publication)
+                        publications.clear()
+                        publications.addAll(collection_publications)
+                        mascotaAdapter.notifyDataSetChanged()
+                        binding.progressBar.visibility = View.GONE
+                    }
+
                 }
-                publications.clear()
-                publications.addAll(collection_publications)
-                mascotaAdapter.notifyDataSetChanged()
-                binding.progressBar.visibility = View.GONE
             }
             .addOnFailureListener { exception ->
                 println("Error getting documents: $exception")
