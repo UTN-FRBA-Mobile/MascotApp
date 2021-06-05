@@ -1,14 +1,131 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.DetallesTarjetaFragment">
+    android:layout_margin="8dp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
 
-</FrameLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <!-- Media -->
+            <ImageView
+                android:id="@+id/card_imagen_mascota"
+                android:layout_width="match_parent"
+                android:layout_height="325dp"
+                app:srcCompat="@drawable/golden"
+                android:scaleType="centerCrop"
+                android:padding="1dp"
+                />
+            <TextView
+                android:id="@+id/pet_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/card_imagen_mascota"
+                android:layout_alignBottom="@+id/card_imagen_mascota"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="25dp"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColor="@color/white"
+                android:text="@string/card_pet_name"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                android:drawableRight="@drawable/pet_footprint"
+                android:drawableTint="@color/orange"
+                android:background="@android:color/transparent"/>
+            <TextView
+                android:id="@+id/pet_sex_and_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAllCaps"
+                android:textColor="@color/white"
+                android:text="@string/card_pet_sex_and_age"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="11dp"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:layout_alignStart="@+id/card_imagen_mascota"
+                android:layout_alignBottom="@+id/card_imagen_mascota"
+                android:background="@android:color/transparent"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/card_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/card_me_perdi_en"
+                android:textAppearance="?attr/textAppearanceBody2"
+                />
+            <TextView
+                android:id="@+id/card_direccion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/card_secondary_text"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="@color/purple_700"
+                android:textStyle="bold"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/card_commentary_text"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColor="@color/cardview_dark_background"
+                />
+
+        </LinearLayout>
+
+        <!-- Buttons -->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="horizontal">
+
+            <!-- Media -->
+            <ImageView
+                android:id="@+id/calendar_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/calendar_today"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:drawableTint="@color/blue_grey_600"
+                android:background="@android:color/transparent"
+                android:scaleType="centerCrop"
+                android:layout_alignParentStart="true"
+                />
+
+            <TextView
+                android:id="@+id/fecha_publicacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/calendar_img"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/card_secondary_text"
+                android:textAppearance="?attr/textAppearanceSubtitle2"
+                android:textColor="?android:attr/textColorSecondary"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
