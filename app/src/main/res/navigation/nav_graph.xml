@@ -15,6 +15,11 @@
         <action
             android:id="@+id/action_mainMenuFragment_to_misPublicacionesFragment"
             app:destination="@id/misPublicacionesFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_detallesTarjetaFragment"
+            app:destination="@id/detallesTarjetaFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/publicarFragment2"
@@ -46,5 +51,21 @@
         <action
             android:id="@+id/action_authFragment_to_mainMenuFragment"
             app:destination="@id/mainMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detallesTarjetaFragment"
+        android:name="com.utn.MascotApp.fragments.DetallesTarjetaFragment"
+        android:label="fragment_detalles_tarjeta"
+        tools:layout="@layout/fragment_detalles_tarjeta" >
+        <action
+            android:id="@+id/action_detallesTarjetaFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment"
+            app:enterAnim="@anim/to_right"
+            app:exitAnim="@anim/to_right"
+            app:popUpTo="@id/mainMenuFragment" />
+        <argument
+            android:name="image"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 </navigation>
