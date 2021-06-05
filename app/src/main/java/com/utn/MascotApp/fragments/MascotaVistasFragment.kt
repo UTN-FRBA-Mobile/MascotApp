@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.utn.MascotApp.IDogsApi
 import com.utn.MascotApp.MascotaAdapter
@@ -15,6 +17,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
 
 
 class MascotaVistasFragment: Fragment(){
@@ -39,7 +42,7 @@ class MascotaVistasFragment: Fragment(){
     }
 
     fun initRecyclerViewMascotasVista(){
-        mascotaAdapter = MascotaAdapter(dogImages)
+        mascotaAdapter = MascotaAdapter(dogImages, findNavController())
         binding.listaTarjetasMascotas.layoutManager = LinearLayoutManager(context)
         binding.listaTarjetasMascotas.adapter = mascotaAdapter
         binding.listaTarjetasMascotas.visibility = View.VISIBLE
