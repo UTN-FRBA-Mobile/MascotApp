@@ -13,7 +13,9 @@ class TarjetaMascotaHolder(view: View): RecyclerView.ViewHolder(view) {
         binding.cardTitle.text = publications.breed
         binding.cardDireccion.text = publications.address
         binding.cardCommentary.text = publications.description
+//      TODO falta hacer un formateo de esta fecha
         binding.fechaPublicacion.text = publications.createdAt.toDate().toString()
+//      fin TODO
         binding.petName.text = publications.name
         binding.petSexAndAge.text = publications.species + " " +publications.color
 

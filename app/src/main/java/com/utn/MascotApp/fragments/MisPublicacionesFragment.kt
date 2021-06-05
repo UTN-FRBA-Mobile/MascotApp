@@ -114,11 +114,16 @@ class MisPublicacionesFragment : Fragment() {
                 .addOnSuccessListener { documents ->
                     for (document in documents) {
                         var map : Map<String, Any> = document.data
+//                      TODO este if no se si funciona, no me trae solo mis publicaciones......
                         if (createdBy == map.get("createdBy").toString()){
+//                      fin TODO
                                 var publication = Publications(
                                         address = map.get("address").toString(),
                                         color = map.get("color").toString(),
-                                        imagePath = "https://laughingcolours.com/wp-content/uploads/2019/06/k-s-pets-services-ecil-hyderabad-pet-care-takers-1knoqwn9vh-1.jpg",
+                                        imagePath = map.get("imagePath").toString(),
+//                                      TODO hay que cargar las imágenes de la URL real.
+//                                      dejo esta hardcodeada  imagePath = "https://laughingcolours.com/wp-content/uploads/2019/06/k-s-pets-services-ecil-hyderabad-pet-care-takers-1knoqwn9vh-1.jpg",
+//                                      FIN TODO
                                         description = map.get("description").toString(),
                                         type = map.get("type").toString(),
                                         breed = map.get("breed").toString(),
