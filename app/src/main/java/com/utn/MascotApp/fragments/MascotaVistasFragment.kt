@@ -7,21 +7,20 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.utn.MascotApp.IDogsApi
+import com.google.firebase.firestore.FirebaseFirestore
 import com.utn.MascotApp.MascotaAdapter
+import com.utn.MascotApp.Publications
 import com.utn.MascotApp.databinding.FragmentMascotaVistasBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import com.google.firebase.Timestamp
+import com.google.firebase.firestore.GeoPoint
 
 
 class MascotaVistasFragment: Fragment(){
-    //private var listener: OnFragmentInteractionListener? = null
     private lateinit var mascotaAdapter: MascotaAdapter
     private var _binding: FragmentMascotaVistasBinding? = null
-    private val dogImages = mutableListOf<String>()
+    private val publications = mutableListOf<Publications>()
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -34,45 +33,62 @@ class MascotaVistasFragment: Fragment(){
     override fun onStart(){
         super.onStart()
         initRecyclerViewMascotasVista()
-
-
     }
 
     fun initRecyclerViewMascotasVista(){
-        mascotaAdapter = MascotaAdapter(dogImages)
+        mascotaAdapter = MascotaAdapter(publications)
         binding.listaTarjetasMascotas.layoutManager = LinearLayoutManager(context)
         binding.listaTarjetasMascotas.adapter = mascotaAdapter
         binding.listaTarjetasMascotas.visibility = View.VISIBLE
-        searchPetsByBreed("boxer")
+        getPublicationsFromDB()
 
     }
 
-    private fun getRetrofit():Retrofit{
+    private fun getPublicationsFromDB(){
+        var collection_publications : MutableList<Publications> = arrayListOf()
+        val db = FirebaseFirestore.getInstance()
+        db.collection("publications")
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    var map : Map<String, Any> = document.data
+                    var publication = Publications(
+                            address = map.get("address").toString(),
+                            color = map.get("color").toString(),
+                            imagePath = map.get("imagePath").toString(),
+//                          TODO hay que cargar las imágenes de la URL real.
+//                          dejo esta hardcodeada  imagePath = "https://laughingcolours.com/wp-content/uploads/2019/06/k-s-pets-services-ecil-hyderabad-pet-care-takers-1knoqwn9vh-1.jpg",
+//                          FIN TODO
+                            description = map.get("description").toString(),
+                            type = map.get("type").toString(),
+                            breed = map.get("breed").toString(),
+                            createdAt = map.get("createdAt") as Timestamp,
+                            lastSeen = map.get("lastSeen") as Timestamp,
+                            size = map.get("size").toString(),
+                            createdBy = map.get("createdBy").toString(),
+                            species = map.get("species").toString(),
+                            name = map.get("name").toString(),
+                            geolocation = map.get("geolocation") as GeoPoint
+                    )
+                    collection_publications.add(publication)
+                }
+                publications.clear()
+                publications.addAll(collection_publications)
+                mascotaAdapter.notifyDataSetChanged()
+                binding.progressBar.visibility = View.GONE
+            }
+            .addOnFailureListener { exception ->
+                println("Error getting documents: $exception")
+                showError()
+            }
+    }
+
+    private fun getRetrofit(baseUrl: String):Retrofit{
         return Retrofit.Builder()
-            .baseUrl("https://dog.ceo/api/breed/")
+//            .baseUrl("https://dog.ceo/api/breed/") Example of baseUrl
+            .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create()) // Para parsear el json
             .build()
-    }
-
-    private fun searchPetsByBreed(breed:String){
-        CoroutineScope(Dispatchers.IO).launch {
-            val call = getRetrofit().create(IDogsApi::class.java).get_dogs_image_by_breed("$breed/images")
-            val dogs = call.body()
-            activity?.runOnUiThread{
-                binding.progressBar.visibility = View.VISIBLE
-                // Esto correrá en el hilo principal, y como lo debemos rellenar con las imgs en este ultimo...
-                if (call.isSuccessful){
-                    val images : List<String> = dogs?.images ?: emptyList()
-                    dogImages.clear()
-                    dogImages.addAll(images)
-                    mascotaAdapter.notifyDataSetChanged()
-                    binding.progressBar.visibility = View.GONE
-                }else{
-                    showError()
-                    binding.progressBar.visibility = View.GONE
-                }
-            }
-        }
     }
 
     private fun showError(){

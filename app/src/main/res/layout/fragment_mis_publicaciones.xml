@@ -18,18 +18,6 @@
         app:itemTextColor="@color/white"
         android:background="@color/blue_grey_300"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mis Publicaciones"
-        android:textSize="36sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
-
-    </TextView>
-
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/floatingActionButton_PerdiMiMascota"
         android:layout_width="wrap_content"
@@ -61,6 +49,22 @@
         app:layout_constraintLeft_toRightOf="@+id/floatingActionButton_PerdiMiMascota"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listaTarjetasMascotas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layoutManager="LinearLayoutManager"
+        tools:listitem="@layout/tarjeta_mascota" />
+    <ProgressBar android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:indeterminate="true"
+        android:indeterminateTintMode="src_atop"
+        android:indeterminateTint="@color/black"/>
 
 
 
