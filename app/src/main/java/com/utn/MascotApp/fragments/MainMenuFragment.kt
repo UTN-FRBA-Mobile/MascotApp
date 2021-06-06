@@ -23,6 +23,8 @@ import com.utn.MascotApp.databinding.FragmentMainMenuBinding
 import com.utn.MascotApp.models.Publication
 import kotlinx.android.synthetic.main.fragment_main_menu.*
 import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.random.Random
 
 
 class MainMenuFragment : Fragment() {
@@ -50,6 +52,8 @@ class MainMenuFragment : Fragment() {
 
     private lateinit var mViewPager: ViewPager
     private lateinit var mPagerViewAdapter: PagerViewAdapter
+
+    private val db = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -177,6 +181,50 @@ class MainMenuFragment : Fragment() {
 //            .addOnFailureListener { exception ->
 //                println("Error getting documents: $exception")
 //            }
+
+        var count = 0
+        val users = arrayOf("0G0Qm99ydFOl9tjK4H899U8QskP2", "2Uvtjd0Tc0cvJA3Bxn6yt1eec623", "mxs4lKN2fASp6p9eAQVSYTcCnz32", "qWj2WI29rkNBOao3T6pASnWqqEq1", "sYqOlvDfHpNwriHglQYe5F0vJ4g2")
+        val species = arrayOf("cat", "dog")
+        val types = arrayOf("lost", "found")
+        val dogBreeds = arrayOf("Akita", "Beagle", "Boxer", "Caniche", "Dogo", "Mestizo", "Schnauzer", "Siberiano")
+        val catBreeds = arrayOf("Angora", "Bengal", "Himalayo", "Mestizo", "Persa", "Ragdoll", "Siames")
+        val colors = arrayOf("Negro", "Blanco", "Gris", "Marron", "Beige")
+        val sexs = arrayOf("Macho", "Hembra")
+        val sizes = arrayOf("Pequeño", "Mediano", "Grande", "Gigante")
+        while(count < 50) {
+            val userID = users[Random.nextInt(0, 5)]
+            val specie = species[Random.nextInt(0, 2)]
+            var breed = ""
+            if (specie == "dog") {
+                breed = dogBreeds[Random.nextInt(0, 8)]
+            } else {
+                breed = catBreeds[Random.nextInt(0, 7)]
+            }
+            val color = colors[Random.nextInt(0, 5)]
+            val sex = sexs[Random.nextInt(0, 2)]
+            val size = sizes[Random.nextInt(0, 4)]
+            val type = types[Random.nextInt(0, 2)]
+            val geolocation = GeoPoint(Random.nextDouble(-50.0, 50.0), Random.nextDouble(-50.0, 50.0))
+            val publication = Publication(type, specie, breed, Date(), Date(), color, size, specie + " " + count, "This is a description", "This is an address", geolocation, breed + ".jpg", userID)
+
+
+            println(publication)
+            count++
+
+
+
+            db.collection("publications").add(publication)
+                .addOnSuccessListener {
+                    println("Added document succesfully")
+                }
+                .addOnFailureListener { exception ->
+                    println("Error adding document: $exception")
+                }
+
+
+
+        }
+
     }
 
 
