@@ -66,6 +66,14 @@
     <string name="edad">Edad</string>
     <string name="seleccionar_fecha">Seleccionar fecha</string>
     <string name="mi_ubicacion">Mi ubicacion</string>
+    <string name="perfil_nombre_y_apellido">Nombre y Apellido</string>
+    <string name="perfil_telefono">Teléfono</string>
+    <string name="perfil_direccion">Dirección</string>
+    <string name="perfil_mail">Mail</string>
+    <string name="perfil_mis_mascotas">Mis Mascotas</string>
+    <string name="perfil_mis_publicaciones">Mis Publicaciones</string>
+    <string name="perfil_ver_todo">Ver Todo</string>
+    <string name="perfil_agregar_mascotas">Agregar</string>
 
 
 </resources>
