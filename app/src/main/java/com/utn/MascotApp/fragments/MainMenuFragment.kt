@@ -66,9 +66,9 @@ class MainMenuFragment : Fragment() {
                 R.id.publicarItem -> {
                     onPublicarButtonClicked()
 
-                    floatingActionButton_PerdiMiMascota.setOnClickListener() {
-                        findNavController().navigate(R.id.action_mainMenuFragment_to_filtros)
-                    }
+//                    floatingActionButton_PerdiMiMascota.setOnClickListener() {
+//                        findNavController().navigate(R.id.action_mainMenuFragment_to_mascotInfoFragment)
+//                    }
 
                 }
                 R.id.misPublicacionesItem -> {

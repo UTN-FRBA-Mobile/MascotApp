@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_mainMenuFragment_to_filtros"
             app:destination="@id/filtros" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_mascotInfoFragment"
+            app:destination="@id/mascotInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/publicarFragment2"
@@ -63,4 +66,26 @@
         android:id="@+id/photosFragment"
         android:name="com.utn.MascotApp.fragments.PhotosFragment"
         android:label="PhotosFragment" />
+    <fragment
+        android:id="@+id/mascotInfoFragment"
+        android:name="com.utn.MascotApp.fragments.MascotInfoFragment"
+        android:label="fragment_mascot_info"
+        tools:layout="@layout/fragment_mascot_info" >
+        <action
+            android:id="@+id/action_mascotInfoFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment"
+            app:enterAnim="@anim/to_right"
+            app:exitAnim="@anim/to_right"
+            app:popUpTo="@id/mainMenuFragment" />
+<!--        <argument-->
+<!--            android:name="image"-->
+<!--            app:argType="string"-->
+<!--            app:nullable="true" />-->
+        <argument
+            android:name="address"
+            app:argType="string" />
+        <argument
+            android:name="image"
+            app:argType="string" />
+    </fragment>
 </navigation>

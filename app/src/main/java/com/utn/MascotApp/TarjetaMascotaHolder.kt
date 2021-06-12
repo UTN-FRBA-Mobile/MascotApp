@@ -1,11 +1,13 @@
 package com.utn.MascotApp
 
 import android.view.View
+import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.utn.MascotApp.databinding.TarjetaMascotaBinding
+import com.utn.MascotApp.fragments.MainMenuFragmentDirections
 
-class TarjetaMascotaHolder(view: View): RecyclerView.ViewHolder(view) {
+class TarjetaMascotaHolder(view: View, private val navController: NavController): RecyclerView.ViewHolder(view) {
     private val binding = TarjetaMascotaBinding.bind(view)
 
     fun bind(publications: Publications){
@@ -18,6 +20,10 @@ class TarjetaMascotaHolder(view: View): RecyclerView.ViewHolder(view) {
 //      fin TODO
         binding.petName.text = publications.name
         binding.petSexAndAge.text = publications.species + " " +publications.color
+        binding.cardVerDetalles.setOnClickListener {
+            val action = MainMenuFragmentDirections.actionMainMenuFragmentToMascotInfoFragment(publications.address, publications.imagePath)
+            navController.navigate(action)
+        }
 
     }
 

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
 import com.utn.MascotApp.MascotaAdapter
@@ -39,7 +40,7 @@ class MascotaVistasFragment: Fragment(){
     }
 
     fun initRecyclerViewMascotasVista(){
-        mascotaAdapter = MascotaAdapter(publications)
+        mascotaAdapter = MascotaAdapter(publications,  findNavController())
         binding.listaTarjetasMascotas.layoutManager = LinearLayoutManager(context)
         binding.listaTarjetasMascotas.adapter = mascotaAdapter
         binding.listaTarjetasMascotas.visibility = View.VISIBLE
