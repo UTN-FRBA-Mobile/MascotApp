@@ -1,14 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.FirstLoginFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.FirstLoginFragment"
+    android:orientation="vertical"
+    android:background="@color/blue_grey_300"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/ic_mascotapp_text_w_logo"
+        >
+    </ImageView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="350dp">
+        android:gravity="center"
+        <ImageView
+            android:id="@+id/purple_ellipse"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:scaleType="center"
+            app:srcCompat="@drawable/ic_purple_ellipse"
+            >
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/dog_and_man"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/dog_and_person_pic"
+            >
+        </ImageView>
+
+    </RelativeLayout>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp">
 
-</FrameLayout>
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="30dp" />
+        <Button
+            android:id="@+id/logInButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/orange"
+            android:layout_gravity="center"
+            android:text="Log in"
+            android:textColor="@color/white" />
+
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="30dp" />
+
+        <Button
+            android:id="@+id/signUpButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/transparent"
+            android:layout_gravity="center"
+            android:text="Sign Up"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+</LinearLayout>
