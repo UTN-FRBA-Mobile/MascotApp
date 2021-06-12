@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/authFragment">
+    app:startDestination="@id/firstLoginFragment">
 
     <fragment
         android:id="@+id/mainMenuFragment"
@@ -63,4 +63,13 @@
         android:id="@+id/photosFragment"
         android:name="com.utn.MascotApp.fragments.PhotosFragment"
         android:label="PhotosFragment" />
+    <fragment
+        android:id="@+id/firstLoginFragment"
+        android:name="com.utn.MascotApp.fragments.FirstLoginFragment"
+        android:label="fragment_first_login"
+        tools:layout="@layout/fragment_first_login" >
+        <action
+            android:id="@+id/action_firstLoginFragment_to_authFragment"
+            app:destination="@id/authFragment" />
+    </fragment>
 </navigation>
