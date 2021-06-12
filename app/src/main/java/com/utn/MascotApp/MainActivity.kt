@@ -6,6 +6,7 @@ import android.view.MotionEvent
 import androidx.appcompat.app.AppCompatActivity
 import com.utn.MascotApp.databinding.ActivityMainBinding
 import android.view.inputmethod.InputMethodManager
+import com.google.android.libraries.places.api.Places
 
 
 class MainActivity : AppCompatActivity() {
@@ -16,6 +17,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
+        if (!Places.isInitialized()) {
+            Places.initialize(applicationContext, "AIzaSyCFCmb9MGL22ulEXiHHo6hs3XANIUNrnEI")
+        }
         setContentView(view)
         supportActionBar!!.hide()
     }

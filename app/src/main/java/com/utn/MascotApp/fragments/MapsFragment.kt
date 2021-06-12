@@ -11,6 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -18,10 +19,13 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.api.model.TypeFilter
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.utn.MascotApp.*
-import com.utn.MascotApp.R.drawable.*
 import com.utn.MascotApp.R.color.*
-
+import com.utn.MascotApp.R.drawable.*
 import com.utn.MascotApp.databinding.FragmentMapsBinding
 
 
@@ -39,6 +43,7 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
         val color = ContextCompat.getColor(requireContext(), blue_grey_900)
         BitmapHelper.vectorToBitmap(requireContext(), pet_footprint, color)
     }
+
 
     private val pet_locations: List<Pet> by lazy {
         PetReader(requireContext()).read()
@@ -87,7 +92,7 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
         requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
         updateLocationUI()
         getDeviceLocation()
-
+        setupAutoCompleteFragment()
         binding.miLocation.setOnClickListener{
             requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
             updateLocationUI()
@@ -224,6 +229,30 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
             )
             marker?.tag = pet
         }
+    }
+
+    private fun setupAutoCompleteFragment() {
+        val autocompleteFragment =
+            childFragmentManager.findFragmentById(R.id.autocomplete_fragment)
+                    as AutocompleteSupportFragment
+
+        autocompleteFragment.setTypeFilter(TypeFilter.ADDRESS)
+        // Specify the types of place data to return.
+        autocompleteFragment.setPlaceFields(listOf(Place.Field.ID, Place.Field.NAME))
+        autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
+            override fun onPlaceSelected(place: Place) {
+                // TODO: Get info about the selected place.
+                Log.i(TAG, "Place: ${place.name}, ${place.id}")
+            }
+
+            override fun onError(status: Status) {
+                // TODO: Handle the error.
+                Log.i(TAG, "An error occurred: $status")
+            }
+        })
+
+
+
     }
 
     companion object {
