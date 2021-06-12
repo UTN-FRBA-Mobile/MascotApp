@@ -17,124 +17,177 @@
         app:menu="@menu/button_app_bar"
         tools:layout_editor_absoluteY="675dp" />
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="165dp"
-        android:layout_height="165dp"
-        android:paddingRight="5dp"
-        app:cardBackgroundColor="@color/colorPrimary"
-        app:cardCornerRadius="250dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+
 
         <androidx.cardview.widget.CardView
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-            android:layout_gravity="center"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="250dp">
+            android:layout_width="165dp"
+            android:layout_height="165dp"
+            android:layout_marginTop="30dp"
+            android:paddingRight="5dp"
+            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardCornerRadius="250dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
                 android:layout_gravity="center"
+                app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="250dp">
 
-                <ImageView
+                <androidx.cardview.widget.CardView
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_add_image" />
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="250dp">
+
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_add_image" />
+                </androidx.cardview.widget.CardView>
+
             </androidx.cardview.widget.CardView>
 
         </androidx.cardview.widget.CardView>
 
-    </androidx.cardview.widget.CardView>
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="359dp"
-        android:layout_height="40dp"
-        android:hint="@string/perfil_nombre_y_apellido"
-        app:boxBackgroundMode="outline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintStart_toTopOf="parent"
-        tools:layout_editor_absoluteY="211dp">
-
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="359dp"
-            android:layout_height="40dp" />
+            android:layout_height="40dp"
+            android:hint="@string/perfil_nombre_y_apellido"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toTopOf="parent"
+            tools:layout_editor_absoluteY="211dp">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="359dp"
+                android:layout_height="40dp" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout2"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        </com.google.android.material.textfield.TextInputLayout>
 
-        android:layout_width="359dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:hint="@string/perfil_telefono"
-        app:boxBackgroundMode="outline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout2"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
-        <com.google.android.material.textfield.TextInputEditText
             android:layout_width="359dp"
-            android:layout_height="40dp" />
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:hint="@string/perfil_telefono"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="359dp"
+                android:layout_height="40dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout3"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout3"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
-        android:layout_width="359dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:hint="@string/perfil_direccion"
-        app:boxBackgroundMode="outline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
-
-        <com.google.android.material.textfield.TextInputEditText
             android:layout_width="359dp"
-            android:layout_height="40dp" />
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:hint="@string/perfil_direccion"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="359dp"
+                android:layout_height="40dp" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout4"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        </com.google.android.material.textfield.TextInputLayout>
 
-        android:layout_width="359dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:hint="@string/perfil_mail"
-        app:boxBackgroundMode="outline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout4"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
-        <com.google.android.material.textfield.TextInputEditText
             android:layout_width="359dp"
-            android:layout_height="40dp" />
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:hint="@string/perfil_mail"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="359dp"
+                android:layout_height="40dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/perfil_mi_perfil"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            tools:layout_editor_absoluteX="26dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/perfil_editar_perfil"
+            android:textColor="@color/orange"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="334dp"
+            tools:layout_editor_absoluteY="21dp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/perfil_ver_todo"
+            android:textColor="@color/orange"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="332dp"
+            tools:layout_editor_absoluteY="485dp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/perfil_mis_mascotas"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            tools:layout_editor_absoluteX="29dp"
+            tools:layout_editor_absoluteY="478dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="384dp"
+            android:layout_height="76dp"
+            tools:layout_editor_absoluteX="27dp"
+            tools:layout_editor_absoluteY="518dp" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

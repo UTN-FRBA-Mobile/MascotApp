@@ -74,6 +74,8 @@
     <string name="perfil_mis_publicaciones">Mis Publicaciones</string>
     <string name="perfil_ver_todo">Ver Todo</string>
     <string name="perfil_agregar_mascotas">Agregar</string>
-
+    <string name="perfil_mi_perfil">Mi Perfil</string>
+    <string name="perfil_editar_perfil">Editar Perfil</string>
+    <string name="perfil_guardar_cambios">Guardar Cambios</string>
 
 </resources>
