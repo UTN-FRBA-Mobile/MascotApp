@@ -16,7 +16,7 @@
     <string name="card_ver_detalles">INFO</string>
     <string name="card_title">Titulo de Tarjeta</string>
     <string name="card_secondary_text">Texto Secundario de Tarjeta</string>
-    <string name="card_commentary_text">Comentario Lorem Ipsum is simply dummy text of the printing and typesetting indus...</string>
+   <string name="card_commentary_text">Comentario Lorem Ipsum is simply dummy text of the printing and typesetting indus…</string>
     <string name="card_me_perdi_en">ME PERDI EN</string>
     <string name="card_pet_name">Pet Name</string>
     <string name="card_pet_sex_and_age">HEMBRA - 2 AÑOS</string>
@@ -66,6 +66,11 @@
     <string name="edad">Edad</string>
     <string name="seleccionar_fecha">Seleccionar fecha</string>
     <string name="mi_ubicacion">Mi ubicacion</string>
+    <string name="nombrebotonsiguiente">Siguiente</string>
+    <string name="nombrebotonatras">Atras</string>
+    <string name="subir_foto">Subir Foto</string>
+    <string name="pasos1">pasos!</string>
+    <string name="pasos2">pasos2</string>
 
 
 </resources>

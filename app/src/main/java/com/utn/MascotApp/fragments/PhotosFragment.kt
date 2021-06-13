@@ -14,23 +14,19 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.utn.MascotApp.R
+import com.utn.MascotApp.databinding.FragmentMisPublicacionesBinding
 import com.utn.MascotApp.databinding.FragmentPhotosBinding
+import kotlinx.android.synthetic.main.fragment_filtros.*
+import kotlinx.android.synthetic.main.fragment_photos.*
 
 class PhotosFragment : Fragment() {
 
-    private var _binding: FragmentPhotosBinding? = null
+    private var _binding: FragmentMisPublicacionesBinding? = null
     private val binding get() = _binding!!
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = FragmentPhotosBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-
-    private lateinit var btnCamera: Button
-    private lateinit var btnUpdatePhoto: Button
 
     private val REQUEST_GALLERY = 1001
     private val REQUEST_CAMERA = 1002
@@ -38,19 +34,27 @@ class PhotosFragment : Fragment() {
 
     var photo: Uri? = null
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_photos, container, false)
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btnCamera = view.findViewById(R.id.button_camera)
-        btnCamera.setOnClickListener() {
-            openCamera_click()
-        }
 
-        btnUpdatePhoto = view.findViewById(R.id.button_upload_photo)
-        btnUpdatePhoto.setOnClickListener() {
-            openGallery_click()
-        }
+        bottonAtrasAFiltro.setOnClickListener {
+                  findNavController().navigate(R.id.action_photosFragment_to_filtros)
+              }
+
+
+
+        button_camera.setOnClickListener() {
+                         openCamera_click()
+                     }
+        button_upload_photo.setOnClickListener() {
+                         openGallery_click()
+                     }
     }
 
 
@@ -59,7 +63,7 @@ class PhotosFragment : Fragment() {
 //            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
         if (context?.let { it1 -> ActivityCompat.checkSelfPermission(it1, android.Manifest.permission.READ_EXTERNAL_STORAGE) } == PackageManager.PERMISSION_DENIED) {
-            var permissionFiles = arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+            val permissionFiles = arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE)
             requestPermissions(permissionFiles, REQUEST_GALLERY)
         } else {
             viewGallery()
@@ -125,10 +129,10 @@ class PhotosFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_GALLERY) {
-            binding.imgPhoto.setImageURI(data?.data)
+            imgPhoto.setImageURI(data?.data)
         }
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CAMERA) {
-            binding.imgPhoto.setImageURI(photo)
+            imgPhoto.setImageURI(photo)
         }
 
     }

@@ -65,7 +65,11 @@
     <fragment
         android:id="@+id/photosFragment"
         android:name="com.utn.MascotApp.fragments.PhotosFragment"
-        android:label="PhotosFragment" />
+        android:label="PhotosFragment" >
+        <action
+            android:id="@+id/action_photosFragment_to_filtros"
+            app:destination="@id/filtros" />
+    </fragment>
     <fragment
         android:id="@+id/mascotInfoFragment"
         android:name="com.utn.MascotApp.fragments.MascotInfoFragment"

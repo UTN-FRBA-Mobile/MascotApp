@@ -7,6 +7,20 @@
     android:layout_gravity="bottom"
     tools:context=".Filtros">
 
+
+    <ImageView
+        android:id="@+id/pasos1"
+        android:layout_width="276dp"
+        android:layout_height="127dp"
+        android:src="@drawable/filtros_pasos1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.549"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.027"
+        android:contentDescription="@string/pasos1" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
@@ -19,23 +33,11 @@
         app:itemTextColor="@color/white"
         android:background="@color/blue_grey_300"/>
 
-    <Button
-        android:id="@+id/btnCamara"
-        android:layout_width="100dp"
-        android:layout_height="82dp"
-        android:text="@string/camara"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerTipoMascota"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.537"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.803" />
-
     <Spinner
         android:id="@+id/spinnerTipoMascota"
         android:layout_width="344dp"
         android:layout_height="35dp"
-        android:layout_marginTop="208dp"
+        android:layout_marginTop="132dp"
         android:background="@drawable/estilo_botones"
         android:entries="@array/TipoMascota"
         android:popupBackground="#D3D3D3"
@@ -142,9 +144,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintHorizontal_bias="0.537"
         app:layout_constraintTop_toBottomOf="@+id/editTextColor"
-        android:autofillHints="@string/seleccionar_fecha">
+        android:autofillHints="@string/seleccionar_fecha"
+        android:inputType="date">
 
     </EditText>
+
+    <Button
+        android:id="@+id/bottonSiguienteAPhoto"
+        android:layout_width="149dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/estilo_botones"
+        android:text="@string/nombrebotonsiguiente"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.881"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
