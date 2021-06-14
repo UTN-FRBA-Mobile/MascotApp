@@ -7,12 +7,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.squareup.picasso.Picasso
 import com.utn.MascotApp.R
 import com.utn.MascotApp.databinding.FragmentMascotInfoBinding
-import kotlinx.android.synthetic.main.fragment_filtros.*
-import kotlinx.android.synthetic.main.fragment_mascot_info.*
-import kotlinx.android.synthetic.main.fragment_mascot_info.view.*
-import kotlinx.android.synthetic.main.marker_info_contents.view.*
+import java.time.LocalDate.now
 
 
 class MascotInfoFragment : Fragment() {
@@ -32,19 +30,14 @@ class MascotInfoFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        var publii = this.arguments["publication"];
         val imageView = view.findViewById(R.id.imageView) as ImageView
         var imagev = this.arguments?.getString("image")
 
-
-//        imageView.setImageBitmap(BitmapFactory.decodeStream(URL(imagev).openStream()))
-//        imageView.setImageURI(Uri.parse(imagev))
-
+        Picasso.get().load(imagev).into(imageView)
 
         val nameView = view.findViewById(R.id.name) as TextView
         var namev = this.arguments?.getString("name")
         nameView.text =  "Nombre: " + namev
-
 
 
         val addressView = view.findViewById(R.id.address) as TextView
@@ -77,7 +70,11 @@ class MascotInfoFragment : Fragment() {
 
         val lastSeenView = view.findViewById(R.id.lastSeen) as TextView
         var lastSeenv = this.arguments?.getString("lastSeen")
-        lastSeenView.text = "Fecha: " + lastSeenv
+        var date =  lastSeenv?.replace("\"", "");
+
+
+        //TODO fecha
+        lastSeenView.text = "Fecha: " + now().toString()
 
     }
 
