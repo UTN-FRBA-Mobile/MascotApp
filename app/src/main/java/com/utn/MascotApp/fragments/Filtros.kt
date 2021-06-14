@@ -53,7 +53,7 @@ class Filtros : Fragment() {
 
            // Toast.makeText(context, fechaMascota.text, Toast.LENGTH_LONG).show()
 
-            val action = FiltrosDirections.actionFiltrosToPhotosFragment(colorMascota.text.toString(),tipoMascota,razaMascota,sexoMascota,tamañoMascota,edadMascota.text.toString().toInt(),fechaMascota.text.toString())
+            val action = FiltrosDirections.actionFiltrosToPhotosFragment(colorMascota.text.toString(),tipoMascota,razaMascota,sexoMascota,tamanioMascota,edadMascota.text.toString().toInt(),fechaMascota.text.toString())
             findNavController().navigate(action)
 
         }
