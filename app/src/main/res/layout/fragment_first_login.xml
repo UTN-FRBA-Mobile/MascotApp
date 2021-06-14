@@ -19,8 +19,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="350dp">
         android:gravity="center"
+        android:layout_height="350dp">
+
         <ImageView
             android:id="@+id/purple_ellipse"
             android:layout_width="match_parent"
@@ -48,9 +49,6 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <Space
-            android:layout_width="20dp"
-            android:layout_height="30dp" />
         <Button
             android:id="@+id/logInButton"
             android:layout_width="match_parent"
@@ -60,10 +58,6 @@
             android:text="Log in"
             android:textColor="@color/white" />
 
-        <Space
-            android:layout_width="20dp"
-            android:layout_height="30dp" />
-
         <Button
             android:id="@+id/signUpButton"
             android:layout_width="match_parent"
@@ -71,7 +65,10 @@
             android:backgroundTint="@color/transparent"
             android:layout_gravity="center"
             android:text="Sign Up"
-            android:textColor="@color/white" />
+            android:layout_marginTop="40dp"
+            android:textColor="@color/white"
+            android:background="#0F0"
+            />
 
     </LinearLayout>
 
