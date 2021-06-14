@@ -90,7 +90,7 @@ class MainMenuFragment : Fragment() {
                 .getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
             prefs.clear()
             prefs.apply()
-            findNavController().navigate(R.id.authFragment)
+            findNavController().navigate(R.id.firstLoginFragment)
         }
         //Fin TODO
 
