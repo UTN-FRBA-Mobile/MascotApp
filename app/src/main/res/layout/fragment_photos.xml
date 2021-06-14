@@ -75,24 +75,24 @@
         android:id="@+id/bottonSiguienteALoclaidad"
         android:layout_width="149dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/estilo_botones"
         android:text="@string/nombrebotonsiguiente"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.881"
+        app:layout_constraintHorizontal_bias="0.87"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/bottonAtrasAFiltro"
         android:layout_width="149dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/estilo_botones"
         android:text="@string/nombrebotonatras"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.119"
+        app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toStartOf="parent" />
 
 

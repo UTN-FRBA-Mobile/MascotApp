@@ -35,6 +35,7 @@ class Filtros : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+         var edadmascot : Int
 
 
         bottonSiguienteAPhoto.setOnClickListener {
@@ -47,13 +48,17 @@ class Filtros : Fragment() {
             val colorMascota = view.findViewById(R.id.editTextColor) as EditText
             val edadMascota = view.findViewById(R.id.editTextEdad) as EditText
             val fechaMascota = view.findViewById(R.id.calendario) as EditText
+            val nombreMascota = view.findViewById(R.id.editTextNombre) as EditText
 
-
+            if (edadMascota.text.toString().toInt()  == null){
+                 edadmascot = 1
+            } else {   edadmascot = edadMascota.text.toString().toInt()  }
 
 
            // Toast.makeText(context, fechaMascota.text, Toast.LENGTH_LONG).show()
 
-            val action = FiltrosDirections.actionFiltrosToPhotosFragment(colorMascota.text.toString(),tipoMascota,razaMascota,sexoMascota,tamanioMascota,edadMascota.text.toString().toInt(),fechaMascota.text.toString())
+            val action = FiltrosDirections.actionFiltrosToPhotosFragment(colorMascota.text.toString(),tipoMascota,
+                razaMascota,sexoMascota,tamanioMascota,edadmascot,fechaMascota.text.toString(),nombreMascota.text.toString())
             findNavController().navigate(action)
 
         }
