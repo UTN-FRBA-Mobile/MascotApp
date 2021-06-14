@@ -162,6 +162,10 @@
     <string name="edad">Edad</string>
     <string name="seleccionar_fecha">Seleccionar fecha</string>
     <string name="mi_ubicacion">Mi ubicacion</string>
+    <string name="hola_login">Hola,</string>
+    <string name="bienvenido_login">Bienvenido/a!</string>
+    <string name="aun_no_tienes_una_cuenta">Aun no tienes una cuenta?</string>
+    <string name="registrate">Registrate</string>
 
 
 </resources>
