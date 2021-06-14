@@ -21,7 +21,11 @@ class TarjetaMascotaHolder(view: View, private val navController: NavController)
         binding.petName.text = publications.name
         binding.petSexAndAge.text = publications.species + " " +publications.color
         binding.cardVerDetalles.setOnClickListener {
-            val action = MainMenuFragmentDirections.actionMainMenuFragmentToMascotInfoFragment(publications.address, publications.imagePath)
+            val action = MainMenuFragmentDirections.actionMainMenuFragmentToMascotInfoFragment(
+                publications.imagePath, publications.name,
+                publications.description, 11, "sex",
+                publications.color,  publications.breed,  publications.lastSeen.toString(),
+                publications.address)
             navController.navigate(action)
         }
 

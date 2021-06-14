@@ -86,10 +86,31 @@
 <!--            app:argType="string"-->
 <!--            app:nullable="true" />-->
         <argument
-            android:name="address"
+            android:name="image"
             app:argType="string" />
         <argument
-            android:name="image"
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="age"
+            app:argType="integer" />
+        <argument
+            android:name="sex"
+            app:argType="string" />
+        <argument
+            android:name="color"
+            app:argType="string" />
+        <argument
+            android:name="breed"
+            app:argType="string" />
+        <argument
+            android:name="lastSeen"
+            app:argType="string" />
+        <argument
+            android:name="address"
             app:argType="string" />
     </fragment>
 </navigation>
