@@ -85,8 +85,7 @@ class PhotosFragment : Fragment() {
 
 
         bottonAtrasAFiltro.setOnClickListener {
-            val action = PhotosFragmentDirections.actionPhotosFragmentToFiltros()
-            findNavController().navigate(action) }
+            findNavController().navigate(R.id.action_photosFragment_to_filtros) }
 
 
         button_camera.setOnClickListener() {
