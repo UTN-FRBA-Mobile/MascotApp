@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_misPublicacionesFragment_to_mainMenuFragment"
             app:destination="@id/mainMenuFragment" />
+        <action
+            android:id="@+id/action_misPublicacionesFragment_to_mascotInfoFragment"
+            app:destination="@id/mascotInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/authFragment"
@@ -61,6 +64,32 @@
         <action
             android:id="@+id/action_filtros_to_photosFragment"
             app:destination="@id/photosFragment" />
+        <argument
+            android:name="colorMascota"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="tipoMascota"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="razaMascota"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="sexoMascota"
+            app:argType="string"
+            app:nullable="true" />
+        <argument android:name="tamañoMascota"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="edadMascota"
+            app:argType="integer"/>
+        <argument
+            android:name="fechaMascota"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/photosFragment"
