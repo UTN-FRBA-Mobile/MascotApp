@@ -71,6 +71,7 @@ class LocationFragment : Fragment() {
 
             db.collection("publications").add(publication)
                 .addOnSuccessListener {
+
                     println("Added document succesfully")
 
                 }
