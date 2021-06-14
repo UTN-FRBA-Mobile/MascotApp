@@ -1,43 +1,30 @@
 package com.utn.MascotApp
 
-import android.app.AlertDialog
-import android.content.ContentResolver
-import android.content.ContentValues
-import android.content.Context
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
-import android.provider.SyncStateContract.Helpers.insert
-import android.renderscript.Sampler
-import androidx.fragment.app.Fragment
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.*
-import androidx.compose.ui.input.key.Key.Companion.Insert
-import androidx.core.app.ActivityCompat
-import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.auth.FirebaseAuth
 import com.utn.MascotApp.databinding.FragmentMisPublicacionesBinding
 import kotlinx.android.synthetic.main.fragment_filtros.*
-import java.util.jar.Manifest
+import java.time.format.DateTimeFormatter
 
 
 class Filtros : Fragment() {
 
+
+
     private val fromBotton: Animation by lazy{ AnimationUtils.loadAnimation(context, R.anim.from_bottom_anim)}
     private val toBotton: Animation by lazy{ AnimationUtils.loadAnimation(context, R.anim.to_bottom_anim)}
-
     private var publicar_button_clicked = false
-
     private var _binding: FragmentMisPublicacionesBinding? = null
     private val binding get() = _binding!!
+
 
 
 
@@ -51,7 +38,24 @@ class Filtros : Fragment() {
 
 
         bottonSiguienteAPhoto.setOnClickListener {
-            findNavController().navigate(R.id.action_filtros_to_photosFragment)
+
+
+            val tipoMascota = spinnerTipoMascota.getItemAtPosition(spinnerTipoMascota.selectedItemPosition).toString()
+            val razaMascota = spinnerRazaMascota.getItemAtPosition(spinnerRazaMascota.selectedItemPosition).toString()
+            val sexoMascota = spinnerSexoMascota.getItemAtPosition(spinnerSexoMascota.selectedItemPosition).toString()
+            val tamanioMascota = spinnerTamañoMascota.getItemAtPosition(spinnerTamañoMascota.selectedItemPosition).toString()
+            val colorMascota = view.findViewById(R.id.editTextColor) as EditText
+            val edadMascota = view.findViewById(R.id.editTextEdad) as EditText
+            val fechaMascota = view.findViewById(R.id.calendario) as EditText
+
+
+
+
+           // Toast.makeText(context, fechaMascota.text, Toast.LENGTH_LONG).show()
+
+            val action = FiltrosDirections.actionFiltrosToPhotosFragment(colorMascota.text.toString(),tipoMascota,razaMascota,sexoMascota,tamañoMascota,edadMascota.text.toString().toInt(),fechaMascota.text.toString())
+            findNavController().navigate(action)
+
         }
 
 
@@ -66,7 +70,8 @@ class Filtros : Fragment() {
                         ArrayAdapter<String>(it, android.R.layout.simple_spinner_item, listaRazaPerro)
                     }
                     spinnerRazaMascota.adapter = adapter
-                } else if (position == 2) {
+                } else if
+                        (position == 2) {
                     val listaRazaGato = resources.getStringArray(R.array.RazaMascotaGato)
                     val adapter = activity?.let {
                         ArrayAdapter<String>(it, android.R.layout.simple_spinner_item, listaRazaGato)
@@ -136,4 +141,9 @@ class Filtros : Fragment() {
             binding.floatingActionButtonPerdiMiMascota.isClickable = false
         }
     }
+
+
 }
+
+
+

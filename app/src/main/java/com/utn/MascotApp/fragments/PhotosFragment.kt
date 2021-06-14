@@ -11,22 +11,43 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.GeoPoint
+import com.utn.MascotApp.FiltrosDirections
 import com.utn.MascotApp.R
 import com.utn.MascotApp.databinding.FragmentMisPublicacionesBinding
 import com.utn.MascotApp.databinding.FragmentPhotosBinding
+import com.utn.MascotApp.models.Publication
 import kotlinx.android.synthetic.main.fragment_filtros.*
 import kotlinx.android.synthetic.main.fragment_photos.*
+import java.util.*
 
 class PhotosFragment : Fragment() {
 
     private var _binding: FragmentMisPublicacionesBinding? = null
     private val binding get() = _binding!!
 
-
+            val publication: Publication = Publication(
+            type = "found",
+            species = "dog",
+            breed = "Chihuahua",
+            createdAt = Date(),
+            lastSeen = Date(),
+            color = "blue",
+            size = "small",
+            name = "Tony",
+            description = "Encontramos a Tony en Parque Las Heras",
+            imagePath = "url",
+            address = "Parque Las Heras",
+            geolocation = GeoPoint(-34.5837944, -58.4091335),
+            createdBy = FirebaseAuth.getInstance().currentUser?.uid
+        )
 
     private val REQUEST_GALLERY = 1001
     private val REQUEST_CAMERA = 1002
@@ -43,11 +64,46 @@ class PhotosFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+        val colorMascota =this.arguments?.getString("colorMascota")
+        val tipoMascota =this.arguments?.getString("tipoMascota")
+        val razaMascota =this.arguments?.getString("razaMascota")
+        val sexoMascota =this.arguments?.getString("sexoMascota")
+        val tamanioMascota =this.arguments?.getString("tamanioMascota")
+        val edadMascota : Int? =this.arguments?.getInt("edadMascota")
+        val edadMascota1 : Int = edadMascota!!
+        val fechaMascota =this.arguments?.getString("fechaMascota")
+
+
+        Toast.makeText(context, colorMascota, Toast.LENGTH_LONG).show()
+
         bottonAtrasAFiltro.setOnClickListener {
-                  findNavController().navigate(R.id.action_photosFragment_to_filtros)
+                  //findNavController().navigate(R.id.action_photosFragment_to_filtros)
+            val action = PhotosFragmentDirections.actionPhotosFragmentToFiltros(colorMascota,tipoMascota,razaMascota,sexoMascota,tamañoMascota,edadMascota,fechaMascota)
+            findNavController().navigate(action)
               }
 
 
+
+
+        bottonSiguienteALoclaidad.setOnClickListener{
+
+        publication.color = colorMascota
+
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection("publications").add(publication)
+            .addOnSuccessListener {
+                println("Added document succesfully")
+            }
+            .addOnFailureListener { exception ->
+                println("Error adding document: $exception")
+            }
+
+            val citiesRef = db.collection("publications")
+
+            var query = citiesRef.whereEqualTo("breed","Tony")
+
+        }
 
         button_camera.setOnClickListener() {
                          openCamera_click()
