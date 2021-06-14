@@ -16,7 +16,7 @@
     <string name="card_ver_detalles">INFO</string>
     <string name="card_title">Titulo de Tarjeta</string>
     <string name="card_secondary_text">Texto Secundario de Tarjeta</string>
-    <string name="card_commentary_text">Comentario Lorem Ipsum is simply dummy text of the printing and typesetting indus...</string>
+    <string name="card_commentary_text">Comentario Lorem Ipsum is simply dummy text of the printing and typesetting indus…</string>
     <string name="card_me_perdi_en">ME PERDI EN</string>
     <string name="card_pet_name">Pet Name</string>
     <string name="card_pet_sex_and_age">HEMBRA - 2 AÑOS</string>
@@ -166,6 +166,17 @@
     <string name="bienvenido_login">Bienvenido/a!</string>
     <string name="aun_no_tienes_una_cuenta">Aun no tienes una cuenta?</string>
     <string name="registrate">Registrate</string>
-
+    <string name="nombrebotonsiguiente">Siguiente</string>
+    <string name="nombrebotonatras">Atras</string>
+    <string name="subir_foto">Subir Foto</string>
+    <string name="pasos1">pasos!</string>
+    <string name="pasos2">pasos2</string>
+    <string name="pasos3">Pasos3</string>
+    <string name="direccion">Direccion</string>
+    <string name="numero">Numero</string>
+    <string name="coordenadas">Coordenadas</string>
+    <string name="descripci_n">Descripción</string>
+    <string name="publicar">Publicar</string>
+    <string name="nombre_de_la_masocta">Nombre de la Masocta</string>
 
 </resources>

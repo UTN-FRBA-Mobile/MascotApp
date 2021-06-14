@@ -18,5 +18,7 @@ data class Publications(
         var species: String,
         var name: String,
         var geolocation: GeoPoint
+//        var age: Int
+//        var sex: String
         ){
 }

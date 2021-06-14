@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'com.google.gms.google-services'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 def localProperties = new Properties()
 localProperties.load(new FileInputStream(rootProject.file("local.properties")))

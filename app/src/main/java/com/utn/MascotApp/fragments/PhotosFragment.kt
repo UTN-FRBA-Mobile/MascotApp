@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -11,26 +13,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.GeoPoint
+import com.utn.MascotApp.FiltrosDirections
 import com.utn.MascotApp.R
+import com.utn.MascotApp.databinding.FragmentMisPublicacionesBinding
 import com.utn.MascotApp.databinding.FragmentPhotosBinding
+import com.utn.MascotApp.models.Publication
+import kotlinx.android.synthetic.main.fragment_filtros.*
+import kotlinx.android.synthetic.main.fragment_photos.*
+import java.io.ByteArrayOutputStream
+import java.util.*
 
 class PhotosFragment : Fragment() {
 
-    private var _binding: FragmentPhotosBinding? = null
+    private var _binding: FragmentMisPublicacionesBinding? = null
     private val binding get() = _binding!!
 
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = FragmentPhotosBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-
-    private lateinit var btnCamera: Button
-    private lateinit var btnUpdatePhoto: Button
 
     private val REQUEST_GALLERY = 1001
     private val REQUEST_CAMERA = 1002
@@ -38,19 +43,57 @@ class PhotosFragment : Fragment() {
 
     var photo: Uri? = null
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_photos, container, false)
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btnCamera = view.findViewById(R.id.button_camera)
-        btnCamera.setOnClickListener() {
-            openCamera_click()
-        }
 
-        btnUpdatePhoto = view.findViewById(R.id.button_upload_photo)
-        btnUpdatePhoto.setOnClickListener() {
-            openGallery_click()
-        }
+      /*  imgPhoto.isDrawingCacheEnabled = true
+        imgPhoto.buildDrawingCache()
+        val bitmap = (imgPhoto.drawable as BitmapDrawable).bitmap
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val data = baos.toByteArray()
+
+        var uploadTask = mountainsRef.putBytes(data)
+        uploadTask.addOnFailureListener {
+            // Handle unsuccessful uploads
+        }.addOnSuccessListener { taskSnapshot ->
+            // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
+            // ...
+        }*/
+
+       // Toast.makeText(context, colorMascota, Toast.LENGTH_LONG).show()
+
+        bottonSiguienteALoclaidad.setOnClickListener{
+
+            val colorMascota =this.arguments?.getString("colorMascota")
+            val tipoMascota =this.arguments?.getString("tipoMascota")
+            val razaMascota =this.arguments?.getString("razaMascota")
+            val sexoMascota =this.arguments?.getString("sexoMascota")
+            val tamanioMascota =this.arguments?.getString("tamanioMascota")
+            val edadMascota : Int =this.requireArguments().getInt("edadMascota")
+            val fechaMascota =this.arguments?.getString("fechaMascota")
+            val nombreMascota =this.arguments?.getString("nombreMascota")
+
+            val action = PhotosFragmentDirections.actionPhotosFragmentToLocationFragment(colorMascota,tipoMascota,razaMascota,sexoMascota,tamanioMascota,edadMascota,fechaMascota,nombreMascota)
+            findNavController().navigate(action) }
+
+
+        bottonAtrasAFiltro.setOnClickListener {
+            findNavController().navigate(R.id.action_photosFragment_to_filtros) }
+
+
+        button_camera.setOnClickListener() {
+                         openCamera_click()
+                     }
+        button_upload_photo.setOnClickListener() {
+                         openGallery_click()
+                     }
     }
 
 
@@ -59,7 +102,7 @@ class PhotosFragment : Fragment() {
 //            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
         if (context?.let { it1 -> ActivityCompat.checkSelfPermission(it1, android.Manifest.permission.READ_EXTERNAL_STORAGE) } == PackageManager.PERMISSION_DENIED) {
-            var permissionFiles = arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+            val permissionFiles = arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE)
             requestPermissions(permissionFiles, REQUEST_GALLERY)
         } else {
             viewGallery()
@@ -125,10 +168,10 @@ class PhotosFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_GALLERY) {
-            binding.imgPhoto.setImageURI(data?.data)
+            imgPhoto.setImageURI(data?.data)
         }
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CAMERA) {
-            binding.imgPhoto.setImageURI(photo)
+            imgPhoto.setImageURI(photo)
         }
 
     }
