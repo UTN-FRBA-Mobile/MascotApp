@@ -104,7 +104,7 @@ class MisPublicacionesFragment : Fragment() {
     }
 
     fun initRecyclerViewMascotasVista(){
-        mascotaAdapter = MascotaAdapter(publications,  findNavController())
+        mascotaAdapter = MascotaAdapter(publications,  findNavController(), "MisPublicaciones")
         binding.listaTarjetasMascotas.layoutManager = LinearLayoutManager(context)
         binding.listaTarjetasMascotas.adapter = mascotaAdapter
         binding.listaTarjetasMascotas.visibility = View.VISIBLE

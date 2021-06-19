@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.squareup.picasso.Picasso
 import com.utn.MascotApp.R
 import com.utn.MascotApp.databinding.FragmentMascotInfoBinding
+import kotlinx.android.synthetic.main.fragment_mascot_info.*
 import java.time.LocalDate.now
 
 
@@ -75,6 +76,16 @@ class MascotInfoFragment : Fragment() {
 
         //TODO fecha
         lastSeenView.text = "Fecha: " + now().toString()
+
+        var actionFromv = this.arguments?.getString("actionFrom")
+        if (actionFromv == "MascotaVistas"){
+            button_generico.visibility = View.VISIBLE
+            button_generico.text = "Reportar!"
+        }
+
+        if (actionFromv == "MisPublicaciones"){
+            button_generico.visibility = View.INVISIBLE
+        }
 
     }
 
