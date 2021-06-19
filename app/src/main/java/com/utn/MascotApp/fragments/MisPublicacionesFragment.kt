@@ -44,12 +44,17 @@ class MisPublicacionesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         bottom_navigation.setOnNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.mainMenuItem -> {
-                    findNavController().navigate(R.id.action_misPublicacionesFragment_to_mainMenuFragment)
-                }
+            when (it.itemId) {
                 R.id.publicarItem -> {
                     onPublicarButtonClicked()
+
+                    floatingActionButton_EncontreUnaMascota.setOnClickListener() {
+                        findNavController().navigate(R.id.action_misPublicacionesFragment_to_filtros)
+                    }
+
+                }
+                R.id.mainMenuItem -> {
+                    findNavController().navigate(R.id.action_misPublicacionesFragment_to_mainMenuFragment)
                 }
             }
             true
