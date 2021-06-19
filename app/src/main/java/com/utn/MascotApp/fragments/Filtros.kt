@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.utn.MascotApp.databinding.FragmentMisPublicacionesBinding
 import kotlinx.android.synthetic.main.fragment_filtros.*
+import kotlinx.android.synthetic.main.fragment_filtros.bottom_navigation
+import kotlinx.android.synthetic.main.fragment_main_menu.*
 import java.time.format.DateTimeFormatter
 
 
@@ -36,7 +38,18 @@ class Filtros : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
          var edadmascot : Int
+        bottom_navigation.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.misPublicacionesItem -> {
+                    findNavController().navigate(R.id.action_filtros_to_misPublicacionesFragment)
+                }
 
+                R.id.mainMenuItem -> {
+                    findNavController().navigate(R.id.action_filtros_to_mainMenuFragment)
+                }
+            }
+            true
+        }
 
         bottonSiguienteAPhoto.setOnClickListener {
 
@@ -50,9 +63,20 @@ class Filtros : Fragment() {
             val fechaMascota = view.findViewById(R.id.calendario) as EditText
             val nombreMascota = view.findViewById(R.id.editTextNombre) as EditText
 
-            if (edadMascota.text.toString().toInt()  == null){
-                 edadmascot = 1
-            } else {   edadmascot = edadMascota.text.toString().toInt()  }
+            try{
+                if (edadMascota.text.toString().toInt()  == null){
+                     edadmascot = 1
+                } else {
+                    edadmascot = edadMascota.text.toString().toInt()
+                }
+
+            }catch (e: NumberFormatException){
+                Toast.makeText(context, "Se asume edad 1.", Toast.LENGTH_LONG)
+                edadmascot = 1
+            }
+
+
+
 
 
            // Toast.makeText(context, fechaMascota.text, Toast.LENGTH_LONG).show()
