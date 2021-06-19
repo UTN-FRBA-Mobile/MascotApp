@@ -183,6 +183,9 @@
         <argument
             android:name="address"
             app:argType="string" />
+        <argument
+            android:name="actionFrom"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/locationFragment"

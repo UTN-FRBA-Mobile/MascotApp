@@ -10,16 +10,19 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 
-class MascotaAdapter(private val publications_list: List<Publications>, private val navController: NavController): RecyclerView.Adapter<TarjetaMascotaHolder>(){
+class MascotaAdapter(private val publications_list: List<Publications>, private val navController: NavController, private val actionFrom: String): RecyclerView.Adapter<TarjetaMascotaHolder>(){
+    // *************************************************
+    // actionFrom: "MascotaVistas" or "MisPublicaciones"
+    // *************************************************
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TarjetaMascotaHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return TarjetaMascotaHolder(layoutInflater.inflate(R.layout.tarjeta_mascota, parent, false), navController)
+        return TarjetaMascotaHolder(layoutInflater.inflate(R.layout.tarjeta_mascota, parent, false), navController, "")
     }
 
     override fun onBindViewHolder(holder: TarjetaMascotaHolder, position: Int) {
         val item = publications_list[position]
-        holder.bind(item)
+        holder.bind(item, actionFrom)
     }
 
     override fun getItemCount(): Int = publications_list.size
