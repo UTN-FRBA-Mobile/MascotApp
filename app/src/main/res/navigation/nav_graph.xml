@@ -93,6 +93,12 @@
             android:name="fechaMascota"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_filtros_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
+        <action
+            android:id="@+id/action_filtros_to_misPublicacionesFragment"
+            app:destination="@id/misPublicacionesFragment" />
     </fragment>
     <fragment
         android:id="@+id/photosFragment"
