@@ -46,6 +46,9 @@
         <action
             android:id="@+id/action_misPublicacionesFragment_to_mascotInfoFragment"
             app:destination="@id/mascotInfoFragment" />
+        <action
+            android:id="@+id/action_misPublicacionesFragment_to_filtros"
+            app:destination="@id/filtros" />
     </fragment>
     <fragment
         android:id="@+id/authFragment"
@@ -90,6 +93,12 @@
             android:name="fechaMascota"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_filtros_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
+        <action
+            android:id="@+id/action_filtros_to_misPublicacionesFragment"
+            app:destination="@id/misPublicacionesFragment" />
     </fragment>
     <fragment
         android:id="@+id/photosFragment"
