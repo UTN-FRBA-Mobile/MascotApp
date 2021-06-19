@@ -46,6 +46,9 @@
         <action
             android:id="@+id/action_misPublicacionesFragment_to_mascotInfoFragment"
             app:destination="@id/mascotInfoFragment" />
+        <action
+            android:id="@+id/action_misPublicacionesFragment_to_filtros"
+            app:destination="@id/filtros" />
     </fragment>
     <fragment
         android:id="@+id/authFragment"
