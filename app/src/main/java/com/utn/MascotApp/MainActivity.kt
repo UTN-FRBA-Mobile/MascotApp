@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         if (!Places.isInitialized()) {
-            Places.initialize(applicationContext, "AIzaSyCFCmb9MGL22ulEXiHHo6hs3XANIUNrnEI")
+            Places.initialize(applicationContext, BuildConfig.PLACES_APP_KEY)
         }
         setContentView(view)
         supportActionBar!!.hide()
