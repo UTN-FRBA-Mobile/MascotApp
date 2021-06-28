@@ -1,11 +1,13 @@
 package com.utn.MascotApp.fragments
 
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,10 +18,13 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
 import com.utn.MascotApp.R
 import com.utn.MascotApp.databinding.FragmentMascotInfoBinding
 import kotlinx.android.synthetic.main.fragment_mascot_info.*
+import java.lang.Exception
 import java.time.LocalDate.now
 
 
@@ -34,6 +39,10 @@ class MascotInfoFragment : Fragment() {
 
     private val permiso = 1
 
+
+    val db = FirebaseFirestore.getInstance()
+
+    val storage = Firebase.storage
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -106,7 +115,6 @@ class MascotInfoFragment : Fragment() {
 
             var phone = ""
 
-            val db = FirebaseFirestore.getInstance()
             db.collection("users")
                 .get()
                 .addOnSuccessListener { documents ->
@@ -133,6 +141,36 @@ class MascotInfoFragment : Fragment() {
             call.visibility = View.VISIBLE
             call.text = "ELIMINAR"
 
+            mCall = view.findViewById(R.id.call)
+            mCall.setOnClickListener {
+                var publicationId = ""
+                val capitalCities = db.collection("publications").whereEqualTo("name", namev)
+                    .whereEqualTo("imagePath", imagev).get()
+
+
+                publicationId = capitalCities.result.documents[0].id
+
+                try {
+                    db.collection("publications").document(publicationId)
+                        .delete()
+
+                    try{
+
+                    val imagesRef = storage.reference.child("imagev")
+                    imagesRef.delete()
+
+                    } catch (e: Exception) {
+                        // TODO pantalla que no se pudo eliminar
+                        println(e)
+                    }
+                    // TODO pantalla que se pudo eliminar
+                } catch (e: Exception) {
+                    // TODO pantalla que no se pudo eliminar
+                    println(e)
+                }
+
+
+            }
 //            android:drawableTop="@android:drawable/ic_menu_delete"
 //            android:paddingTop="20dp"
         }
@@ -204,12 +242,10 @@ class MascotInfoFragment : Fragment() {
 //        }
 
 
-
 //            sharingIntent.putExtra(Intent.EXTRA_STREAM, urigf)
 
 
             startActivity(Intent.createChooser(sharingIntent, "Share using"))
-
 
 
         }
