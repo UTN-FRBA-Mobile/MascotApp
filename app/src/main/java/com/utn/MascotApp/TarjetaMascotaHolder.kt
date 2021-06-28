@@ -8,7 +8,7 @@ import com.utn.MascotApp.databinding.TarjetaMascotaBinding
 import com.utn.MascotApp.fragments.MainMenuFragmentDirections
 import com.utn.MascotApp.fragments.MisPublicacionesFragmentDirections
 
-class TarjetaMascotaHolder(view: View, private val navController: NavController, private val actionFrom: String): RecyclerView.ViewHolder(view) {
+class TarjetaMascotaHolder(view: View, private val navController: NavController): RecyclerView.ViewHolder(view) {
     // *************************************************
     // actionFrom: "MascotaVistas" or "MisPublicaciones"
     // *************************************************
@@ -31,7 +31,7 @@ class TarjetaMascotaHolder(view: View, private val navController: NavController,
                     publications.imagePath, publications.name,
                     publications.description, 11, "sex",
                     publications.color,  publications.breed,  publications.lastSeen.toString(),
-                    publications.address,
+                    publications.address, publications.createdBy,
                     actionFrom)
                 navController.navigate(action)
             }
@@ -40,7 +40,7 @@ class TarjetaMascotaHolder(view: View, private val navController: NavController,
                     publications.imagePath, publications.name,
                     publications.description, 11, "sex",
                     publications.color,  publications.breed,  publications.lastSeen.toString(),
-                    publications.address,
+                    publications.address,publications.createdBy,
                     actionFrom)
                 navController.navigate(action)
             }

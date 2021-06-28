@@ -183,6 +183,15 @@
         <argument
             android:name="address"
             app:argType="string" />
+        <action
+            android:id="@+id/action_mascotInfoFragment_to_misPublicacionesFragment"
+            app:destination="@id/misPublicacionesFragment" />
+        <action
+            android:id="@+id/action_mascotInfoFragment_to_publicarFragment2"
+            app:destination="@id/publicarFragment2" />
+        <argument
+            android:name="createdBy"
+            app:argType="string" />
         <argument
             android:name="actionFrom"
             app:argType="string" />
