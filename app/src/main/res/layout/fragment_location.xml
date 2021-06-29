@@ -21,17 +21,17 @@
         app:menu="@menu/button_app_bar" />
 
     <ImageView
-        android:id="@+id/pasos3"
+        android:id="@+id/pasos2"
         android:layout_width="276dp"
         android:layout_height="127dp"
-        android:src="@drawable/filtros_pasos3"
+        android:src="@drawable/filtros_pasos2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.549"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.027"
-        android:contentDescription="@string/pasos3" />
+        android:contentDescription="@string/pasos2" />
 
 
     <EditText
@@ -122,19 +122,19 @@
         tools:ignore="HardcodedText" />
 
     <Button
-        android:id="@+id/bottonPublicar"
+        android:id="@+id/bottonSiguienteALoclaidad"
         android:layout_width="149dp"
         android:layout_height="48dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/estilo_botones"
-        android:text="@string/publicar"
+        android:text="@string/nombrebotonsiguiente"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.87"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/bottonAtrasAPhoto"
+        android:id="@+id/bottonAtrasAFiltro"
         android:layout_width="149dp"
         android:layout_height="48dp"
         android:layout_marginBottom="24dp"
@@ -144,6 +144,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

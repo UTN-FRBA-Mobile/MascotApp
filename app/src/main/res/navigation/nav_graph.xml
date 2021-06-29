@@ -64,9 +64,6 @@
         android:name="com.utn.MascotApp.Filtros"
         android:label="fragment_filtros"
         tools:layout="@layout/fragment_filtros" >
-        <action
-            android:id="@+id/action_filtros_to_photosFragment"
-            app:destination="@id/photosFragment" />
         <argument
             android:name="colorMascota"
             app:argType="string"
@@ -99,14 +96,14 @@
         <action
             android:id="@+id/action_filtros_to_misPublicacionesFragment"
             app:destination="@id/misPublicacionesFragment" />
+        <action
+            android:id="@+id/action_filtros_to_locationFragment"
+            app:destination="@id/locationFragment" />
     </fragment>
     <fragment
         android:id="@+id/photosFragment"
         android:name="com.utn.MascotApp.fragments.PhotosFragment"
         android:label="PhotosFragment" >
-        <action
-            android:id="@+id/action_photosFragment_to_filtros"
-            app:destination="@id/filtros" />
         <argument
             android:name="colorMascota"
             app:argType="string"
@@ -128,18 +125,34 @@
             app:nullable="true" />
         <argument
             android:name="edadMascota"
-            app:argType="integer" />
+            app:argType="string"
+            app:nullable="true" />
         <argument
             android:name="fechaMascota"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="nombreMascota"
             app:argType="string"
             app:nullable="true" />
         <action
             android:id="@+id/action_photosFragment_to_locationFragment"
             app:destination="@id/locationFragment" />
         <argument
-            android:name="nombreMascota"
+            android:name="direccionMascota"
             app:argType="string"
             app:nullable="true" />
+        <argument
+            android:name="coordenadasMascota"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="descripcionMascota"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_photosFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
     </fragment>
     <fragment
         android:id="@+id/mascotInfoFragment"
@@ -228,7 +241,8 @@
             app:nullable="true" />
         <argument
             android:name="edadMascota"
-            app:argType="integer" />
+            app:argType="string"
+            app:nullable="true" />
         <argument
             android:name="fechaMascota"
             app:argType="string"
@@ -237,6 +251,9 @@
             android:name="nombreMascota"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_locationFragment_to_filtros"
+            app:destination="@id/filtros" />
     </fragment>
     <fragment
         android:id="@+id/firstLoginFragment"

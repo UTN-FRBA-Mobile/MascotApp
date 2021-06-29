@@ -1,19 +1,17 @@
 package com.utn.MascotApp.fragments
 
+
+import android.Manifest
 import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
@@ -21,26 +19,49 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.GeoPoint
-import com.utn.MascotApp.FiltrosDirections
+import com.google.firebase.storage.FirebaseStorage
 import com.utn.MascotApp.R
-import com.utn.MascotApp.databinding.FragmentMisPublicacionesBinding
-import com.utn.MascotApp.databinding.FragmentPhotosBinding
 import com.utn.MascotApp.models.Publication
-import kotlinx.android.synthetic.main.fragment_filtros.*
 import kotlinx.android.synthetic.main.fragment_photos.*
-import java.io.ByteArrayOutputStream
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.*
+
 
 class PhotosFragment : Fragment() {
 
-    private var _binding: FragmentMisPublicacionesBinding? = null
-    private val binding get() = _binding!!
+    var simpleFormat2: DateTimeFormatter =  DateTimeFormatter.ofPattern("dd-MM-yyyy")
+    private var uri: Uri? = null
+    var imagePath : String = "URL"
+    var fechaMascota: String? = null
+    var year: Int = 0
+    var month: Int = 0
+    var day: Int = 0
+    var lat: Double = 10.0
+    var long: Double = 10.0
+    var coordenadas: String? = null
+
+
+    val publication: Publication = Publication(
+        type = "found",
+        species = "dog",
+        breed = "Chihuahua",
+        createdAt = Date(),
+        lastSeen = Date(),
+        color = "blue",
+        size = "small",
+        name = "Tony",
+        description = "Encontramos a Tony en Parque Las Heras",
+        imagePath = "url",
+        address = "Parque Las Heras",
+        geolocation = GeoPoint(-34.5837944, -58.4091335),
+        createdBy = FirebaseAuth.getInstance().currentUser?.uid,
+    )
 
 
     private val REQUEST_GALLERY = 1001
     private val REQUEST_CAMERA = 1002
-
-
     var photo: Uri? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -52,80 +73,71 @@ class PhotosFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-      /*  imgPhoto.isDrawingCacheEnabled = true
-        imgPhoto.buildDrawingCache()
-        val bitmap = (imgPhoto.drawable as BitmapDrawable).bitmap
-        val baos = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
-        val data = baos.toByteArray()
+        bottonPublicar.setOnClickListener{
 
-        var uploadTask = mountainsRef.putBytes(data)
-        uploadTask.addOnFailureListener {
-            // Handle unsuccessful uploads
-        }.addOnSuccessListener { taskSnapshot ->
-            // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
-            // ...
-        }*/
-
-       // Toast.makeText(context, colorMascota, Toast.LENGTH_LONG).show()
-
-        bottonSiguienteALoclaidad.setOnClickListener{
-
-            val colorMascota =this.arguments?.getString("colorMascota")
-            val tipoMascota =this.arguments?.getString("tipoMascota")
-            val razaMascota =this.arguments?.getString("razaMascota")
-            val sexoMascota =this.arguments?.getString("sexoMascota")
-            val tamanioMascota =this.arguments?.getString("tamanioMascota")
-            val edadMascota : Int =this.requireArguments().getInt("edadMascota")
-            val fechaMascota =this.arguments?.getString("fechaMascota")
-            val nombreMascota =this.arguments?.getString("nombreMascota")
-
-            val action = PhotosFragmentDirections.actionPhotosFragmentToLocationFragment(colorMascota,tipoMascota,razaMascota,sexoMascota,tamanioMascota,edadMascota,fechaMascota,nombreMascota)
-            findNavController().navigate(action) }
+            publication.name = this.arguments?.getString("nombreMascota")
+            publication.color =this.arguments?.getString("colorMascota")
+            publication.species =this.arguments?.getString("tipoMascota")
+            publication.breed =this.arguments?.getString("razaMascota")
+            publication.sex =this.arguments?.getString("sexoMascota")
+            publication.size =this.arguments?.getString("tamañoMascota")
+            publication.age = this.arguments?.getString("edadMascota")?.toInt()
+            publication.address =this.arguments?.getString("direccionMascota")
+            publication.description = this.arguments?.getString("descripcionMascota")
+            fechaMascota =this.arguments?.getString("fechaMascota")
+            dateParse()
+            publication.lastSeen  =  Date(year,month,day)
+            coordenadas = this.arguments?.getString("coordenadasMascota")
+            coorParse()
+            publication.geolocation = GeoPoint(lat,long)
+            fileUpload()
+            publication.imagePath = imagePath
 
 
-        bottonAtrasAFiltro.setOnClickListener {
-            findNavController().navigate(R.id.action_photosFragment_to_filtros) }
+            val db = FirebaseFirestore.getInstance()
+            db.collection("publications").add(publication)
+                .addOnSuccessListener {
+                    println("Added document succesfully")
+                }
+                .addOnFailureListener { exception ->
+                    println("Error adding document: $exception")
+                }
+            db.collection("publications")
+            findNavController().navigate(R.id.action_photosFragment_to_mainMenuFragment)
+        }
 
+        bottonAtrasAPhoto.setOnClickListener{
+            findNavController().navigate(R.id.action_locationFragment_to_photosFragment) }
 
         button_camera.setOnClickListener() {
-                         openCamera_click()
-                     }
+            openCamera_click()
+        }
         button_upload_photo.setOnClickListener() {
-                         openGallery_click()
-                     }
+            openGallery_click()
+        }
     }
 
 
     private fun openGallery_click() {
-//             verificar q version de android esta instalada en el telefono
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
-        if (context?.let { it1 -> ActivityCompat.checkSelfPermission(it1, android.Manifest.permission.READ_EXTERNAL_STORAGE) } == PackageManager.PERMISSION_DENIED) {
-            val permissionFiles = arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+        if (context?.let { it1 -> ActivityCompat.checkSelfPermission(it1, Manifest.permission.READ_EXTERNAL_STORAGE) } == PackageManager.PERMISSION_DENIED) {
+            val permissionFiles = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
             requestPermissions(permissionFiles, REQUEST_GALLERY)
         } else {
             viewGallery()
         }
-//        }
     }
 
 
     private fun openCamera_click() {
-//         verificar q version de android esta instalada en el telefono
-//            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-
-        if (context?.let { it1 -> ActivityCompat.checkSelfPermission(it1, android.Manifest.permission.CAMERA) } == PackageManager.PERMISSION_DENIED
-            || context?.let { it1 -> ActivityCompat.checkSelfPermission(it1, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) } == PackageManager.PERMISSION_DENIED
+        if (context?.let { it1 -> ActivityCompat.checkSelfPermission(it1, Manifest.permission.CAMERA) } == PackageManager.PERMISSION_DENIED
+            || context?.let { it1 -> ActivityCompat.checkSelfPermission(it1, Manifest.permission.WRITE_EXTERNAL_STORAGE) } == PackageManager.PERMISSION_DENIED
         ) {
-            val permissionCamera = arrayOf(android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            val permissionCamera = arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
             requestPermissions(permissionCamera, REQUEST_CAMERA)
         } else {
             openCamera()
         }
-//            }else{
-//                openCamera()
-//            }
+
     }
 
     private fun viewGallery() {
@@ -169,11 +181,37 @@ class PhotosFragment : Fragment() {
 
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_GALLERY) {
             imgPhoto.setImageURI(data?.data)
+            uri = data?.data
         }
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CAMERA) {
             imgPhoto.setImageURI(photo)
+            uri = photo
         }
+    }
 
+
+    private fun fileUpload() {
+        if (uri == null) return
+
+        imagePath = UUID.randomUUID().toString()
+        val ref = FirebaseStorage.getInstance().getReference("/publication-images/$imagePath")
+
+        ref.putFile(uri!!)
+            .addOnSuccessListener {
+                println("Termino")
+                Toast.makeText(context, "Termino", Toast.LENGTH_LONG).show()
+            }
+    }
+
+    private fun dateParse(){
+        day = fechaMascota!!.substringBefore("-").toInt()
+        month = fechaMascota!!.substringBeforeLast("-").substringAfter("-").toInt()
+        year = fechaMascota!!.substringAfterLast("-").toInt() - 1900
+    }
+
+    private fun coorParse(){
+        lat = coordenadas!!.substringBefore(",").toDouble()
+        long = coordenadas!!.substringAfter(",").toDouble()
     }
 
 }

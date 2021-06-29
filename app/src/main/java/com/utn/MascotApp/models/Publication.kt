@@ -3,6 +3,7 @@ package com.utn.MascotApp.models
 import com.google.firebase.firestore.Exclude
 import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.firestore.IgnoreExtraProperties
+import java.time.LocalDate
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -16,11 +17,13 @@ data class Publication(
     var color: String? = "",
     var size: String? = "",
     var name: String? = "",
-    var description: String = "",
+    var description: String? = "",
     var address: String? = "",
     var geolocation: GeoPoint = GeoPoint(0.0,0.0),
     var imagePath: String = "",
-    var createdBy: String? = ""
+    var createdBy: String? = "",
+    var age: Int? = null,
+    var sex: String? = "",
 ) {
 
     @Exclude
