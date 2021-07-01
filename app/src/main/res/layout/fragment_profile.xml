@@ -1,11 +1,259 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="bottom"
     tools:context=".Filtros">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+
+        >
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/perfil_mi_perfil"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:gravity="start"
+            />
+
+            <TextView
+                android:id="@+id/editarPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="@string/perfil_editar_perfil"
+                android:textColor="@color/orange"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="165dp"
+        android:layout_height="165dp"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:paddingRight="5dp"
+        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardCornerRadius="250dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_gravity="center"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="250dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                app:cardCornerRadius="250dp">
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_add_image" />
+            </androidx.cardview.widget.CardView>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="359dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:hint="@string/perfil_nombre_y_apellido"
+        app:boxBackgroundMode="outline"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="359dp"
+            android:layout_height="40dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout2"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+        android:layout_width="359dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:hint="@string/perfil_telefono"
+        app:boxBackgroundMode="outline"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="359dp"
+            android:layout_height="40dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout3"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+        android:layout_width="359dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:hint="@string/perfil_direccion"
+        app:boxBackgroundMode="outline"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="359dp"
+            android:layout_height="40dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout4"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+        android:layout_width="359dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:hint="@string/perfil_mail"
+        app:boxBackgroundMode="outline"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="359dp"
+            android:layout_height="40dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+    >
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/perfil_mis_publicaciones"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:gravity="start"
+            />
+
+        <TextView
+            android:id="@+id/verPublicaciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/perfil_ver_todo"
+            android:textColor="@color/orange"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:gravity="end"
+            />
+
+    </LinearLayout>
+
+
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        tools:layout_editor_absoluteX="26dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/publicationsList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:paddingEnd="40dp"
+            tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/tarjeta_publicacion_small"
+            tools:orientation="horizontal" />
+
+    </FrameLayout>
+
+
+    <Button
+        android:id="@+id/logOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/auth_logout"
+        android:layout_marginTop="35dp"
+        />
+
+
+
+
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+        >
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/floatingActionButton_PerdiMiMascota"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="40dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="invisible"
+                android:tint="@android:color/white"
+                android:text="@string/str_perdi_mi_mascota"
+                android:padding="20dp"
+
+                />
+
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/floatingActionButton_EncontreUnaMascota"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="invisible"
+                android:tint="@android:color/white"
+                android:text="@string/str_encontre_una_mascota"
+                android:padding="20dp"
+
+                />
+        </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -15,179 +263,11 @@
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
         app:menu="@menu/button_app_bar"
-        tools:layout_editor_absoluteY="675dp" />
+        android:layout_marginTop="60dp"
+        />
 
 
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="165dp"
-            android:layout_height="165dp"
-            android:layout_marginTop="30dp"
-            android:paddingRight="5dp"
-            app:cardBackgroundColor="@color/colorPrimary"
-            app:cardCornerRadius="250dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+    </LinearLayout>
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:layout_gravity="center"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="250dp">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_gravity="center"
-                    app:cardCornerRadius="250dp">
-
-                    <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_add_image" />
-                </androidx.cardview.widget.CardView>
-
-            </androidx.cardview.widget.CardView>
-
-        </androidx.cardview.widget.CardView>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="359dp"
-            android:layout_height="40dp"
-            android:hint="@string/perfil_nombre_y_apellido"
-            app:boxBackgroundMode="outline"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintStart_toTopOf="parent"
-            tools:layout_editor_absoluteY="211dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="359dp"
-                android:layout_height="40dp" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout2"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-
-            android:layout_width="359dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="16dp"
-            android:hint="@string/perfil_telefono"
-            app:boxBackgroundMode="outline"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="359dp"
-                android:layout_height="40dp" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout3"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-
-            android:layout_width="359dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="16dp"
-            android:hint="@string/perfil_direccion"
-            app:boxBackgroundMode="outline"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="359dp"
-                android:layout_height="40dp" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout4"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-
-            android:layout_width="359dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="16dp"
-            android:hint="@string/perfil_mail"
-            app:boxBackgroundMode="outline"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="359dp"
-                android:layout_height="40dp" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="16dp" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/perfil_mi_perfil"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            tools:layout_editor_absoluteX="26dp"
-            tools:layout_editor_absoluteY="16dp" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/perfil_editar_perfil"
-            android:textColor="@color/orange"
-            android:textSize="10sp"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="334dp"
-            tools:layout_editor_absoluteY="21dp" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/perfil_ver_todo"
-            android:textColor="@color/orange"
-            android:textSize="10sp"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="332dp"
-            tools:layout_editor_absoluteY="485dp" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/perfil_mis_mascotas"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            tools:layout_editor_absoluteX="29dp"
-            tools:layout_editor_absoluteY="478dp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="384dp"
-            android:layout_height="76dp"
-            tools:layout_editor_absoluteX="27dp"
-            tools:layout_editor_absoluteY="518dp" />
-
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

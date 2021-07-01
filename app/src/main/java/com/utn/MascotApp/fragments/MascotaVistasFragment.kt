@@ -71,7 +71,10 @@ class MascotaVistasFragment: Fragment(){
                             createdBy = map.get("createdBy").toString(),
                             species = map.get("species").toString(),
                             name = map.get("name").toString(),
-                            geolocation = map.get("geolocation") as GeoPoint
+                            geolocation = map.get("geolocation") as GeoPoint,
+                            age = "2",
+                            sex = "Macho"
+
                         )
                         collection_publications.add(publication)
                         publications.clear()

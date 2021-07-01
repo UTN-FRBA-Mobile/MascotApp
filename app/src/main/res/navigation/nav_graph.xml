@@ -13,8 +13,8 @@
             android:id="@+id/action_mainMenuFragment_to_publicarFragment2"
             app:destination="@id/publicarFragment2" />
         <action
-            android:id="@+id/action_mainMenuFragment_to_misPublicacionesFragment"
-            app:destination="@id/misPublicacionesFragment" />
+            android:id="@+id/action_mainMenuFragment_to_miPerfilFragment"
+            app:destination="@id/miPerfilFragment" />
         <action
             android:id="@+id/action_mainMenuFragment_to_filtros"
             app:destination="@id/filtros" />
@@ -27,8 +27,8 @@
             android:id="@+id/action_publicarFragment2_to_mainMenuFragment"
             app:destination="@id/mainMenuFragment" />
         <action
-            android:id="@+id/action_publicarFragment2_to_misPublicacionesFragment"
-            app:destination="@id/misPublicacionesFragment" />
+            android:id="@+id/action_publicarFragment2_to_miPerfilFragment"
+            app:destination="@id/miPerfilFragment" />
     </fragment>
     <fragment
         android:id="@+id/misPublicacionesFragment"
@@ -63,4 +63,19 @@
         android:id="@+id/photosFragment"
         android:name="com.utn.MascotApp.fragments.PhotosFragment"
         android:label="PhotosFragment" />
+    <fragment
+        android:id="@+id/miPerfilFragment"
+        android:name="com.utn.MascotApp.fragments.MiPerfilFragment"
+        android:label="MiPerfilFragment">
+    <action
+        android:id="@+id/action_miPerfilFragment_to_publicarFragment2"
+        app:destination="@id/publicarFragment2" />
+    <action
+        android:id="@+id/action_miPerfilFragment_to_mainMenuFragment"
+        app:destination="@id/mainMenuFragment" />
+    <action
+        android:id="@+id/action_miPerfilFragment_to_misPublicacionesFragment"
+        app:destination="@id/misPublicacionesFragment" />
+    </fragment>
+
 </navigation>

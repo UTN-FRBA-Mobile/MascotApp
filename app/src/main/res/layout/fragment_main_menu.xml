@@ -60,12 +60,6 @@
                 android:background="@android:color/transparent" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/logOut"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cerrar Sesion" />
-
 
     </com.google.android.material.appbar.AppBarLayout>
 
