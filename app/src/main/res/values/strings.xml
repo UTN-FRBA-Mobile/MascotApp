@@ -20,6 +20,7 @@
     <string name="card_me_perdi_en">ME PERDI EN</string>
     <string name="card_pet_name">Pet Name</string>
     <string name="card_pet_sex_and_age">HEMBRA - 2 AÑOS</string>
+    <string name="card_publication_lost_date">24/11/2021</string>
 
     <string name="prefs_file">com.utn.MascotApp.PREFERENCES_FILE_KEY</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -162,6 +163,21 @@
     <string name="edad">Edad</string>
     <string name="seleccionar_fecha">Seleccionar fecha</string>
     <string name="mi_ubicacion">Mi ubicacion</string>
+    <string name="perfil_nombre_y_apellido">Nombre y Apellido</string>
+    <string name="perfil_telefono">Teléfono</string>
+    <string name="perfil_direccion">Dirección</string>
+    <string name="perfil_mail">Mail</string>
+    <string name="perfil_mis_mascotas">Mis Mascotas</string>
+    <string name="perfil_mis_publicaciones">Mis Publicaciones</string>
+    <string name="perfil_ver_todo">Ver Todo</string>
+    <string name="perfil_agregar_mascotas">Agregar</string>
+    <string name="perfil_mi_perfil">Mi Perfil</string>
+    <string name="perfil_editar_perfil">Editar Perfil</string>
+    <string name="perfil_guardar_cambios">Guardar Cambios</string>
+    <string name="auth_logout">Cerrar Sesion</string>
+    <string name="navbar_home">Home</string>
+    <string name="navbar_publicar">Publicar</string>
+    <string name="navbar_miPerfil">Mi Perfil</string>
     <string name="hola_login">Hola,</string>
     <string name="bienvenido_login">Bienvenido/a!</string>
     <string name="aun_no_tienes_una_cuenta">Aun no tienes una cuenta?</string>
