@@ -91,6 +91,12 @@
             android:textColor="@color/cardview_dark_background"
             />
 
+<!--        <Button-->
+<!--            android:id="@+id/more_info"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="MAS INFO" />-->
+
     </LinearLayout>
 
     <!-- Buttons -->
@@ -114,30 +120,28 @@
             android:layout_alignParentStart="true"
             />
 
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/card_ver_detalles"
+            style="?attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="0dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/add"
+            android:drawableTint="@color/blue_grey_600"
+            android:text="@string/card_ver_detalles" />
+
         <TextView
             android:id="@+id/fecha_publicacion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:layout_toEndOf="@id/calendar_img"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
             android:text="@string/card_secondary_text"
             android:textAppearance="?attr/textAppearanceSubtitle2"
-            android:textColor="?android:attr/textColorSecondary"
-             />
-
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/card_ver_detalles"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/card_ver_detalles"
-            android:layout_alignParentEnd="true"
-            style="?attr/borderlessButtonStyle"
-            android:drawableLeft="@drawable/add"
-            android:drawableTint="@color/blue_grey_600"
-            android:background="@android:color/transparent"
-            />
+            android:textColor="?android:attr/textColorSecondary" />
     </RelativeLayout>
 
 </LinearLayout>

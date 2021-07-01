@@ -230,21 +230,18 @@
                 android:id="@+id/floatingActionButton_PerdiMiMascota"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="40dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:visibility="invisible"
                 android:tint="@android:color/white"
                 android:text="@string/str_perdi_mi_mascota"
                 android:padding="20dp"
-
                 />
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/floatingActionButton_EncontreUnaMascota"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:visibility="invisible"

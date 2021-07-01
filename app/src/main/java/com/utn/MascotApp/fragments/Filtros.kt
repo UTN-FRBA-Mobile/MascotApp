@@ -1,46 +1,33 @@
 package com.utn.MascotApp
 
-import android.app.AlertDialog
-import android.content.ContentResolver
-import android.content.ContentValues
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
-import android.provider.SyncStateContract.Helpers.insert
-import android.renderscript.Sampler
-import androidx.fragment.app.Fragment
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.*
-import androidx.compose.ui.input.key.Key.Companion.Insert
-import androidx.core.app.ActivityCompat
-import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.utn.MascotApp.databinding.FragmentMisPublicacionesBinding
 import kotlinx.android.synthetic.main.fragment_filtros.*
-import java.util.jar.Manifest
+import kotlinx.android.synthetic.main.fragment_filtros.bottom_navigation
+import kotlinx.android.synthetic.main.fragment_main_menu.*
+import java.time.format.DateTimeFormatter
 
 
 class Filtros : Fragment() {
 
+
+
     private val fromBotton: Animation by lazy{ AnimationUtils.loadAnimation(context, R.anim.from_bottom_anim)}
     private val toBotton: Animation by lazy{ AnimationUtils.loadAnimation(context, R.anim.to_bottom_anim)}
-
     private var publicar_button_clicked = false
-
     private var _binding: FragmentMisPublicacionesBinding? = null
     private val binding get() = _binding!!
 
 
-    var foto: Uri? = null
-    private var REQUEST_GALLERY = 1002
-    private var REQUEST_CAMARA = 1002
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -50,24 +37,61 @@ class Filtros : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-///////////Camera//////////
-        btnCamara.setOnClickListener(){
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (context?.let { it1 -> ActivityCompat.checkSelfPermission(it1, android.Manifest.permission.READ_EXTERNAL_STORAGE) } == PackageManager.PERMISSION_DENIED ||
-                    context?.let { it1 -> ActivityCompat.checkSelfPermission(it1, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) } == PackageManager.PERMISSION_DENIED) {
-                    val permisosCamara = arrayOf(android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    requestPermissions(permisosCamara, REQUEST_GALLERY)
-                } else {
-                    muestraGaleria()
+         var edadmascot : Int
+        bottom_navigation.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.miPerfilItem -> {
+                    findNavController().navigate(R.id.action_filtros_to_miPerfilFragment)
                 }
-            } else {
-                muestraGaleria()
+
+                R.id.mainMenuItem -> {
+                    findNavController().navigate(R.id.action_filtros_to_mainMenuFragment)
+                }
             }
+            true
         }
+
+        bottonSiguienteAPhoto.setOnClickListener {
+
+
+            val tipoMascota = spinnerTipoMascota.getItemAtPosition(spinnerTipoMascota.selectedItemPosition).toString()
+            val razaMascota = spinnerRazaMascota.getItemAtPosition(spinnerRazaMascota.selectedItemPosition).toString()
+            val sexoMascota = spinnerSexoMascota.getItemAtPosition(spinnerSexoMascota.selectedItemPosition).toString()
+            val tamanioMascota = spinnerTamañoMascota.getItemAtPosition(spinnerTamañoMascota.selectedItemPosition).toString()
+            val colorMascota = view.findViewById(R.id.editTextColor) as EditText
+            val edadMascota = view.findViewById(R.id.editTextEdad) as EditText
+            val fechaMascota = view.findViewById(R.id.calendario) as EditText
+            val nombreMascota = view.findViewById(R.id.editTextNombre) as EditText
+
+            try{
+                if (edadMascota.text.toString().toInt()  == null){
+                     edadmascot = 1
+                } else {
+                    edadmascot = edadMascota.text.toString().toInt()
+                }
+
+            }catch (e: NumberFormatException){
+                Toast.makeText(context, "Se asume edad 1.", Toast.LENGTH_LONG)
+                edadmascot = 1
+            }
+
+
+
+
+
+           // Toast.makeText(context, fechaMascota.text, Toast.LENGTH_LONG).show()
+
+            val action = FiltrosDirections.actionFiltrosToPhotosFragment(colorMascota.text.toString(),tipoMascota,
+                razaMascota,sexoMascota,tamanioMascota,edadmascot,fechaMascota.text.toString(),nombreMascota.text.toString())
+            findNavController().navigate(action)
+
+        }
+
+
+
 ///////////Llenado de spinners///////////
 
-        spinnerRazaMascota.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        spinnerTipoMascota.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (position == 1) {
                     val listaRazaPerro = resources.getStringArray(R.array.RazaMascotaPerro)
@@ -75,14 +99,14 @@ class Filtros : Fragment() {
                         ArrayAdapter<String>(it, android.R.layout.simple_spinner_item, listaRazaPerro)
                     }
                     spinnerRazaMascota.adapter = adapter
-                } else if (position == 2) {
+                } else if
+                        (position == 2) {
                     val listaRazaGato = resources.getStringArray(R.array.RazaMascotaGato)
                     val adapter = activity?.let {
                         ArrayAdapter<String>(it, android.R.layout.simple_spinner_item, listaRazaGato)
                     }
                     spinnerRazaMascota.adapter = adapter
                 } else {
-
                     val listaTamanio = resources.getStringArray(R.array.RazaMascotaVacio)
                     val adapter = activity?.let {
                         ArrayAdapter<String>(it, android.R.layout.simple_spinner_item, listaTamanio)
@@ -96,34 +120,6 @@ class Filtros : Fragment() {
         calendario.setOnClickListener { showDatePickerDialog() }
     }
     ///////////Funciones//////////
-///////////Camera//////////
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            REQUEST_GALLERY -> {
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) muestraGaleria()
-                else {
-                    Toast.makeText(context, "No puedo acceder a la galeria", Toast.LENGTH_LONG).show()
-                }
-            }
-        }
-    }
-
-    private fun muestraGaleria() {
-        val intentGaleria = Intent(Intent.ACTION_PICK)
-        intentGaleria.type = "image/*"
-        startActivityForResult(intentGaleria, REQUEST_GALLERY)
-    }
-
-    private fun abreCamara() {
-        val value = ContentValues()
-        value.put(MediaStore.Images.Media.TITLE, "Cargar Imagen")
-        foto = context?.contentResolver?.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, value)
-        val camaraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        camaraIntent.putExtra(MediaStore.EXTRA_OUTPUT, foto)
-        startActivityForResult(camaraIntent, REQUEST_CAMARA)
-    }
 
 
     ///////////Calendario///////////
@@ -136,9 +132,6 @@ class Filtros : Fragment() {
         calendario.setText("  $day / $month / $year")
     }
     ///////////Calendario//////////
-
-
-
 
 
     private fun onPublicarButtonClicked() {
@@ -177,4 +170,9 @@ class Filtros : Fragment() {
             binding.floatingActionButtonPerdiMiMascota.isClickable = false
         }
     }
+
+
 }
+
+
+

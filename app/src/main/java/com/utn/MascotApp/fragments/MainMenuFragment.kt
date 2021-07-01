@@ -56,7 +56,7 @@ class MainMenuFragment : Fragment() {
                 R.id.publicarItem -> {
                     onPublicarButtonClicked()
 
-                    floatingActionButton_PerdiMiMascota.setOnClickListener() {
+                    floatingActionButton_EncontreUnaMascota.setOnClickListener() {
                         findNavController().navigate(R.id.action_mainMenuFragment_to_filtros)
                     }
 
@@ -70,7 +70,6 @@ class MainMenuFragment : Fragment() {
         listadoBtn = binding.listadoBtn
         mapaBtn = binding.mapaBtn
         mViewPager = binding.viewPager
-
 
         mapaBtn.setOnClickListener {
             mViewPager.currentItem = 0

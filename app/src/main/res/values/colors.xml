@@ -10,12 +10,12 @@
     <color name="grey">#979595</color>
 
     <!---Aca abajo dejamos los colores principales de la aplicación-->
-    <color name="blue_grey_900">#29434e</color>
-    <color name="blue_grey_600">#546e7a</color>
-    <color name="blue_grey_300">#819ca9</color>
-    <color name="brown_900">#8c7b75</color>
-    <color name="brown_600">#bcaaa4</color>
-    <color name="brown_200">#efdcd5</color>
+    <color name="blue_grey_900">#8438FF</color>
+    <color name="blue_grey_600">#8438FF</color>
+    <color name="blue_grey_300">#8438FF</color>
+    <color name="brown_900">#FF7438</color>
+    <color name="brown_600">#FF7438</color>
+    <color name="brown_200">#FF7438</color>
 
     <color name="orange">#ff9100</color>
 
