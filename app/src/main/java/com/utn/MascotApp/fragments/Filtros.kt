@@ -34,8 +34,8 @@ class Filtros : Fragment() {
 
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.misPublicacionesItem -> {
-                    findNavController().navigate(R.id.action_filtros_to_misPublicacionesFragment)
+                R.id.miPerfilItem -> {
+                    findNavController().navigate(R.id.action_filtros_to_miPerfilFragment)
                 }
 
                 R.id.mainMenuItem -> {

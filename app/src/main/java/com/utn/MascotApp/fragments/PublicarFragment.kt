@@ -28,8 +28,8 @@ class PublicarFragment : Fragment(){
                 R.id.mainMenuItem -> {
                     findNavController().navigate(R.id.action_publicarFragment2_to_mainMenuFragment)
                 }
-                R.id.misPublicacionesItem -> {
-                    findNavController().navigate(R.id.action_publicarFragment2_to_misPublicacionesFragment)
+                R.id.miPerfilItem -> {
+                    findNavController().navigate(R.id.action_publicarFragment2_to_miPerfilFragment)
                 }
             }
             true

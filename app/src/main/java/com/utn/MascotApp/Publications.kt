@@ -10,6 +10,8 @@ data class Publications(
         var imagePath: String,
         var description: String,
         var type: String,
+        var sex: String,
+        var age: String,
         var breed: String,
         var createdAt: Timestamp,
         var lastSeen: Timestamp,

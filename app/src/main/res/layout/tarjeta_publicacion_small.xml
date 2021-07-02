@@ -1,0 +1,103 @@
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <LinearLayout
+        android:layout_width="115dp"
+        android:layout_height="154dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <!-- Media -->
+            <ImageView
+                android:id="@+id/card_imagen_mascota"
+                android:layout_width="wrap_content"
+                android:layout_height="62dp"
+                android:padding="1dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/golden" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="93dp"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingTop="7dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:id="@+id/pet_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:background="@android:color/transparent"
+                android:drawableRight="@drawable/ic_doc_icon"
+                android:drawableTint="@color/orange"
+                android:fontFamily="sans-serif"
+                android:text="@string/card_pet_name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:drawablePadding="7dp" />
+
+            <TextView
+                android:id="@+id/pet_sex_and_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/roboto"
+                android:text="@string/card_pet_sex_and_age"
+                android:textAppearance="?attr/textAllCaps"
+                android:textColor="@color/grey"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
+                android:background="@color/grey" />
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="@id/pet_sex_and_age"
+                app:layout_constraintRight_toRightOf="@id/pet_sex_and_age">
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/fecha_publicacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+
+
+                android:drawableLeft="@drawable/ic_calendar"
+                android:fontFamily="@font/roboto"
+                android:paddingStart="15dp"
+                android:text="@string/card_publication_lost_date"
+                android:textAppearance="?attr/textAllCaps"
+                android:textColor="#6200EE"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                tools:drawablePadding="7dp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

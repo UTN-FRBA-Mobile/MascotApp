@@ -1,7 +1,7 @@
 package com.utn.MascotApp.fragments
 
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,25 +11,28 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
-import com.utn.MascotApp.MascotaAdapter
 import com.utn.MascotApp.Publications
 import com.utn.MascotApp.R
-import com.utn.MascotApp.databinding.FragmentMisPublicacionesBinding
 import kotlinx.android.synthetic.main.fragment_main_menu.*
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.google.firebase.Timestamp
+import com.utn.MascotApp.TarjetaPublicacionSmallAdapter
+import com.utn.MascotApp.databinding.FragmentProfileBinding
+import com.utn.MascotApp.fragments.MiPerfilFragmentDirections
+import kotlinx.android.synthetic.main.fragment_main_menu.bottom_navigation
+import kotlinx.android.synthetic.main.fragment_profile.*
 
 
-class MisPublicacionesFragment : Fragment() {
+class MiPerfilFragment : Fragment() {
     val DEFAULT_NO_IMAGE = "https://www.lasommeliere.com/themes/lasommeliere/assets/_custom/images/no-image.png"
     private val fromBotton: Animation by lazy{ AnimationUtils.loadAnimation(context, R.anim.from_bottom_anim)}
     private val toBotton: Animation by lazy{ AnimationUtils.loadAnimation(context, R.anim.to_bottom_anim)}
-    private var _binding: FragmentMisPublicacionesBinding? = null
+    private var _binding: FragmentProfileBinding? = null
     private val publications = mutableListOf<Publications>()
-    private lateinit var mascotaAdapter: MascotaAdapter
+    private lateinit var tarjetaPublicacionSmallAdapter: TarjetaPublicacionSmallAdapter
     private var publicar_button_clicked = false
     private val binding get() = _binding!!
 
@@ -38,27 +41,38 @@ class MisPublicacionesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMisPublicacionesBinding.inflate(inflater, container, false)
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         bottom_navigation.setOnNavigationItemSelectedListener {
-            when (it.itemId) {
+            when(it.itemId){
+                R.id.mainMenuItem -> {
+                    findNavController().navigate(R.id.action_miPerfilFragment_to_mainMenuFragment)
+                }
                 R.id.publicarItem -> {
                     onPublicarButtonClicked()
-
-                    floatingActionButton_EncontreUnaMascota.setOnClickListener() {
-                        findNavController().navigate(R.id.action_misPublicacionesFragment_to_filtros)
-                    }
-
                 }
-                R.id.mainMenuItem -> {
-                    findNavController().navigate(R.id.action_misPublicacionesFragment_to_mainMenuFragment)
-                }
-            }
+              }
             true
         }
+        binding.verPublicaciones.setOnClickListener {
+//            val action = MiPerfilFragmentDirections.actionMiPerfilFragmentToMisPublicacionesFragment(
+//                publications.toTypedArray()
+//            )
+            findNavController().navigate(R.id.action_miPerfilFragment_to_misPublicacionesFragment)
+        }
+
+        binding.logOut.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            val prefs = this.requireActivity()
+                .getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
+            prefs.clear()
+            prefs.apply()
+            findNavController().navigate(R.id.firstLoginFragment)
+        }
+
     }
 
     private fun onPublicarButtonClicked() {
@@ -104,11 +118,14 @@ class MisPublicacionesFragment : Fragment() {
     }
 
     fun initRecyclerViewMascotasVista(){
-        mascotaAdapter = MascotaAdapter(publications,  findNavController(), "MisPublicaciones")
-        binding.listaTarjetasMascotas.layoutManager = LinearLayoutManager(context)
-        binding.listaTarjetasMascotas.adapter = mascotaAdapter
-        binding.listaTarjetasMascotas.visibility = View.VISIBLE
-        val publications = this.arguments?.get("PublicationList")
+        tarjetaPublicacionSmallAdapter = TarjetaPublicacionSmallAdapter(publications)
+        binding.publicationsList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.publicationsList.adapter = tarjetaPublicacionSmallAdapter
+        binding.publicationsList.visibility = View.VISIBLE
+
+//        val layout = LinearLayoutManager(requireContext() , LinearLayoutManager.HORIZONTAL, false)
+//        binding.publicationsList.layoutManager = layout
+
         getPublicationsFromDB()
 
     }
@@ -140,14 +157,13 @@ class MisPublicacionesFragment : Fragment() {
                                     species = map.get("species").toString(),
                                     name = map.get("name").toString(),
                                     geolocation = map.get("geolocation") as GeoPoint,
-                                    age = "2",
-                                    sex = "Macho"
-
+                                    sex = "Macho",
+                                    age = "2"
                                 )
                                 collection_publications.add(publication)
                                 publications.clear()
                                 publications.addAll(collection_publications)
-                                mascotaAdapter.notifyDataSetChanged()
+                                tarjetaPublicacionSmallAdapter.notifyDataSetChanged()
                                 // binding.progressBar.visibility = View.GONE
                             }
                             }
