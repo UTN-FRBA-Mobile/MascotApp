@@ -18,11 +18,16 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.GeoPoint
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.utn.MascotApp.*
 import com.utn.MascotApp.R.drawable.*
 import com.utn.MascotApp.R.color.*
 
 import com.utn.MascotApp.databinding.FragmentMapsBinding
+import java.util.*
 
 
 class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallback, OnMapReadyCallback {
@@ -40,9 +45,7 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
         BitmapHelper.vectorToBitmap(requireContext(), pet_footprint, color)
     }
 
-    private val pet_locations: List<Pet> by lazy {
-        PetReader(requireContext()).read()
-    }
+    private val pet_locations = getPetsFromDB()
 
     val requestPermissionLauncher =
         registerForActivityResult(
@@ -71,6 +74,10 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+        getDeviceLocation()
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -92,6 +99,7 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
             requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
             updateLocationUI()
             getDeviceLocation()
+            this.map?.let { it1 -> addMarkers(it1) }
         }
 
     }
@@ -179,7 +187,6 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
 
         // Get the current location of the device and set the position of the map.
         getDeviceLocation()
-
         addMarkers(map)
     }
 
@@ -224,6 +231,42 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
             )
             marker?.tag = pet
         }
+    }
+
+    private fun getPetsFromDB(): List<Pet>{
+        var collection_publications : MutableList<Pet> = arrayListOf()
+        val db = FirebaseFirestore.getInstance()
+        val storage = Firebase.storage
+        val imagesRef = storage.reference.child("publication-images")
+        db.collection("publications")
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    var map: Map<String, Any> = document.data
+                    imagesRef.child(
+                        map.get("imagePath").toString()
+                    ).downloadUrl.addOnSuccessListener {
+                        val lat = map.get("geolocation") as GeoPoint
+                        var publication = Pet(
+                            address = map.get("address").toString(),
+                            name = map.get("name").toString(),
+                            latLng = LatLng(lat.latitude, lat.longitude),
+                            rating = 1.0F
+                        )
+                        collection_publications.add(publication)
+                    }
+                }
+
+            }
+            .addOnFailureListener { exception ->
+                println("Error getting documents: $exception")
+                showError()
+            }
+        return collection_publications
+
+    }
+    private fun showError(){
+        Toast.makeText(context, "Ha ocurrido un error inesperado", Toast.LENGTH_SHORT).show()
     }
 
     companion object {
