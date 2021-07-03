@@ -27,18 +27,15 @@
 
 
     <string-array name="TipoMascota">
-        <item>Tipo de mascota</item>
         <item>Perro</item>
         <item>Gato</item>
     </string-array>
     <string-array name="TamañoMascota">
-        <item>Tamaño de la mascota</item>
         <item>Grande</item>
         <item>Mediano</item>
         <item>Chico</item>
     </string-array>
     <string-array name="SexoMascota">
-        <item>Sexo de la mascota</item>
         <item>Macho</item>
         <item>Hembra</item>
     </string-array>
@@ -46,7 +43,6 @@
         <item>Raza</item>
     </string-array>
     <string-array name="RazaMascotaPerro">
-        <item>Raza</item>
         <item>Mestizo</item>
         <item>Afgano</item>
         <item>Airedale Terrier</item>
@@ -145,7 +141,6 @@
     </string-array>
 
     <string-array name="RazaMascotaGato">
-        <item>Raza</item>
         <item>Angora</item>
         <item>Bengal</item>
         <item>bosques de noruega</item>
@@ -161,7 +156,7 @@
     <string name="camara">Camara</string>
     <string name="color">Color</string>
     <string name="edad">Edad</string>
-    <string name="seleccionar_fecha">Seleccionar fecha</string>
+    <string name="seleccionar_fecha">Fecha</string>
     <string name="mi_ubicacion">Mi ubicacion</string>
     <string name="perfil_nombre_y_apellido">Nombre y Apellido</string>
     <string name="perfil_telefono">Teléfono</string>
@@ -194,5 +189,10 @@
     <string name="descripci_n">Descripción</string>
     <string name="publicar">Publicar</string>
     <string name="nombre_de_la_masocta">Nombre de la Masocta</string>
+    <string name="nombre_ejemplo">Nombre Ejemplo</string>
+    <string name="tipo_mascota">Tipo Mascota</string>
+    <string name="raza_mascota">Raza Mascota</string>
+    <string name="sexo">Sexo</string>
+    <string name="tama_o">Tamaño</string>
 
 </resources>

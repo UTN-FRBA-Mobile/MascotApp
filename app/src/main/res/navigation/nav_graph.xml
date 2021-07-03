@@ -86,10 +86,6 @@
         <argument
             android:name="edadMascota"
             app:argType="integer"/>
-        <argument
-            android:name="fechaMascota"
-            app:argType="string"
-            app:nullable="true" />
         <action
             android:id="@+id/action_filtros_to_mainMenuFragment"
             app:destination="@id/mainMenuFragment" />
@@ -241,10 +237,6 @@
             app:nullable="true" />
         <argument
             android:name="edadMascota"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="fechaMascota"
             app:argType="string"
             app:nullable="true" />
         <argument

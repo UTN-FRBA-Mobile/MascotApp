@@ -33,93 +33,136 @@
         app:layout_constraintVertical_bias="0.027"
         android:contentDescription="@string/pasos2" />
 
-
-    <EditText
-        android:id="@+id/editTextDireccion"
-        android:layout_width="344dp"
-        android:layout_height="35dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/petDirection"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="210dp"
+        android:layout_height="80dp"
         android:autofillHints="@string/color"
-        android:background="@drawable/estilo_botones"
         android:ems="10"
         android:hint="@string/direccion"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:popupBackground="#D3D3D3"
         android:singleLine="true"
-        android:textAlignment="center"
-        android:textColorHint="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:endIconMode="clear_text"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.334" />
+        app:layout_constraintVertical_bias="0.26">
 
-    <EditText
-        android:id="@+id/editTextNumero"
-        android:layout_width="344dp"
-        android:layout_height="35dp"
-        android:autofillHints="@string/edad"
-        android:background="@drawable/estilo_botones"
-        android:ems="10"
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/petNumber"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
         android:hint="@string/numero"
-        android:importantForAutofill="no"
-        android:inputType="number"
-        android:maxLength="5"
-        android:popupBackground="#D3D3D3"
         android:singleLine="true"
-        android:textAlignment="center"
-        android:textColorHint="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:counterEnabled="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDireccion"
-        app:layout_constraintVertical_bias="0.084" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.26">
 
-    <EditText
-        android:id="@+id/editTextCoordenadas"
-        android:layout_width="344dp"
-        android:layout_height="35dp"
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/petCoordenadas"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="340dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
         android:autofillHints="Coordenadas"
-        android:background="@drawable/estilo_botones"
-        android:ems="10"
         android:hint="@string/coordenadas"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:popupBackground="#D3D3D3"
         android:singleLine="true"
-        android:textAlignment="center"
-        android:textColorHint="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumero"
-        app:layout_constraintVertical_bias="0.123" />
+        app:layout_constraintTop_toBottomOf="@+id/petNumber"
+        app:layout_constraintVertical_bias="0.02"
+        app:helperTextEnabled="true"
+        app:helperText="Ejemplo: -34.555980, -58.471822"
+        app:endIconMode="clear_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 
-    <EditText
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/petDate1"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="340dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
+        android:singleLine="true"
+        android:hint="@string/seleccionar_fecha"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/petCoordenadas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/petDate"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="340dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/petCoordenadas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0" />
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editTextDescripcion"
-        android:layout_width="350dp"
-        android:layout_height="82dp"
-        android:autofillHints="Descripcion"
-        android:ems="10"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="340dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
+        app:counterMaxLength="50"
+        app:counterEnabled="true"
         android:hint="@string/descripci_n"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:popupBackground="#D3D3D3"
-        android:maxLength="30"
-        android:singleLine="true"
-        android:textAlignment="center"
-        android:textColorHint="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        android:singleLine="false"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCoordenadas"
-        app:layout_constraintVertical_bias="0.185"
-        tools:ignore="HardcodedText" />
+        app:layout_constraintTop_toBottomOf="@+id/petDate1"
+        app:layout_constraintVertical_bias="0.02"
+        app:endIconMode="clear_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/bottonSiguienteALoclaidad"
@@ -144,5 +187,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toStartOf="parent" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

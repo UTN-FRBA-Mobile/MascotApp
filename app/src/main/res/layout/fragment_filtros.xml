@@ -21,6 +21,9 @@
         app:layout_constraintVertical_bias="0.027"
         android:contentDescription="@string/pasos1" />
 
+
+
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
@@ -33,144 +36,172 @@
         app:itemTextColor="@color/white"
         android:background="@color/blue_grey_300"/>
 
-
-    <EditText
-        android:id="@+id/editTextNombre"
-        android:layout_width="344dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="124dp"
-        android:autofillHints="NombreMascota"
-        android:background="@drawable/estilo_botones"
-        android:ems="10"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/petName"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="340dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
         android:hint="@string/nombre_de_la_masocta"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:maxLength="20"
-        android:popupBackground="#D3D3D3"
         android:singleLine="true"
-        android:textAlignment="center"
-        android:textColorHint="@color/black"
+        app:endIconMode="clear_text"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.19">
 
-    <Spinner
-        android:id="@+id/spinnerTipoMascota"
-        android:layout_width="344dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/estilo_botones"
-        android:entries="@array/TipoMascota"
-        android:popupBackground="#D3D3D3"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.537"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNombre" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <Spinner
-        android:id="@+id/spinnerRazaMascota"
-        android:layout_width="344dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="24dp"
-        android:popupBackground="#D3D3D3"
-        android:background="@drawable/estilo_botones"
-        android:entries="@array/RazaMascotaVacio"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.537"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerTipoMascota" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <Spinner
-        android:id="@+id/spinnerSexoMascota"
-        android:layout_width="344dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="24dp"
-        android:popupBackground="#D3D3D3"
-        android:background="@drawable/estilo_botones"
-        android:entries="@array/SexoMascota"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.537"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerRazaMascota" />
-
-    <Spinner
-        android:id="@+id/spinnerTamañoMascota"
-        android:layout_width="344dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="24dp"
-        android:popupBackground="#D3D3D3"
-        android:background="@drawable/estilo_botones"
-        android:entries="@array/TamañoMascota"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.537"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerSexoMascota" />
-
-    <EditText
-        android:id="@+id/editTextColor"
-        android:layout_width="344dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="24dp"
-        android:popupBackground="#D3D3D3"
-        android:background="@drawable/estilo_botones"
-        android:hint="@string/color"
-        android:textAlignment="center"
-        android:textColorHint="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.537"
-        app:layout_constraintStart_toStartOf="parent"
-        android:ems="10"
-        android:inputType="textPersonName"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/petTypeText"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="340dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+        android:hint="@string/tipo_mascota"
         android:singleLine="true"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerTamañoMascota"
-        android:importantForAutofill="no"
-        android:autofillHints="@string/color" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/petName"
+        android:autofillHints="@string/color"
+        app:layout_constraintVertical_bias="0">
 
-    <EditText
-        android:id="@+id/editTextEdad"
-        android:layout_width="344dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="24dp"
-        android:popupBackground="#D3D3D3"
-        android:background="@drawable/estilo_botones"
-        android:ems="10"
+        <AutoCompleteTextView
+            android:id="@+id/petType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="LabelFor" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/petBreedText"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="340dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+        android:hint="@string/raza_mascota"
+        android:singleLine="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/petTypeText"
+        android:autofillHints="@string/color"
+        app:layout_constraintVertical_bias="0"
+        app:helperText="*Primero elegir &quot;Tipo Mascota&quot;">
+
+        <AutoCompleteTextView
+            android:id="@+id/petBreed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="LabelFor" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/petSexText"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="160dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+        android:autofillHints="@string/color"
+        android:hint="@string/sexo"
+        android:singleLine="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/petBreedText"
+        app:layout_constraintVertical_bias="0">
+
+        <AutoCompleteTextView
+            android:id="@+id/petSex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="LabelFor" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/petAge"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="160dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
         android:hint="@string/edad"
-        android:inputType="number"
-        android:maxLength="5"
         android:singleLine="true"
-        android:textAlignment="center"
-        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextColor"
-        android:importantForAutofill="no"
-        android:autofillHints="@string/edad" />
+        app:layout_constraintTop_toBottomOf="@+id/petBreedText"
+        app:layout_constraintVertical_bias="0">
 
-    <EditText
-        android:id="@+id/calendario"
-        android:layout_width="344dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/estilo_botones"
-        android:clickable="false"
-        android:focusable="false"
-        android:hint="@string/seleccionar_fecha"
-        android:textAlignment="center"
-        android:textColorHint="@color/black"
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/petSizeText"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="160dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+        android:autofillHints="@string/color"
+        android:hint="@string/tama_o"
+        android:singleLine="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.537"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEdad"
-        android:autofillHints="@string/seleccionar_fecha"
-        android:inputType="date">
+        app:layout_constraintTop_toBottomOf="@+id/petSexText"
+        app:layout_constraintVertical_bias="0">
 
-    </EditText>
+        <AutoCompleteTextView
+            android:id="@+id/petSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="LabelFor" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/petColor"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="160dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+        android:hint="@string/color"
+        app:endIconMode="clear_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/petAge"
+        app:layout_constraintVertical_bias="0">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
 
     <Button
         android:id="@+id/bottonSiguienteAPhoto"
