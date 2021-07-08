@@ -25,7 +25,9 @@ import com.utn.MascotApp.R
 import com.utn.MascotApp.databinding.FragmentMascotInfoBinding
 import kotlinx.android.synthetic.main.fragment_mascot_info.*
 import java.lang.Exception
+import java.text.SimpleDateFormat
 import java.time.LocalDate.now
+import java.util.*
 
 
 class MascotInfoFragment : Fragment() {
@@ -96,19 +98,14 @@ class MascotInfoFragment : Fragment() {
 
         val lastSeenView = view.findViewById(R.id.lastSeen) as TextView
         var lastSeenv = this.arguments?.getString("lastSeen")
-        var date = lastSeenv?.replace("\"", "");
 
-
-        //TODO fecha
-        lastSeenView.text = "Fecha: " + now().toString()
-
+        lastSeenView.text = "Fecha: $lastSeenv"
         var actionFromv = this.arguments?.getString("actionFrom")
         if (actionFromv == "MascotaVistas") {
             call.visibility = View.VISIBLE
             call.text = "CONTACTAR"
 
 // Contactar con el usuario que creó la publicación
-
             mCall = view.findViewById(R.id.call)
 
             var userid = this.arguments?.getString("createdBy")
@@ -133,8 +130,6 @@ class MascotInfoFragment : Fragment() {
                 startActivity(intent)
             }
 
-//            android:drawableTop="@android:drawable/ic_menu_call"
-//            android:paddingTop="20dp"
         }
 
         if (actionFromv == "MisPublicaciones") {
@@ -147,17 +142,16 @@ class MascotInfoFragment : Fragment() {
                 val capitalCities = db.collection("publications").whereEqualTo("name", namev)
                     .whereEqualTo("imagePath", imagev).get()
 
-
                 publicationId = capitalCities.result.documents[0].id
 
                 try {
                     db.collection("publications").document(publicationId)
                         .delete()
 
-                    try{
+                    try {
 
-                    val imagesRef = storage.reference.child("imagev")
-                    imagesRef.delete()
+                        val imagesRef = storage.reference.child("imagev")
+                        imagesRef.delete()
 
                     } catch (e: Exception) {
                         // TODO pantalla que no se pudo eliminar
@@ -171,15 +165,12 @@ class MascotInfoFragment : Fragment() {
 
 
             }
-//            android:drawableTop="@android:drawable/ic_menu_delete"
-//            android:paddingTop="20dp"
         }
 
 
         // Buttom Share
         mShare = view.findViewById(R.id.share)
         mShare.setOnClickListener {
-
 
             if (ContextCompat.checkSelfPermission(
                     requireContext(),
@@ -240,17 +231,9 @@ class MascotInfoFragment : Fragment() {
 //            // Iniciamos la Actividad (Activity) con la lógica de nuestro proyecto
 //            startActivity(Intent.createChooser(compartirgf, getString(R.string.compartir_gf_txt)))
 //        }
-
-
 //            sharingIntent.putExtra(Intent.EXTRA_STREAM, urigf)
 
-
             startActivity(Intent.createChooser(sharingIntent, "Share using"))
-
-
         }
-
-
     }
-
 }
