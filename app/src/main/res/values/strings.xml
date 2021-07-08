@@ -194,5 +194,6 @@
     <string name="raza_mascota">Raza Mascota</string>
     <string name="sexo">Sexo</string>
     <string name="tama_o">Tamaño</string>
+    <string name="su_publicacion_se_genero_con_exito">Su publicacion se genero con exito</string>
 
 </resources>
