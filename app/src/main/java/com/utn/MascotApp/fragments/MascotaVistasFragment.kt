@@ -49,7 +49,7 @@ class MascotaVistasFragment: Fragment(){
     }
 
     private fun getPublicationsFromDB(){
-        var collection_publications : MutableList<Publications> = arrayListOf()
+        var collectionPublications : MutableList<Publications> = arrayListOf()
         val db = FirebaseFirestore.getInstance()
         val storage = Firebase.storage
         val imagesRef = storage.reference.child("publication-images")
@@ -60,26 +60,25 @@ class MascotaVistasFragment: Fragment(){
                     var map : Map<String, Any> = document.data
                     imagesRef.child(map.get("imagePath").toString()).downloadUrl.addOnSuccessListener {
                         var publication = Publications(
-                            address = map.get("address").toString(),
-                            color = map.get("color").toString(),
+                            address = map["address"].toString(),
+                            color = map["color"].toString(),
                             imagePath = it.toString(),
-                            description = map.get("description").toString(),
-                            type = map.get("type").toString(),
-                            breed = map.get("breed").toString(),
-                            createdAt = map.get("createdAt") as Timestamp,
-                            lastSeen = map.get("lastSeen") as Timestamp,
-                            size = map.get("size").toString(),
-                            createdBy = map.get("createdBy").toString(),
-                            species = map.get("species").toString(),
-                            name = map.get("name").toString(),
-                            geolocation = map.get("geolocation") as GeoPoint,
-                            age = "2",
-                            sex = "Macho"
-
+                            description = map["description"].toString(),
+                            type = map["type"].toString(),
+                            breed = map["breed"].toString(),
+                            createdAt = map["createdAt"] as Timestamp,
+                            lastSeen = map["lastSeen"] as Timestamp,
+                            size = map["size"].toString(),
+                            createdBy = map["createdBy"].toString(),
+                            species = map["species"].toString(),
+                            name = map["name"].toString(),
+                            geolocation = map["geolocation"] as GeoPoint,
+                            age = map["age"].toString(),
+                            sex = map["sex"].toString()
                         )
-                        collection_publications.add(publication)
+                        collectionPublications.add(publication)
                         publications.clear()
-                        publications.addAll(collection_publications)
+                        publications.addAll(collectionPublications)
                         mascotaAdapter.notifyDataSetChanged()
                         binding.progressBar.visibility = View.GONE
                     }

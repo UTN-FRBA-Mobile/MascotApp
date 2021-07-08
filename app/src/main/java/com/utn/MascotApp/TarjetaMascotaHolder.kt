@@ -8,7 +8,6 @@ import com.utn.MascotApp.databinding.TarjetaMascotaBinding
 import com.utn.MascotApp.fragments.MainMenuFragmentDirections
 import com.utn.MascotApp.fragments.MisPublicacionesFragmentDirections
 import java.text.SimpleDateFormat
-import java.util.*
 
 class TarjetaMascotaHolder(view: View, private val navController: NavController): RecyclerView.ViewHolder(view) {
     // *************************************************
