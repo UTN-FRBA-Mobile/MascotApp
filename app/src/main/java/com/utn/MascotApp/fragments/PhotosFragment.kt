@@ -103,7 +103,7 @@ class PhotosFragment : Fragment() {
                     println("Error adding document: $exception")
                 }
             db.collection("publications")
-            findNavController().navigate(R.id.action_photosFragment_to_mainMenuFragment)
+            findNavController().navigate(R.id.action_photosFragment_to_splashFragment)
         }
 
         bottonAtrasAPhoto.setOnClickListener{
@@ -198,8 +198,6 @@ class PhotosFragment : Fragment() {
 
         ref.putFile(uri!!)
             .addOnSuccessListener {
-                println("Termino")
-                Toast.makeText(context, "Termino", Toast.LENGTH_LONG).show()
             }
     }
 

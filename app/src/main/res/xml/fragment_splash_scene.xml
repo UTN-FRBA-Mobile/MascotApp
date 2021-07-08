@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:autoTransition="animateToEnd"
+        motion:duration="4000">
+        <KeyFrameSet>
+            <KeyAttribute
+                motion:motionTarget="@+id/logoImageView"
+                motion:framePosition="60"
+                android:translationY="-70dp"
+                android:scaleX="0.5"
+                android:scaleY="0.5" />
+        </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:layout_height="200dp"
+            android:layout_width="200dp"
+            android:id="@+id/logoImageView"
+            android:alpha="1.0"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintVertical_bias="0.532"
+            motion:layout_constraintHorizontal_bias="0.497" />
+        <Constraint
+            android:layout_height="85dp"
+            android:layout_width="237dp"
+            android:id="@+id/logoImageView2"
+            android:alpha="1.0"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintVertical_bias="1.0" />
+        <Constraint
+            android:layout_height="95dp"
+            android:layout_width="242dp"
+            android:id="@+id/titleTextView"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintVertical_bias="0.55"
+            motion:layout_constraintHorizontal_bias="0.497"
+            android:alpha="0.0" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/logoImageView"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:translationY="-70dp"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            android:alpha="1.0"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintHorizontal_bias="0.497"
+            motion:layout_constraintVertical_bias="0.533" />
+        <Constraint
+            android:id="@+id/titleTextView"
+            android:layout_width="242dp"
+            android:layout_height="95dp"
+            android:alpha="1.0"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintVertical_bias="0.55"
+            motion:layout_constraintHorizontal_bias="0.497" />
+        <Constraint
+            android:id="@+id/logoImageView2"
+            android:layout_width="237dp"
+            android:layout_height="85dp"
+            android:alpha="1.0"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintVertical_bias="1.0"
+            motion:layout_constraintEnd_toEndOf="parent" />
+    </ConstraintSet>
+</MotionScene>

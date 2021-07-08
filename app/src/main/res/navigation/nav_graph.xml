@@ -16,11 +16,11 @@
             android:id="@+id/action_mainMenuFragment_to_miPerfilFragment"
             app:destination="@id/miPerfilFragment" />
         <action
-            android:id="@+id/action_mainMenuFragment_to_filtros"
-            app:destination="@id/filtros" />
-        <action
             android:id="@+id/action_mainMenuFragment_to_mascotInfoFragment"
             app:destination="@id/mascotInfoFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_filtros"
+            app:destination="@id/filtros" />
     </fragment>
     <fragment
         android:id="@+id/publicarFragment2"
@@ -147,8 +147,8 @@
             app:argType="string"
             app:nullable="true" />
         <action
-            android:id="@+id/action_photosFragment_to_mainMenuFragment"
-            app:destination="@id/mainMenuFragment" />
+            android:id="@+id/action_photosFragment_to_splashFragment"
+            app:destination="@id/splashFragment" />
     </fragment>
     <fragment
         android:id="@+id/mascotInfoFragment"
@@ -269,5 +269,14 @@
     <action
         android:id="@+id/action_miPerfilFragment_to_misPublicacionesFragment"
         app:destination="@id/misPublicacionesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.utn.MascotApp.fragments.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
     </fragment>
 </navigation>
