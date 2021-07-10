@@ -1,9 +1,11 @@
 package com.utn.MascotApp.fragments
 
+import android.content.ContentResolver
 import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -16,6 +18,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
@@ -24,6 +27,7 @@ import com.squareup.picasso.Picasso
 import com.utn.MascotApp.R
 import com.utn.MascotApp.databinding.FragmentMascotInfoBinding
 import kotlinx.android.synthetic.main.fragment_mascot_info.*
+import java.io.OutputStream
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.time.LocalDate.now
@@ -65,41 +69,41 @@ class MascotInfoFragment : Fragment() {
 
         val nameView = view.findViewById(R.id.name) as TextView
         var namev = this.arguments?.getString("name")
-        nameView.text = "Nombre: $namev"
+        nameView.text = "Nombre: " + (namev ?: "-")
 
 
         val addressView = view.findViewById(R.id.address) as TextView
         var addresv = this.arguments?.getString("address")
-        addressView.text = "Me perdí en: $addresv"
+        addressView.text = "Me perdí en: " + (addresv ?: "-")
 
 
         val descriptionView = view.findViewById(R.id.description) as TextView
         var descriptionv = this.arguments?.getString("description")
-        descriptionView.text = "Descripción: $descriptionv"
+        descriptionView.text = "Descripción: " + (descriptionv ?: "-")
 
 
         val edadView = view.findViewById(R.id.age) as TextView
         var edadv = this.arguments?.getInt("age")
-        edadView.text = "Edad: $edadv"
+        edadView.text = "Edad: " + (edadv ?: "-")
 
         val sexoView = view.findViewById(R.id.sex) as TextView
         var sexov = this.arguments?.getString("sex")
-        sexoView.text = "Sexo: $sexov"
+        sexoView.text = "Sexo: " + (sexov ?: "-")
 
         val colorView = view.findViewById(R.id.color) as TextView
         var colorv = this.arguments?.getString("color")
-        colorView.text = "Color: $colorv"
+        colorView.text = "Color: " + (colorv ?: "-")
 
 
         val breedView = view.findViewById(R.id.breed) as TextView
         var breedv = this.arguments?.getString("breed")
-        breedView.text = "Raza: $breedv"
+        breedView.text = "Raza: " + (breedv ?: "-")
 
 
         val lastSeenView = view.findViewById(R.id.lastSeen) as TextView
         var lastSeenv = this.arguments?.getString("lastSeen")
+        lastSeenView.text = "Fecha: " + (lastSeenv ?: "-")
 
-        lastSeenView.text = "Fecha: $lastSeenv"
         var actionFromv = this.arguments?.getString("actionFrom")
         if (actionFromv == "MascotaVistas") {
             call.visibility = View.VISIBLE
@@ -109,9 +113,7 @@ class MascotInfoFragment : Fragment() {
             mCall = view.findViewById(R.id.call)
 
             var userid = this.arguments?.getString("createdBy")
-
             var phone = ""
-
             db.collection("users")
                 .get()
                 .addOnSuccessListener { documents ->
@@ -129,7 +131,6 @@ class MascotInfoFragment : Fragment() {
                 val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null))
                 startActivity(intent)
             }
-
         }
 
         if (actionFromv == "MisPublicaciones") {
@@ -145,14 +146,10 @@ class MascotInfoFragment : Fragment() {
                 publicationId = capitalCities.result.documents[0].id
 
                 try {
-                    db.collection("publications").document(publicationId)
-                        .delete()
-
+                    db.collection("publications").document(publicationId).delete()
                     try {
-
                         val imagesRef = storage.reference.child("imagev")
                         imagesRef.delete()
-
                     } catch (e: Exception) {
                         // TODO pantalla que no se pudo eliminar
                         println(e)
@@ -162,8 +159,6 @@ class MascotInfoFragment : Fragment() {
                     // TODO pantalla que no se pudo eliminar
                     println(e)
                 }
-
-
             }
         }
 
@@ -175,8 +170,7 @@ class MascotInfoFragment : Fragment() {
             if (ContextCompat.checkSelfPermission(
                     requireContext(),
                     android.Manifest.permission.READ_EXTERNAL_STORAGE
-                )
-                != PackageManager.PERMISSION_GRANTED
+                ) != PackageManager.PERMISSION_GRANTED
             ) {
                 ActivityCompat.requestPermissions(
                     this.requireActivity(),
@@ -191,11 +185,24 @@ class MascotInfoFragment : Fragment() {
             sharingIntent.type = "*/*"
 
             val shareBody =
-                "Nombre: $namev" + '\n' + "Me perdí en: $addresv" + '\n' + "Descripción: $descriptionv" + '\n' +
-                        "Edad: $edadv" + '\n' + "Sexo: $sexov" + '\n' + "Color: $colorv" + '\n' + "Raza: $breedv"
+                "Nombre: " + (namev ?: "-") + '\n' +
+                "Me perdí en: " + (addresv ?: "-") + '\n' +
+                "Descripción: " + (descriptionv ?: "-") + '\n' +
+                "Edad: " + (edadv ?: "-")  + '\n' +
+                "Sexo:" + (sexov ?: "-") + '\n' +
+                "Color:" + (colorv ?: "-")  + '\n' +
+                "Raza: " + (breedv ?: "-")
 
             sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+//            var resolver = requireActivity().contentResolver
+//            val myUri  = imagev?.toUri()
+//            val outstreamgf: OutputStream? = resolver?.openOutputStream(myUri!!)
 
+                // Optimizamos la imagen JPEG que será compartida, con calidad 100
+//                gf.compress(Bitmap.CompressFormat.JPEG, 100, outstreamgf)
+//                outstreamgf!!.close()
+
+//            sharingIntent.putExtra(Intent.EXTRA_STREAM, imagev)
 
 //            // Instanciamos la imagen
 ////            val gf = BitmapFactory.decodeResource(resources, R.drawable.gf)
