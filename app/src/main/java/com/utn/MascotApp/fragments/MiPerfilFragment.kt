@@ -19,6 +19,7 @@ import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.google.firebase.Timestamp
+import com.utn.MascotApp.BottomNavBar
 import com.utn.MascotApp.TarjetaPublicacionSmallAdapter
 import com.utn.MascotApp.databinding.FragmentProfileBinding
 import com.utn.MascotApp.fragments.MiPerfilFragmentDirections
@@ -46,17 +47,7 @@ class MiPerfilFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        bottom_navigation.setOnNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.mainMenuItem -> {
-                    findNavController().navigate(R.id.action_miPerfilFragment_to_mainMenuFragment)
-                }
-                R.id.publicarItem -> {
-                    onPublicarButtonClicked()
-                }
-              }
-            true
-        }
+        BottomNavBar().setBottomNavBar(bottom_navigation, "MiPerfil", findNavController(), R.id.action_miPerfilFragment_to_mainMenuFragment, R.id.action_mascotInfoFragment_to_publicarFragment2, null)
         binding.verPublicaciones.setOnClickListener {
 //            val action = MiPerfilFragmentDirections.actionMiPerfilFragmentToMisPublicacionesFragment(
 //                publications.toTypedArray()
