@@ -269,7 +269,7 @@
     <action
         android:id="@+id/action_miPerfilFragment_to_misPublicacionesFragment"
         app:destination="@id/misPublicacionesFragment" />
-    </fragment>
+        </fragment>
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.utn.MascotApp.fragments.SplashFragment"

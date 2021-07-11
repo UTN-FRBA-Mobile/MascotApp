@@ -47,7 +47,7 @@ class MiPerfilFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        BottomNavBar().setBottomNavBar(bottom_navigation, "MiPerfil", findNavController(), R.id.action_miPerfilFragment_to_mainMenuFragment, R.id.action_mascotInfoFragment_to_publicarFragment2, null)
+        BottomNavBar().setBottomNavBar(bottom_navigation, "MiPerfil", findNavController(), R.id.action_miPerfilFragment_to_mainMenuFragment, R.id.action_miPerfilFragment_to_publicarMenuFragment, null)
         binding.verPublicaciones.setOnClickListener {
 //            val action = MiPerfilFragmentDirections.actionMiPerfilFragmentToMisPublicacionesFragment(
 //                publications.toTypedArray()
@@ -64,43 +64,6 @@ class MiPerfilFragment : Fragment() {
             findNavController().navigate(R.id.firstLoginFragment)
         }
 
-    }
-
-    private fun onPublicarButtonClicked() {
-        setVisibility(publicar_button_clicked)
-        setAnimation(publicar_button_clicked)
-        setClickable(publicar_button_clicked)
-        publicar_button_clicked = !publicar_button_clicked
-    }
-
-    private fun setVisibility(clicked: Boolean){
-        if (!clicked){
-            binding.floatingActionButtonEncontreUnaMascota.visibility = View.VISIBLE
-            binding.floatingActionButtonPerdiMiMascota.visibility = View.VISIBLE
-        } else {
-            binding.floatingActionButtonEncontreUnaMascota.visibility = View.INVISIBLE
-            binding.floatingActionButtonPerdiMiMascota.visibility = View.INVISIBLE
-        }
-    }
-
-    private fun setAnimation(clicked: Boolean){
-        if (!clicked){
-            binding.floatingActionButtonEncontreUnaMascota.startAnimation(fromBotton)
-            binding.floatingActionButtonPerdiMiMascota.startAnimation(fromBotton)
-        } else {
-            binding.floatingActionButtonEncontreUnaMascota.startAnimation(toBotton)
-            binding.floatingActionButtonPerdiMiMascota.startAnimation(toBotton)
-        }
-    }
-
-    private fun setClickable(clicked: Boolean){
-        if (!clicked){
-            binding.floatingActionButtonEncontreUnaMascota.isClickable = true
-            binding.floatingActionButtonPerdiMiMascota.isClickable = true
-        } else {
-            binding.floatingActionButtonEncontreUnaMascota.isClickable = false
-            binding.floatingActionButtonPerdiMiMascota.isClickable = false
-        }
     }
 
     override fun onStart(){

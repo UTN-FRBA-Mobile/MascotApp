@@ -52,7 +52,7 @@ class MainMenuFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        BottomNavBar().setBottomNavBar(binding.bottomNavigation, "MainMenu", findNavController(), null, R.id.action_mainMenuFragment_to_filtros, R.id.action_mainMenuFragment_to_miPerfilFragment)
+        BottomNavBar().setBottomNavBar(bottom_navigation, "MainMenu", findNavController(), null, R.id.action_mainMenuFragment_to_publicarMenuFragment, R.id.action_mainMenuFragment_to_miPerfilFragment)
 
         listadoBtn = binding.listadoBtn
         mapaBtn = binding.mapaBtn
