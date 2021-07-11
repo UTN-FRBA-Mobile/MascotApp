@@ -22,12 +22,15 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.firestoreSettings
 import com.utn.MascotApp.*
 import com.utn.MascotApp.R.drawable.*
 import com.utn.MascotApp.R.color.*
-
+import com.google.firebase.firestore.DocumentSnapshot
 import com.utn.MascotApp.databinding.FragmentMapsBinding
 import java.util.*
+import com.google.firebase.firestore.DocumentChange
 
 
 class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallback, OnMapReadyCallback {
@@ -45,7 +48,6 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
         BitmapHelper.vectorToBitmap(requireContext(), pet_footprint, color)
     }
 
-    private val pet_locations = getPetsFromDB()
 
     val requestPermissionLauncher =
         registerForActivityResult(
@@ -94,6 +96,7 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
         requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
         updateLocationUI()
         getDeviceLocation()
+        listenToDiffs()
 
         binding.miLocation.setOnClickListener{
             requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -102,6 +105,29 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
             this.map?.let { it1 -> addMarkers(it1) }
         }
 
+
+    }
+
+    private fun listenToDiffs() {
+        // [START listen_diffs]
+        val db = Firebase.firestore
+        db.collection("publications")
+            .whereEqualTo("state", "CA")
+            .addSnapshotListener { snapshots, e ->
+                if (e != null) {
+                    Log.w(TAG, "listen:error", e)
+                    return@addSnapshotListener
+                }
+
+                for (dc in snapshots!!.documentChanges) {
+                    when (dc.type) {
+                        DocumentChange.Type.ADDED -> map?.let { addMarkers(it) }
+                        DocumentChange.Type.MODIFIED -> map?.let { addMarkers(it) }
+                        DocumentChange.Type.REMOVED -> map?.let { addMarkers(it) }
+                    }
+                }
+            }
+        // [END listen_diffs]
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -222,49 +248,26 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
     private fun addMarkers(googleMap: GoogleMap) {
         // Set custom info window adapter
         googleMap.setInfoWindowAdapter(MarkerInfoWindowAdapter(requireContext()))
-        pet_locations.forEach { pet ->
-            val marker = googleMap.addMarker(
-                MarkerOptions()
-                    .title(pet.name)
-                    .position(pet.latLng)
-                    .icon(petIcon)
-            )
-            marker?.tag = pet
-        }
-    }
-
-    private fun getPetsFromDB(): List<Pet>{
-        var collection_publications : MutableList<Pet> = arrayListOf()
-        val db = FirebaseFirestore.getInstance()
-        val storage = Firebase.storage
-        val imagesRef = storage.reference.child("publication-images")
+        val db = Firebase.firestore
         db.collection("publications")
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
-                    var map: Map<String, Any> = document.data
-                    imagesRef.child(
-                        map.get("imagePath").toString()
-                    ).downloadUrl.addOnSuccessListener {
-                        val lat = map.get("geolocation") as GeoPoint
-                        var publication = Pet(
-                            address = map.get("address").toString(),
-                            name = map.get("name").toString(),
-                            latLng = LatLng(lat.latitude, lat.longitude),
-                            rating = 1.0F
-                        )
-                        collection_publications.add(publication)
-                    }
+                    val lat = document.data["geolocation"] as GeoPoint
+                    googleMap.addMarker(
+                        MarkerOptions()
+                            .title(document.data["name"].toString())
+                            .position( LatLng(lat.latitude, lat.longitude))
+                            .icon(petIcon)
+                    )
+                    println("Publicationasd: ${document?.data}")
                 }
-
             }
-            .addOnFailureListener { exception ->
-                println("Error getting documents: $exception")
-                showError()
-            }
-        return collection_publications
 
-    }
+        }
+
+
+
     private fun showError(){
         Toast.makeText(context, "Ha ocurrido un error inesperado", Toast.LENGTH_SHORT).show()
     }
