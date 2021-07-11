@@ -36,7 +36,21 @@ class MiPerfilFragment : Fragment() {
     private lateinit var tarjetaPublicacionSmallAdapter: TarjetaPublicacionSmallAdapter
     private var publicar_button_clicked = false
     private val binding get() = _binding!!
+    private lateinit var foundOrLost: String
 
+    val petNameParam = null
+    val petTypeParam = null
+    val petBreedParam = null
+    val petSexParam = null
+    val petSizeParam = null
+    val petColorParam = null
+    val petAgeParam = null
+    val petLastSeen = null
+    val petDirectionParam = null
+    val petNumberParam = null
+    val petcoordinatesParam = null
+    val petDescriptionParam = null
+    val foundOrLostParam = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,7 +61,11 @@ class MiPerfilFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        BottomNavBar().setBottomNavBar(bottom_navigation, "MiPerfil", findNavController(), R.id.action_miPerfilFragment_to_mainMenuFragment, R.id.action_miPerfilFragment_to_publicarMenuFragment, null)
+        foundOrLost = "lost"
+        val action = MiPerfilFragmentDirections.actionMiPerfilFragmentToFiltros(petNameParam, petTypeParam, petBreedParam,
+            petSexParam, petSizeParam, petColorParam, petAgeParam, petLastSeen, petDirectionParam, petNumberParam, petcoordinatesParam,
+            petDescriptionParam, foundOrLost).actionId
+        BottomNavBar().setBottomNavBar(bottom_navigation, "MiPerfil", findNavController(), R.id.action_miPerfilFragment_to_mainMenuFragment, action, null)
         binding.verPublicaciones.setOnClickListener {
 //            val action = MiPerfilFragmentDirections.actionMiPerfilFragmentToMisPublicacionesFragment(
 //                publications.toTypedArray()

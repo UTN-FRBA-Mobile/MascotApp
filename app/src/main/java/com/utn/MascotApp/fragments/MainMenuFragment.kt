@@ -11,10 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
 import com.utn.MascotApp.BottomNavBar
+import com.utn.MascotApp.FiltrosDirections
 import com.utn.MascotApp.PagerViewAdapter
 import com.utn.MascotApp.R
 import com.utn.MascotApp.databinding.FragmentMainMenuBinding
+import kotlinx.android.synthetic.main.fragment_filtros.*
 import kotlinx.android.synthetic.main.fragment_main_menu.*
+import kotlinx.android.synthetic.main.fragment_main_menu.bottom_navigation
 
 
 class MainMenuFragment : Fragment() {
@@ -38,9 +41,25 @@ class MainMenuFragment : Fragment() {
 
     private lateinit var listadoBtn: ImageButton
     private lateinit var mapaBtn: ImageButton
+    private lateinit var foundOrLost: String
 
     private lateinit var mViewPager: ViewPager
     private lateinit var mPagerViewAdapter: PagerViewAdapter
+
+    val petNameParam = null
+    val petTypeParam = null
+    val petBreedParam = null
+    val petSexParam = null
+    val petSizeParam = null
+    val petColorParam = null
+    val petAgeParam = null
+    val petLastSeen = null
+    val petDirectionParam = null
+    val petNumberParam = null
+    val petcoordinatesParam = null
+    val petDescriptionParam = null
+    val foundOrLostParam = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,7 +71,11 @@ class MainMenuFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        BottomNavBar().setBottomNavBar(bottom_navigation, "MainMenu", findNavController(), null, R.id.action_mainMenuFragment_to_publicarMenuFragment, R.id.action_mainMenuFragment_to_miPerfilFragment)
+        foundOrLost = "lost"
+        val action = MainMenuFragmentDirections.actionMainMenuFragmentToFiltros(petNameParam, petTypeParam, petBreedParam,
+            petSexParam, petSizeParam, petColorParam, petAgeParam, petLastSeen, petDirectionParam, petNumberParam, petcoordinatesParam,
+            petDescriptionParam, foundOrLost).actionId
+        BottomNavBar().setBottomNavBar(bottom_navigation, "MainMenu", findNavController(), null, action, R.id.action_mainMenuFragment_to_miPerfilFragment)
 
         listadoBtn = binding.listadoBtn
         mapaBtn = binding.mapaBtn

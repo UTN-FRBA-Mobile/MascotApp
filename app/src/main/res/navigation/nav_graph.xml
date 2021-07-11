@@ -64,91 +64,129 @@
         android:name="com.utn.MascotApp.Filtros"
         android:label="fragment_filtros"
         tools:layout="@layout/fragment_filtros" >
-        <argument
-            android:name="colorMascota"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="tipoMascota"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="razaMascota"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="sexoMascota"
-            app:argType="string"
-            app:nullable="true" />
-        <argument android:name="tamañoMascota"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="edadMascota"
-            app:argType="integer"/>
         <action
             android:id="@+id/action_filtros_to_mainMenuFragment"
             app:destination="@id/mainMenuFragment" />
         <action
-            android:id="@+id/action_filtros_to_miPerfilFragment"
-            app:destination="@id/misPublicacionesFragment" />
-        <action
             android:id="@+id/action_filtros_to_locationFragment"
             app:destination="@id/locationFragment" />
+        <argument
+            android:name="petName"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petType"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petBreed"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petSex"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petSize"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petColor"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petAge"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petLastSeen"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petDirection"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petNumber"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petCoordinates"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="perDescription"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="foundOrLost"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_filtros_to_miPerfilFragment"
+            app:destination="@id/miPerfilFragment" />
     </fragment>
     <fragment
         android:id="@+id/photosFragment"
         android:name="com.utn.MascotApp.fragments.PhotosFragment"
         android:label="PhotosFragment" >
-        <argument
-            android:name="colorMascota"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="tipoMascota"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="razaMascota"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="sexoMascota"
-            app:argType="string"
-            app:nullable="true" />
-        <argument android:name="tamañoMascota"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="edadMascota"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="fechaMascota"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="nombreMascota"
-            app:argType="string"
-            app:nullable="true" />
         <action
             android:id="@+id/action_photosFragment_to_locationFragment"
             app:destination="@id/locationFragment" />
-        <argument
-            android:name="direccionMascota"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="coordenadasMascota"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="descripcionMascota"
-            app:argType="string"
-            app:nullable="true" />
         <action
             android:id="@+id/action_photosFragment_to_splashFragment"
             app:destination="@id/splashFragment" />
+        <argument
+            android:name="petName"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petType"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petBreed"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petSex"
+            app:argType="string"
+            app:nullable="true" />
+        <argument android:name="petSize"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petColor"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petAge"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petLastSeen"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petDirection"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petNumber"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petCoordinates"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="perDescription"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="foundOrLost"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/mascotInfoFragment"
@@ -216,36 +254,60 @@
         <action
             android:id="@+id/action_locationFragment_to_mainMenuFragment"
             app:destination="@id/mainMenuFragment" />
-        <argument
-            android:name="colorMascota"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="tipoMascota"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="razaMascota"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="sexoMascota"
-            app:argType="string"
-            app:nullable="true" />
-        <argument android:name="tamañoMascota"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="edadMascota"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="nombreMascota"
-            app:argType="string"
-            app:nullable="true" />
         <action
             android:id="@+id/action_locationFragment_to_filtros"
             app:destination="@id/filtros" />
+        <argument
+            android:name="petName"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petType"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petBreed"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petSex"
+            app:argType="string"
+            app:nullable="true" />
+        <argument android:name="petSize"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petColor"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petAge"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petLastSeen"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petDirection"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petNumber"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="petCoordinates"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="perDescription"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="foundOrLost"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/firstLoginFragment"
@@ -269,6 +331,9 @@
     <action
         android:id="@+id/action_miPerfilFragment_to_misPublicacionesFragment"
         app:destination="@id/misPublicacionesFragment" />
+            <action
+                android:id="@+id/action_miPerfilFragment_to_filtros"
+                app:destination="@id/filtros" />
         </fragment>
     <fragment
         android:id="@+id/splashFragment"
@@ -278,5 +343,9 @@
         <action
             android:id="@+id/action_splashFragment_to_mainMenuFragment"
             app:destination="@id/mainMenuFragment" />
+        <argument
+            android:name="notificationType"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 </navigation>
