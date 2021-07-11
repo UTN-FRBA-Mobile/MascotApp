@@ -45,7 +45,7 @@ class MainMenuFragment : Fragment() {
     private lateinit var mViewPager: ViewPager
     private lateinit var mPagerViewAdapter: PagerViewAdapter
 
-    val petNameParam = "Pepe"
+    val petNameParam = null
     val petTypeParam = null
     val petBreedParam = null
     val petSexParam = null
