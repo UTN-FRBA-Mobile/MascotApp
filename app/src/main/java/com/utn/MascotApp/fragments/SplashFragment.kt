@@ -31,7 +31,7 @@ class SplashFragment : Fragment() {
 
         val notificationType =this.arguments?.getString("notificationType")
 
-        if (notificationType == "Publication") titleTextView.text = "@string/su_publicacion_se_genero_con_exito"
+        if (notificationType == "Publication") titleTextView.text = "Su publicacion se generó con éxito"
 
 
         val motionLayout = view.findViewById<MotionLayout>(R.id.motionLayout)

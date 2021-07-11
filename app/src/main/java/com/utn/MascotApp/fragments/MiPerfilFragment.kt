@@ -19,6 +19,7 @@ import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.google.firebase.Timestamp
+import com.utn.MascotApp.BottomNavBar
 import com.utn.MascotApp.TarjetaPublicacionSmallAdapter
 import com.utn.MascotApp.databinding.FragmentProfileBinding
 import com.utn.MascotApp.fragments.MiPerfilFragmentDirections
@@ -35,7 +36,21 @@ class MiPerfilFragment : Fragment() {
     private lateinit var tarjetaPublicacionSmallAdapter: TarjetaPublicacionSmallAdapter
     private var publicar_button_clicked = false
     private val binding get() = _binding!!
+    private lateinit var foundOrLost: String
 
+    val petNameParam = null
+    val petTypeParam = null
+    val petBreedParam = null
+    val petSexParam = null
+    val petSizeParam = null
+    val petColorParam = null
+    val petAgeParam = null
+    val petLastSeen = null
+    val petDirectionParam = null
+    val petNumberParam = null
+    val petcoordinatesParam = null
+    val petDescriptionParam = null
+    val foundOrLostParam = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,17 +61,11 @@ class MiPerfilFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        bottom_navigation.setOnNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.mainMenuItem -> {
-                    findNavController().navigate(R.id.action_miPerfilFragment_to_mainMenuFragment)
-                }
-                R.id.publicarItem -> {
-                    onPublicarButtonClicked()
-                }
-              }
-            true
-        }
+        foundOrLost = "lost"
+        val action = MiPerfilFragmentDirections.actionMiPerfilFragmentToFiltros(petNameParam, petTypeParam, petBreedParam,
+            petSexParam, petSizeParam, petColorParam, petAgeParam, petLastSeen, petDirectionParam, petNumberParam, petcoordinatesParam,
+            petDescriptionParam, foundOrLost).actionId
+        BottomNavBar().setBottomNavBar(bottom_navigation, "MiPerfil", findNavController(), R.id.action_miPerfilFragment_to_mainMenuFragment, action, null)
         binding.verPublicaciones.setOnClickListener {
 //            val action = MiPerfilFragmentDirections.actionMiPerfilFragmentToMisPublicacionesFragment(
 //                publications.toTypedArray()
@@ -73,43 +82,6 @@ class MiPerfilFragment : Fragment() {
             findNavController().navigate(R.id.firstLoginFragment)
         }
 
-    }
-
-    private fun onPublicarButtonClicked() {
-        setVisibility(publicar_button_clicked)
-        setAnimation(publicar_button_clicked)
-        setClickable(publicar_button_clicked)
-        publicar_button_clicked = !publicar_button_clicked
-    }
-
-    private fun setVisibility(clicked: Boolean){
-        if (!clicked){
-            binding.floatingActionButtonEncontreUnaMascota.visibility = View.VISIBLE
-            binding.floatingActionButtonPerdiMiMascota.visibility = View.VISIBLE
-        } else {
-            binding.floatingActionButtonEncontreUnaMascota.visibility = View.INVISIBLE
-            binding.floatingActionButtonPerdiMiMascota.visibility = View.INVISIBLE
-        }
-    }
-
-    private fun setAnimation(clicked: Boolean){
-        if (!clicked){
-            binding.floatingActionButtonEncontreUnaMascota.startAnimation(fromBotton)
-            binding.floatingActionButtonPerdiMiMascota.startAnimation(fromBotton)
-        } else {
-            binding.floatingActionButtonEncontreUnaMascota.startAnimation(toBotton)
-            binding.floatingActionButtonPerdiMiMascota.startAnimation(toBotton)
-        }
-    }
-
-    private fun setClickable(clicked: Boolean){
-        if (!clicked){
-            binding.floatingActionButtonEncontreUnaMascota.isClickable = true
-            binding.floatingActionButtonPerdiMiMascota.isClickable = true
-        } else {
-            binding.floatingActionButtonEncontreUnaMascota.isClickable = false
-            binding.floatingActionButtonPerdiMiMascota.isClickable = false
-        }
     }
 
     override fun onStart(){

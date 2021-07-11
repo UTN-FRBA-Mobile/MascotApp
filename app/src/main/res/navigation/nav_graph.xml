@@ -68,9 +68,6 @@
             android:id="@+id/action_filtros_to_mainMenuFragment"
             app:destination="@id/mainMenuFragment" />
         <action
-            android:id="@+id/action_filtros_to_miPerfilFragment"
-            app:destination="@id/misPublicacionesFragment" />
-        <action
             android:id="@+id/action_filtros_to_locationFragment"
             app:destination="@id/locationFragment" />
         <argument
@@ -125,6 +122,9 @@
             android:name="foundOrLost"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_filtros_to_miPerfilFragment"
+            app:destination="@id/miPerfilFragment" />
     </fragment>
     <fragment
         android:id="@+id/photosFragment"
@@ -231,9 +231,6 @@
             android:name="address"
             app:argType="string" />
         <action
-            android:id="@+id/action_mascotInfoFragment_to_miPerfilFragment"
-            app:destination="@id/misPublicacionesFragment" />
-        <action
             android:id="@+id/action_mascotInfoFragment_to_publicarFragment2"
             app:destination="@id/publicarFragment2" />
         <argument
@@ -242,6 +239,9 @@
         <argument
             android:name="actionFrom"
             app:argType="string" />
+        <action
+            android:id="@+id/action_mascotInfoFragment_to_miPerfilFragment"
+            app:destination="@id/miPerfilFragment" />
     </fragment>
     <fragment
         android:id="@+id/locationFragment"
@@ -331,7 +331,10 @@
     <action
         android:id="@+id/action_miPerfilFragment_to_misPublicacionesFragment"
         app:destination="@id/misPublicacionesFragment" />
-    </fragment>
+            <action
+                android:id="@+id/action_miPerfilFragment_to_filtros"
+                app:destination="@id/filtros" />
+        </fragment>
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.utn.MascotApp.fragments.SplashFragment"

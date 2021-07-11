@@ -16,6 +16,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.utn.MascotApp.databinding.FragmentMisPublicacionesBinding
 import kotlinx.android.synthetic.main.fragment_filtros.*
 import kotlinx.android.synthetic.main.fragment_filtros.bottom_navigation
+import kotlinx.android.synthetic.main.fragment_main_menu.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 
 
@@ -140,17 +141,7 @@ class Filtros : Fragment() {
 //////////////////////////////////////////
 
 ///////////Barra inferior///////////
-        bottom_navigation.setOnNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.miPerfilItem -> {
-                    findNavController().navigate(R.id.action_filtros_to_miPerfilFragment)
-                }
-                R.id.mainMenuItem -> {
-                    findNavController().navigate(R.id.action_filtros_to_mainMenuFragment)
-                }
-            }
-            true
-        }
+        BottomNavBar().setBottomNavBar(bottom_navigation, "Publicar", findNavController(), R.id.action_filtros_to_mainMenuFragment, null, R.id.action_filtros_to_miPerfilFragment)
 //////////////////////////////////////////
 
     }
