@@ -19,8 +19,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.027"
-        android:contentDescription="@string/pasos1" />
-
+        android:contentDescription="@string/pasos1"
+        />
 
 
 
@@ -41,7 +41,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="340dp"
         android:layout_height="80dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="15dp"
         android:hint="@string/nombre_de_la_masocta"
         android:singleLine="true"
         app:endIconMode="clear_text"
@@ -63,7 +63,6 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="340dp"
         android:layout_height="80dp"
-        android:layout_marginTop="10dp"
         android:hint="@string/tipo_mascota"
         android:singleLine="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -87,8 +86,7 @@
         android:id="@+id/petBreedText"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="340dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="85dp"
         android:hint="@string/raza_mascota"
         android:singleLine="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -112,8 +110,7 @@
         android:id="@+id/petSexText"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="160dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="70dp"
         android:autofillHints="@string/color"
         android:hint="@string/sexo"
         android:singleLine="true"
@@ -136,8 +133,7 @@
         android:id="@+id/petAge"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="160dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="70dp"
         android:hint="@string/edad"
         android:singleLine="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -157,8 +153,7 @@
         android:id="@+id/petSizeText"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="160dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="70dp"
         android:autofillHints="@string/color"
         android:hint="@string/tama_o"
         android:singleLine="true"
@@ -181,8 +176,7 @@
         android:id="@+id/petColor"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="160dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="70dp"
         android:hint="@string/color"
         app:endIconMode="clear_text"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -198,6 +192,37 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checkedButton="@+id/radio_button_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/petSizeText"
+        app:layout_constraintVertical_bias="0">
+        <RadioButton
+            android:id="@+id/perdiUnaMascota"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/perdi_una_mascota"
+            app:layout_constraintTop_toBottomOf="@+id/petSizeText"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="594dp"
+            style="@style/Widget.App.RadioButton"/>
+
+        <RadioButton
+            android:id="@+id/encontreUnaMascota"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/encontre_una_mascota"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="594dp"
+            style="@style/Widget.App.RadioButton"/>
+
+    </RadioGroup>
 
 
 
@@ -214,6 +239,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.881"
         app:layout_constraintStart_toStartOf="parent" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

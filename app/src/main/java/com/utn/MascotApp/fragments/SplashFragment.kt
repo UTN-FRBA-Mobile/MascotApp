@@ -1,5 +1,6 @@
 package com.utn.MascotApp.fragments
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -12,6 +13,7 @@ import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.navigation.fragment.findNavController
 import com.utn.MascotApp.MainActivity
 import com.utn.MascotApp.R
+import kotlinx.android.synthetic.main.fragment_splash.*
 import java.util.*
 
 
@@ -23,8 +25,13 @@ class SplashFragment : Fragment() {
     }
 
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val notificationType =this.arguments?.getString("notificationType")
+
+        if (notificationType == "Publication") titleTextView.text = "@string/su_publicacion_se_genero_con_exito"
 
 
         val motionLayout = view.findViewById<MotionLayout>(R.id.motionLayout)

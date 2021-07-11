@@ -78,7 +78,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/petCoordenadas"
+        android:id="@+id/petCoordinates"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="340dp"
         android:layout_height="80dp"
@@ -105,7 +105,7 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/petDate1"
+        android:id="@+id/petLastSeen"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="340dp"
         android:layout_height="80dp"
@@ -113,7 +113,7 @@
         android:singleLine="true"
         android:hint="@string/seleccionar_fecha"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/petCoordenadas"
+        app:layout_constraintTop_toBottomOf="@+id/petCoordinates"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
@@ -134,19 +134,19 @@
         android:layout_height="65dp"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/petCoordenadas"
+        app:layout_constraintTop_toBottomOf="@+id/petCoordinates"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintVertical_bias="0" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/editTextDescripcion"
+        android:id="@+id/petDescription"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="340dp"
         android:layout_height="80dp"
         android:layout_marginTop="16dp"
-        app:counterMaxLength="50"
+        app:counterMaxLength="100"
         app:counterEnabled="true"
         android:hint="@string/descripci_n"
         android:singleLine="false"
@@ -154,7 +154,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/petDate1"
+        app:layout_constraintTop_toBottomOf="@+id/petLastSeen"
         app:layout_constraintVertical_bias="0.02"
         app:endIconMode="clear_text">
 

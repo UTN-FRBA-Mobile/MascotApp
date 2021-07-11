@@ -20,8 +20,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.storage.FirebaseStorage
+import com.utn.MascotApp.FiltrosDirections
 import com.utn.MascotApp.R
 import com.utn.MascotApp.models.Publication
+import kotlinx.android.synthetic.main.fragment_filtros.*
+import kotlinx.android.synthetic.main.fragment_location.*
 import kotlinx.android.synthetic.main.fragment_photos.*
 import java.time.LocalDate
 import java.time.ZoneId
@@ -72,24 +75,44 @@ class PhotosFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val petNameParam =this.arguments?.getString("petName")
+        val petTypeParam =this.arguments?.getString("petType")
+        val petBreedParam =this.arguments?.getString("petBreed")
+        val petSexParam =this.arguments?.getString("petSex")
+        val petSizeParam =this.arguments?.getString("petSize")
+        val petColorParam =this.arguments?.getString("petColor")
+        val perAgeParam =this.arguments?.getString("petAge")
+        val petLastSeenParam = this.arguments?.getString("petLastSeen")
+        val petDirectionParam =this.arguments?.getString("petDirection")
+        val petNumberParam =this.arguments?.getString("petNumber")
+        val petCoordinatesParam =this.arguments?.getString("petCoordinates")
+        val petDescriptionParam =this.arguments?.getString("perDescription")
+        val foundOrLostParam =this.arguments?.getString("foundOrLost")
+
+
+
 
         bottonPublicar.setOnClickListener{
 
-            publication.name = this.arguments?.getString("nombreMascota")
-            publication.color =this.arguments?.getString("colorMascota")
-            publication.species =this.arguments?.getString("tipoMascota")
-            publication.breed =this.arguments?.getString("razaMascota")
-            publication.sex =this.arguments?.getString("sexoMascota")
-            publication.size =this.arguments?.getString("tamañoMascota")
-            publication.age = this.arguments?.getString("edadMascota")?.toInt()
-            publication.address =this.arguments?.getString("direccionMascota")
-            publication.description = this.arguments?.getString("descripcionMascota")
-            fechaMascota =this.arguments?.getString("fechaMascota")
+            publication.name = petNameParam
+            publication.species =petTypeParam
+            publication.breed =petBreedParam
+            publication.sex =petSexParam
+            publication.size =petSizeParam
+            publication.color =petColorParam
+            if (perAgeParam != null) {
+                publication.age = perAgeParam.toInt()
+            }else {publication.age = 0}
+            fechaMascota =this.arguments?.getString("petLastSeen")
             dateParse()
-            publication.lastSeen  =  Date(year,month,day)
-            coordenadas = this.arguments?.getString("coordenadasMascota")
+            publication.address =petDirectionParam + " " + petNumberParam
+            coordenadas = petCoordinatesParam
             coorParse()
             publication.geolocation = GeoPoint(lat,long)
+            publication.description = petDescriptionParam
+            publication.type = foundOrLostParam
+
+
             fileUpload()
             publication.imagePath = imagePath
 
@@ -103,11 +126,27 @@ class PhotosFragment : Fragment() {
                     println("Error adding document: $exception")
                 }
             db.collection("publications")
-            findNavController().navigate(R.id.action_photosFragment_to_splashFragment)
+
+            val action = PhotosFragmentDirections.actionPhotosFragmentToSplashFragment("Publication")
+            findNavController().navigate(action)
         }
 
         bottonAtrasAPhoto.setOnClickListener{
-            findNavController().navigate(R.id.action_locationFragment_to_photosFragment) }
+            val action = PhotosFragmentDirections.actionPhotosFragmentToLocationFragment(
+                petNameParam,
+                petTypeParam,
+                petBreedParam,
+                petSexParam,
+                petSizeParam,
+                petColorParam,
+                perAgeParam,
+                petLastSeenParam,
+                petDirectionParam,
+                petNumberParam,
+                petCoordinatesParam,
+                petDescriptionParam,
+                foundOrLostParam)
+            findNavController().navigate(action) }
 
         button_camera.setOnClickListener() {
             openCamera_click()
