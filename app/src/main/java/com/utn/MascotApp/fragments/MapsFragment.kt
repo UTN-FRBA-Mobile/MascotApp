@@ -43,8 +43,13 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private var lastKnownLocation: Location? = null
     private val defaultLocation = LatLng(-34.62718052757213, -58.45845530464802)
-    private val petIcon: BitmapDescriptor by lazy {
+    private val foundPetIcon: BitmapDescriptor by lazy {
         val color = ContextCompat.getColor(requireContext(), blue_grey_900)
+        BitmapHelper.vectorToBitmap(requireContext(), pet_footprint, color)
+    }
+
+    private val lostPetIcon: BitmapDescriptor by lazy {
+        val color = ContextCompat.getColor(requireContext(), quantum_error_light)
         BitmapHelper.vectorToBitmap(requireContext(), pet_footprint, color)
     }
 
@@ -78,6 +83,7 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
 
     override fun onResume() {
         super.onResume()
+        this.map?.let { it1 -> addMarkers(it1) }
         getDeviceLocation()
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -254,6 +260,10 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
             .addOnSuccessListener { documents ->
                 for (document in documents) {
                     val lat = document.data["geolocation"] as GeoPoint
+                    var petIcon: BitmapDescriptor
+                    if (document.data["type"] == "found")  petIcon = this.foundPetIcon
+                    else  petIcon = this.lostPetIcon
+                    
                     googleMap.addMarker(
                         MarkerOptions()
                             .title(document.data["name"].toString())
@@ -264,7 +274,7 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
                 }
             }
 
-        }
+    }
 
 
 
