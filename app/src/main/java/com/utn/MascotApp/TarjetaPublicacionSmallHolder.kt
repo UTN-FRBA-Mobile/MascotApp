@@ -19,7 +19,7 @@ class TarjetaPublicacionSmallHolder(view: View) : RecyclerView.ViewHolder(view) 
         Picasso.get().load(publications.imagePath).into(binding.cardImagenMascota)
 
         binding.petName.text = publications.name
-        if (publications.species.equals("cat")) {
+        if (publications.species.equals("Gato")) {
             binding.petName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_cat_icon, 0)
         }
         binding.petSexAndAge.text = publications.sex + " - " + publications.age
