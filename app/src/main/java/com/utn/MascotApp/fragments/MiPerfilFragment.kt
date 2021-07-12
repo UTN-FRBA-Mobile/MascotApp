@@ -276,6 +276,7 @@ class MiPerfilFragment : Fragment() {
     }
 
     private fun initUserProfileData() {
+        binding.progressBar1.visibility = View.VISIBLE
         val db = FirebaseFirestore.getInstance()
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
         val storage = Firebase.storage
@@ -313,5 +314,6 @@ class MiPerfilFragment : Fragment() {
 
             }
 
+        binding.progressBar1.visibility = View.GONE
     }
 }
