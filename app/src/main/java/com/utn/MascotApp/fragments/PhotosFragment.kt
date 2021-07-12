@@ -22,10 +22,12 @@ import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.storage.FirebaseStorage
 import com.utn.MascotApp.FiltrosDirections
 import com.utn.MascotApp.R
+import com.utn.MascotApp.databinding.FragmentPhotosBinding
 import com.utn.MascotApp.models.Publication
 import kotlinx.android.synthetic.main.fragment_filtros.*
 import kotlinx.android.synthetic.main.fragment_location.*
 import kotlinx.android.synthetic.main.fragment_photos.*
+import kotlinx.android.synthetic.main.fragment_photos.view.*
 import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -34,6 +36,9 @@ import java.util.*
 
 class PhotosFragment : Fragment() {
 
+
+    private var _binding: FragmentPhotosBinding? = null
+    private val binding get() = _binding!!
     var simpleFormat2: DateTimeFormatter =  DateTimeFormatter.ofPattern("dd-MM-yyyy")
     private var uri: Uri? = null
     var imagePath : String = "URL"
@@ -67,8 +72,13 @@ class PhotosFragment : Fragment() {
     private val REQUEST_CAMERA = 1002
     var photo: Uri? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_photos, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentPhotosBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
 
@@ -93,7 +103,7 @@ class PhotosFragment : Fragment() {
 
 
         bottonPublicar.setOnClickListener{
-
+            binding.progressBar1.visibility = View.VISIBLE;
             publication.name = petNameParam
             publication.species =petTypeParam
             publication.breed =petBreedParam
@@ -127,6 +137,7 @@ class PhotosFragment : Fragment() {
                 }
             db.collection("publications")
 
+            binding.progressBar1.visibility = View.GONE;
             val action = PhotosFragmentDirections.actionPhotosFragmentToSplashFragment("Publication")
             findNavController().navigate(action)
         }
