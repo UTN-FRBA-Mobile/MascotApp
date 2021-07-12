@@ -37,9 +37,9 @@
         android:id="@+id/misPublicacionesFragment"
         android:name="com.utn.MascotApp.fragments.MisPublicacionesFragment"
         android:label="MisPublicacionesFragment" >
-        <action
-            android:id="@+id/action_misPublicacionesFragment_to_publicarFragment2"
-            app:destination="@id/publicarFragment2" />
+<!--        <action-->
+<!--            android:id="@+id/action_misPublicacionesFragment_to_publicarFragment2"-->
+<!--            app:destination="@id/publicarFragment2" />-->
         <action
             android:id="@+id/action_misPublicacionesFragment_to_mainMenuFragment"
             app:destination="@id/mainMenuFragment" />
