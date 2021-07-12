@@ -26,7 +26,7 @@ class TarjetaMascotaHolder(view: View, private val navController: NavController)
         var dateLastSeen = sdf.format(publications.lastSeen.toDate())
         binding.fechaPublicacion.text = dateLastSeen
         binding.petName.text = publications.name
-        Log.e("Behri", publications.species.toString())
+//        Log.e("Behri", publications.species.toString())
         if (publications.species.equals("Gato")) {
             binding.petName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_cat_icon, 0)
         }
@@ -54,7 +54,5 @@ class TarjetaMascotaHolder(view: View, private val navController: NavController)
         }
 
     }
-
-
 
 }

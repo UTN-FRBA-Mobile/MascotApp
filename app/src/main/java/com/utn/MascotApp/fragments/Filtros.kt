@@ -68,9 +68,9 @@ class Filtros : Fragment() {
         }
 
 */
-        if (foundOrLostParam == "lost") {
-            radioGroup.check(R.id.perdiUnaMascota)
-        } else{radioGroup.check(R.id.encontreUnaMascota)}
+        if (foundOrLostParam == "found") {
+            radioGroup.check(R.id.encontreUnaMascota)
+        } else {radioGroup.check(R.id.perdiUnaMascota)}
 
 ///////////Llenado de spinners///////////
         arrayString  = resources.getStringArray(R.array.TipoMascota)

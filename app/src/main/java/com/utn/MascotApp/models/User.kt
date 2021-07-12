@@ -11,7 +11,7 @@ data class User(
     var id: String? = "",
     var fullName: String? = "",
     var address: String? = "",
-    var phone: Number? = null,
+    var phone: String? = "",
     var profilePictureImagePath: String = "",
 ) {
 

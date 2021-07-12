@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
@@ -17,6 +18,7 @@ import kotlinx.android.synthetic.main.fragment_location.*
 
 class LocationFragment : Fragment() {
 
+    private lateinit var directionValidation: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -47,7 +49,26 @@ class LocationFragment : Fragment() {
         if (petCoordinatesParam != null) { petCoordinates.editText?.setText(petCoordinatesParam) }
         if (petDescriptionParam != null) { petDescription.editText?.setText(petDescriptionParam) }
 
+
+
+
         bottonSiguienteALoclaidad.setOnClickListener{
+
+            if(petDirection.getEditText()?.getText().toString() == "" || petNumber.getEditText()?.getText().toString() == "" || petCoordinates.getEditText()?.getText().toString() == "") {
+
+                if(petDirection.getEditText()?.getText().toString() == ""){
+                petDirection?.error = "*Campo obligatorio"
+                }
+                if(petNumber.getEditText()?.getText().toString() == "") {
+                    petNumber?.error = "*Campo obligatorio"
+                }
+                if(petCoordinates.getEditText()?.getText().toString() == "") {
+                    petCoordinates?.error = "*Campo obligatorio"
+                }
+
+            return@setOnClickListener
+            }
+
             val action = LocationFragmentDirections.actionLocationFragmentToPhotosFragment(
                 petNameParam,
                 petTypeParam,
