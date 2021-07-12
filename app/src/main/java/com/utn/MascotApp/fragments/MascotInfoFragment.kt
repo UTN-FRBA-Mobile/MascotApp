@@ -114,12 +114,15 @@ class MascotInfoFragment : Fragment() {
 
             var userid = this.arguments?.getString("createdBy")
             var phone = ""
+            var usuario_nombre = ""
             db.collection("users")
                 .get()
                 .addOnSuccessListener { documents ->
                     for (document in documents) {
                         if (document.id == userid) {
                             phone = document.data["phone"] as String
+                            usuario_nombre = document.data["fullName"] as String
+                            binding.usuario.text = usuario_nombre
                         }
                     }
                 }
@@ -138,6 +141,7 @@ class MascotInfoFragment : Fragment() {
             call.visibility = View.VISIBLE
             call.text = "ELIMINAR"
 
+            binding.usuario.text = "Publicado por mi"
             mCall = view.findViewById(R.id.call)
             mCall.setOnClickListener {
 
