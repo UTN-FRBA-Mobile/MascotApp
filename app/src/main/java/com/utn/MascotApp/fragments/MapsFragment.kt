@@ -274,7 +274,7 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
                             .position( LatLng(lat.latitude, lat.longitude))
                             .icon(petIcon)
                     )
-                    marker?.tag = document.data["imagePath"]
+                    marker?.tag = document.data
                     println("Publication: ${document?.data}")
                 }
             }
@@ -303,49 +303,42 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
     }
 
     override fun onInfoWindowClick(marker: Marker) {
-        val db = Firebase.firestore
         val storage = Firebase.storage
         val imagesRef = storage.reference.child("publication-images")
-        marker.tag?.toString()?.let { Log.e("ivo", it) }
-        db.collection("publications").whereEqualTo("imagePath", marker.tag?.toString())
-            .get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    var map: Map<String, Any> = document.data
-                    marker.tag?.toString()?.let { Log.e("ivo", document.data.toString()) }
-                    imagesRef.child(map.get("imagePath").toString()).downloadUrl.addOnSuccessListener {
+        var publication_data: Map<String, Any>? = marker.tag as Map<String, Any>?
+        if (publication_data != null) {
+            imagesRef.child(publication_data["imagePath"].toString()).downloadUrl.addOnSuccessListener {
 
-                        var publications = Publications(
-                        address = map["address"].toString(),
-                        color = map["color"].toString(),
-                        imagePath = it.toString(),
-                        description = map["description"].toString(),
-                        type = map["type"].toString(),
-                        breed = map["breed"].toString(),
-                        createdAt = map["createdAt"] as Timestamp,
-                        lastSeen = map["lastSeen"] as Timestamp,
-                        size = map["size"].toString(),
-                        createdBy = map["createdBy"].toString(),
-                        species = map["species"].toString(),
-                        name = map["name"].toString(),
-                        geolocation = map["geolocation"] as GeoPoint,
-                        age = map["age"].toString(),
-                        sex = map["sex"].toString()
-                    )
-                        val sdf = SimpleDateFormat("dd/MM/yyyy")
-                        var dateLastSeen = sdf.format(publications.lastSeen.toDate())
-                    val action = MainMenuFragmentDirections.actionMainMenuFragmentToMascotInfoFragment(
-                        publications.imagePath, publications.name,
-                        publications.description, publications.age.toInt(), publications.sex,
-                        publications.color, publications.breed, dateLastSeen,
-                        publications.address, publications.createdBy,
-                        "MascotasVistas"
-                    )
-                    findNavController().navigate(action)
-                }
-                    break
-                }
+                var publications = Publications(
+                    address = publication_data["address"].toString(),
+                    color = publication_data["color"].toString(),
+                    imagePath = it.toString(),
+                    description = publication_data["description"].toString(),
+                    type = publication_data["type"].toString(),
+                    breed = publication_data["breed"].toString(),
+                    createdAt = publication_data["createdAt"] as Timestamp,
+                    lastSeen = publication_data["lastSeen"] as Timestamp,
+                    size = publication_data["size"].toString(),
+                    createdBy = publication_data["createdBy"].toString(),
+                    species = publication_data["species"].toString(),
+                    name = publication_data["name"].toString(),
+                    geolocation = publication_data["geolocation"] as GeoPoint,
+                    age = publication_data["age"].toString(),
+                    sex = publication_data["sex"].toString()
+                )
+                val sdf = SimpleDateFormat("dd/MM/yyyy")
+                var dateLastSeen = sdf.format(publications.lastSeen.toDate())
+                val action = MainMenuFragmentDirections.actionMainMenuFragmentToMascotInfoFragment(
+                    publications.imagePath, publications.name,
+                    publications.description, publications.age.toInt(), publications.sex,
+                    publications.color, publications.breed, dateLastSeen,
+                    publications.address, publications.createdBy,
+                    "MascotasVistas"
+                )
+                findNavController().navigate(action)
             }
+        }
+
     }
 
 }
