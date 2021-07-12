@@ -50,12 +50,15 @@
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listaTarjetasMascotas"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layoutManager="LinearLayoutManager"
-        tools:listitem="@layout/tarjeta_mascota" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listaTarjetasMascotas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+            tools:layoutManager="LinearLayoutManager"
+            tools:layout_editor_absoluteX="0dp"
+            tools:listitem="@layout/tarjeta_mascota" />
+
     <ProgressBar android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
