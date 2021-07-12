@@ -1,5 +1,6 @@
 package com.utn.MascotApp
 
+import android.util.Log
 import android.view.View
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
@@ -25,7 +26,8 @@ class TarjetaMascotaHolder(view: View, private val navController: NavController)
         var dateLastSeen = sdf.format(publications.lastSeen.toDate())
         binding.fechaPublicacion.text = dateLastSeen
         binding.petName.text = publications.name
-        if (publications.species.equals("cat")) {
+        Log.e("Behri", publications.species.toString())
+        if (publications.species.equals("Gato")) {
             binding.petName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_cat_icon, 0)
         }
         binding.petSexAndAge.text = publications.species + " " +publications.color
