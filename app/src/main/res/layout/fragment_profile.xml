@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,8 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
 
         <LinearLayout
@@ -76,6 +75,7 @@
                         app:cardCornerRadius="250dp">
 
                         <ImageView
+                            android:id="@+id/userProfileImageView"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:scaleType="centerCrop"
@@ -152,8 +152,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/userEmailEditText"
                     android:layout_width="match_parent"
-                    android:textColor="@color/light_gray_inactive_icon"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:textColor="@color/light_gray_inactive_icon" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -219,19 +219,18 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
+
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/floatingActionButton_PerdiMiMascota"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:focusable="true"
-                android:visibility="invisible"
-                android:tint="@android:color/white"
-                android:text="@string/str_perdi_mi_mascota"
                 android:padding="20dp"
-                />
+                android:text="@string/str_perdi_mi_mascota"
+                android:tint="@android:color/white"
+                android:visibility="invisible" />
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/floatingActionButton_EncontreUnaMascota"
@@ -239,10 +238,10 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:focusable="true"
-                android:visibility="invisible"
-                android:tint="@android:color/white"
-                android:text="@string/str_encontre_una_mascota"
                 android:padding="20dp"
+                android:text="@string/str_encontre_una_mascota"
+                android:tint="@android:color/white"
+                android:visibility="invisible"
 
                 />
         </LinearLayout>
@@ -251,13 +250,11 @@
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
             android:background="@color/blue_grey_300"
             app:itemIconTint="@color/white"
             app:itemTextColor="@color/white"
-            app:menu="@menu/button_app_bar"
-            android:layout_marginTop="60dp"
-            />
-
+            app:menu="@menu/button_app_bar" />
 
 
     </LinearLayout>

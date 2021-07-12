@@ -194,7 +194,9 @@
     <string name="raza_mascota">Raza Mascota</string>
     <string name="sexo">Sexo</string>
     <string name="tama_o">Tamaño</string>
+    <string name="image_access_error">No puedes acceder a tus imágenes</string>
     <string name="udpate_user_confirmation_alert">¿Esta seguro que quiere actualizar sus datos de perfil?</string>
+    <string name="udpate_user_confirmation_alert_title">Cambiar datos de perfil</string>
     <string name="udpate_user_confirmation_alert_ok">Si</string>
     <string name="udpate_user_confirmation_alert_cancel">No</string>
     <string name="udpate_user_success_toast">Sus datos se han actualizado correctamente</string>
