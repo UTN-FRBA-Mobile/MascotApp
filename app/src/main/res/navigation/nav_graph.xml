@@ -351,4 +351,12 @@
             app:argType="string"
             app:nullable="true" />
     </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.utn.MascotApp.fragments.MapsFragment"
+        android:label="MapsFragment" >
+        <action
+            android:id="@+id/action_mapsFragment_to_mascotInfoFragment"
+            app:destination="@id/mascotInfoFragment" />
+    </fragment>
 </navigation>
