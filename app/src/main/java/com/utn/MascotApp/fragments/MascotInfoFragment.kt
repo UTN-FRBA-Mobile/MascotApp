@@ -42,6 +42,21 @@ class MascotInfoFragment : Fragment() {
 
     private val permiso = 1
 
+    val petNameParam = null
+    val petTypeParam = null
+    val petBreedParam = null
+    val petSexParam = null
+    val petSizeParam = null
+    val petColorParam = null
+    val petAgeParam = null
+    val petLastSeen = null
+    val petDirectionParam = null
+    val petNumberParam = null
+    val petcoordinatesParam = null
+    val petDescriptionParam = null
+    val foundOrLost = "lost"
+
+
 
     val db = FirebaseFirestore.getInstance()
 
@@ -102,8 +117,12 @@ class MascotInfoFragment : Fragment() {
         lastSeenView.text = "Fecha: " + (lastSeenv ?: "-")
 
         var actionFromv = this.arguments?.getString("actionFrom")
+        val action = MascotInfoFragmentDirections.actionMascotInfoFragmentToFiltros(petNameParam, petTypeParam, petBreedParam,
+            petSexParam, petSizeParam, petColorParam, petAgeParam, petLastSeen, petDirectionParam, petNumberParam, petcoordinatesParam,
+            petDescriptionParam, foundOrLost).actionId
+
         if (actionFromv == "MascotaVistas") {
-            BottomNavBar().setBottomNavBar(bottom_navigation, "MainMenu", findNavController(), null, R.id.action_mascotInfoFragment_to_publicarFragment2, R.id.action_mascotInfoFragment_to_miPerfilFragment)
+            BottomNavBar().setBottomNavBar(bottom_navigation, "MainMenu", findNavController(), null, action, R.id.action_mascotInfoFragment_to_miPerfilFragment)
             call.visibility = View.VISIBLE
             call.text = "CONTACTAR"
 
@@ -135,7 +154,8 @@ class MascotInfoFragment : Fragment() {
         }
 
         if (actionFromv == "MisPublicaciones") {
-            BottomNavBar().setBottomNavBar(bottom_navigation, "MiPerfil", findNavController(), R.id.action_mascotInfoFragment_to_mainMenuFragment, R.id.action_mascotInfoFragment_to_publicarFragment2, null)
+
+            BottomNavBar().setBottomNavBar(bottom_navigation, "MiPerfil", findNavController(), R.id.action_mascotInfoFragment_to_mainMenuFragment, action, null)
             call.visibility = View.VISIBLE
             call.text = "ELIMINAR"
 

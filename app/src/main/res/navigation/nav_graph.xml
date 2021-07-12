@@ -231,8 +231,8 @@
             android:name="address"
             app:argType="string" />
         <action
-            android:id="@+id/action_mascotInfoFragment_to_publicarFragment2"
-            app:destination="@id/publicarFragment2" />
+            android:id="@+id/action_mascotInfoFragment_to_filtros"
+            app:destination="@id/filtros" />
         <argument
             android:name="createdBy"
             app:argType="string" />
