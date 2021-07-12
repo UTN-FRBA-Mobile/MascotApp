@@ -18,6 +18,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.ktx.Firebase
@@ -31,9 +32,12 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.utn.MascotApp.databinding.FragmentMapsBinding
 import java.util.*
 import com.google.firebase.firestore.DocumentChange
+import androidx.navigation.fragment.findNavController
+import java.text.SimpleDateFormat
 
 
-class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallback, OnMapReadyCallback {
+class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallback, OnMapReadyCallback,
+    GoogleMap.OnInfoWindowClickListener {
 
     private var locationPermissionGranted = false
     private var _binding: FragmentMapsBinding? = null
@@ -209,7 +213,7 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
                 MapStyleOptions.loadRawResourceStyle(
                     requireContext(), R.raw.style_json));
 
-
+        map.setOnInfoWindowClickListener(this)
         // Prompt the user for permission.
         requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
         // [END_EXCLUDE]
@@ -264,13 +268,14 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
                     if (document.data["type"] == "found")  petIcon = this.foundPetIcon
                     else  petIcon = this.lostPetIcon
                     
-                    googleMap.addMarker(
+                    val marker = googleMap.addMarker(
                         MarkerOptions()
-                            .title(document.data["name"].toString())
+                            .title("${document.data["name"]}")
                             .position( LatLng(lat.latitude, lat.longitude))
                             .icon(petIcon)
                     )
-                    println("Publicationasd: ${document?.data}")
+                    marker?.tag = document.data
+                    println("Publication: ${document?.data}")
                 }
             }
 
@@ -295,6 +300,45 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
 
         // Used for selecting the current place.
         private const val M_MAX_ENTRIES = 5
+    }
+
+    override fun onInfoWindowClick(marker: Marker) {
+        val storage = Firebase.storage
+        val imagesRef = storage.reference.child("publication-images")
+        var publication_data: Map<String, Any>? = marker.tag as Map<String, Any>?
+        if (publication_data != null) {
+            imagesRef.child(publication_data["imagePath"].toString()).downloadUrl.addOnSuccessListener {
+
+                var publications = Publications(
+                    address = publication_data["address"].toString(),
+                    color = publication_data["color"].toString(),
+                    imagePath = it.toString(),
+                    description = publication_data["description"].toString(),
+                    type = publication_data["type"].toString(),
+                    breed = publication_data["breed"].toString(),
+                    createdAt = publication_data["createdAt"] as Timestamp,
+                    lastSeen = publication_data["lastSeen"] as Timestamp,
+                    size = publication_data["size"].toString(),
+                    createdBy = publication_data["createdBy"].toString(),
+                    species = publication_data["species"].toString(),
+                    name = publication_data["name"].toString(),
+                    geolocation = publication_data["geolocation"] as GeoPoint,
+                    age = publication_data["age"].toString(),
+                    sex = publication_data["sex"].toString()
+                )
+                val sdf = SimpleDateFormat("dd/MM/yyyy")
+                var dateLastSeen = sdf.format(publications.lastSeen.toDate())
+                val action = MainMenuFragmentDirections.actionMainMenuFragmentToMascotInfoFragment(
+                    publications.imagePath, publications.name,
+                    publications.description, publications.age.toInt(), publications.sex,
+                    publications.color, publications.breed, dateLastSeen,
+                    publications.address, publications.createdBy,
+                    "MascotasVistas"
+                )
+                findNavController().navigate(action)
+            }
+        }
+
     }
 
 }
