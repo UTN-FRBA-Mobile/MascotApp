@@ -21,6 +21,7 @@ import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.google.firebase.Timestamp
+import com.utn.MascotApp.BottomNavBar
 
 
 class MisPublicacionesFragment : Fragment() {
@@ -32,6 +33,21 @@ class MisPublicacionesFragment : Fragment() {
     private lateinit var mascotaAdapter: MascotaAdapter
     private var publicar_button_clicked = false
     private val binding get() = _binding!!
+
+
+    val petNameParam = null
+    val petTypeParam = null
+    val petBreedParam = null
+    val petSexParam = null
+    val petSizeParam = null
+    val petColorParam = null
+    val petAgeParam = null
+    val petLastSeen = null
+    val petDirectionParam = null
+    val petNumberParam = null
+    val petcoordinatesParam = null
+    val petDescriptionParam = null
+    val foundOrLost = "lost"
 
 
     override fun onCreateView(
@@ -59,6 +75,14 @@ class MisPublicacionesFragment : Fragment() {
             }
             true
         }
+
+//        var actionFromv = this.arguments?.getString("actionFrom")
+        val action = MisPublicacionesFragmentDirections.actionMisPublicacionesFragmentToFiltros(petNameParam, petTypeParam, petBreedParam,
+            petSexParam, petSizeParam, petColorParam, petAgeParam, petLastSeen, petDirectionParam, petNumberParam, petcoordinatesParam,
+            petDescriptionParam, foundOrLost).actionId
+        BottomNavBar().setBottomNavBar(bottom_navigation, "MisPublicaciones", findNavController(), R.id.action_misPublicacionesFragment_to_mainMenuFragment, action, null)
+
+
     }
 
     private fun onPublicarButtonClicked() {
