@@ -105,7 +105,7 @@ class MascotInfoFragment : Fragment() {
 
         var actionFromv = this.arguments?.getString("actionFrom")
         if (actionFromv == "MascotaVistas") {
-            BottomNavBar().setBottomNavBar(bottom_navigation, "MainMenu", findNavController(), null, R.id.action_mascotInfoFragment_to_publicarFragment2, R.id.action_mascotInfoFragment_to_miPerfilFragment)
+            BottomNavBar().setBottomNavBar(bottom_navigation, "MainMenu", findNavController(), null, R.id.action_mascotInfoFragment_to_publicarFragment2, R.id.action_mascotInfoFragment_to_splashFragment)
             call.visibility = View.VISIBLE
             call.text = "CONTACTAR"
 
