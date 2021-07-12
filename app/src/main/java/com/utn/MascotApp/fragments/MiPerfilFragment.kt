@@ -32,6 +32,7 @@ import com.utn.MascotApp.R
 import com.utn.MascotApp.TarjetaPublicacionSmallAdapter
 import com.utn.MascotApp.databinding.FragmentProfileBinding
 import com.utn.MascotApp.models.User
+import kotlinx.android.synthetic.main.fragment_location.*
 import kotlinx.android.synthetic.main.fragment_main_menu.*
 import kotlinx.android.synthetic.main.fragment_main_menu.bottom_navigation
 import kotlinx.android.synthetic.main.fragment_photos.*
@@ -135,6 +136,10 @@ class MiPerfilFragment : Fragment() {
         alert.setTitle(R.string.udpate_user_confirmation_alert_title)
 
         binding.guardarCambios.setOnClickListener {
+            if(userName.getEditText()?.getText().toString() == "" ) {
+                userName?.error = "*Campo obligatorio"
+                return@setOnClickListener
+            }
             alert.show()
         }
 

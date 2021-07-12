@@ -91,15 +91,16 @@
                 android:id="@+id/userName"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="359dp"
-                android:layout_height="64dp"
+                android:layout_height="80dp"
                 android:layout_marginTop="20dp"
                 android:hint="@string/perfil_nombre_y_apellido"
-                app:boxBackgroundMode="outline">
+                app:boxBackgroundMode="outline"
+                app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/userNameEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="wrap_content"  />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -108,7 +109,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
                 android:layout_width="359dp"
-                android:layout_height="64dp"
+                android:layout_height="80dp"
                 android:layout_marginTop="16dp"
                 android:hint="@string/perfil_telefono"
                 app:boxBackgroundMode="outline">
@@ -116,7 +117,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/userPhoneEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="wrap_content"  />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -126,7 +127,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
                 android:layout_width="359dp"
-                android:layout_height="64dp"
+                android:layout_height="80dp"
                 android:layout_marginTop="16dp"
                 android:hint="@string/perfil_direccion"
                 app:boxBackgroundMode="outline">
@@ -134,7 +135,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/userAddressEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="wrap_content"  />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -142,7 +143,6 @@
                 android:id="@+id/userEmail"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="359dp"
-
                 android:layout_height="64dp"
                 android:layout_marginTop="16dp"
                 android:enabled="false"
