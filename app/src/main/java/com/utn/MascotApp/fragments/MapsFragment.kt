@@ -33,7 +33,8 @@ import java.util.*
 import com.google.firebase.firestore.DocumentChange
 
 
-class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallback, OnMapReadyCallback {
+class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallback, OnMapReadyCallback,
+    GoogleMap.OnInfoWindowClickListener {
 
     private var locationPermissionGranted = false
     private var _binding: FragmentMapsBinding? = null
@@ -209,7 +210,7 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
                 MapStyleOptions.loadRawResourceStyle(
                     requireContext(), R.raw.style_json));
 
-
+        map.setOnInfoWindowClickListener(this)
         // Prompt the user for permission.
         requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
         // [END_EXCLUDE]
@@ -270,7 +271,7 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
                             .position( LatLng(lat.latitude, lat.longitude))
                             .icon(petIcon)
                     )
-                    println("Publicationasd: ${document?.data}")
+                    println("Publication: ${document?.data}")
                 }
             }
 
@@ -296,6 +297,11 @@ class MapsFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
         // Used for selecting the current place.
         private const val M_MAX_ENTRIES = 5
     }
+
+    override fun onInfoWindowClick(marker: Marker) {
+        marker.isVisible = false
+    }
+
 
 }
 
