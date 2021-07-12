@@ -3,6 +3,7 @@ package com.utn.MascotApp.fragments
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -90,9 +91,28 @@ class PhotosFragment : Fragment() {
         val foundOrLostParam =this.arguments?.getString("foundOrLost")
 
 
+        val dialogBuilder  = AlertDialog.Builder(requireActivity())
+
+        dialogBuilder.setMessage("Debe cargar una imagen de su mascota para continuar")
+            // if the dialog is cancelable
+            .setPositiveButton("Ok") { dialog, which ->
+                dialog.dismiss()
+            }
+
+        val alert = dialogBuilder.create()
+        alert.setTitle("Imagen de mascota")
+
+
 
 
         bottonPublicar.setOnClickListener{
+
+            if(uri == null){
+                alert.show()
+                return@setOnClickListener
+            }
+
+
 
             publication.name = petNameParam
             publication.species =petTypeParam
@@ -252,3 +272,5 @@ class PhotosFragment : Fragment() {
     }
 
 }
+
+
