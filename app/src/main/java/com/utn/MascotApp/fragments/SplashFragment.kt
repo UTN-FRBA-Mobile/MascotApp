@@ -1,20 +1,14 @@
 package com.utn.MascotApp.fragments
 
-import android.annotation.SuppressLint
-import android.content.Intent
-import android.media.MediaPlayer
 import android.os.Bundle
-import android.os.Handler
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.motion.widget.MotionLayout
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.utn.MascotApp.MainActivity
 import com.utn.MascotApp.R
 import kotlinx.android.synthetic.main.fragment_splash.*
-import java.util.*
 
 
 class SplashFragment : Fragment() {
@@ -31,8 +25,8 @@ class SplashFragment : Fragment() {
 
         val notificationType =this.arguments?.getString("notificationType")
 
-        if (notificationType == "Publication") titleTextView.text = "Su publicacion se generó con éxito"
-
+        if (notificationType == "Publication") titleTextView.text = "Su publicación se generó con éxito"
+        if (notificationType == "Delete") titleTextView.text = "Su publicación se eliminó con éxito"
 
         val motionLayout = view.findViewById<MotionLayout>(R.id.motionLayout)
         motionLayout.addTransitionListener(object : MotionLayout.TransitionListener {
