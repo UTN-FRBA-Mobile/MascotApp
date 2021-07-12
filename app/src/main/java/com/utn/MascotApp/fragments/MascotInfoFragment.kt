@@ -144,6 +144,7 @@ class MascotInfoFragment : Fragment() {
             binding.usuario.text = "Publicado por mi"
             mCall = view.findViewById(R.id.call)
             mCall.setOnClickListener {
+                binding.progressBar1.visibility = View.VISIBLE;
 
                 var publicationId = ""
 //                var pathimage
@@ -182,13 +183,14 @@ class MascotInfoFragment : Fragment() {
                     } catch (e: Exception) {
                         println("Error delete image storage: $e")
                     }
-
+                    binding.progressBar1.visibility = View.GONE;
                     val action =
                         MascotInfoFragmentDirections.actionMascotInfoFragmentToSplashFragment("Delete")
                     findNavController().navigate(action)
                 } catch (e: Exception) {
                     println("Error delete image storage: $e")
                 }
+                binding.progressBar1.visibility = View.GONE;
             }
         }
 
