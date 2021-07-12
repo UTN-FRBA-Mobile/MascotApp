@@ -52,10 +52,12 @@ class AuthFragment: Fragment() {
     private fun setup() {
         signUpButton.setOnClickListener {
             if (email.text.isNotEmpty() && password.text.isNotEmpty()) {
+                binding.progressBar1.visibility = View.GONE;
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(email.text.toString(), password.text.toString()).addOnCompleteListener {
                     if (it.isSuccessful) {
                         saveSessionAndNavigateHome()
                     } else {
+                        binding.progressBar1.visibility = View.VISIBLE;
                         showAlert(it.exception.toString())
                     }
                 }
@@ -105,6 +107,7 @@ class AuthFragment: Fragment() {
         val prefs = this.requireActivity().getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
         prefs.putString("email", email.text.toString())
         prefs.apply()
+        binding.progressBar1.visibility = View.VISIBLE;
         findNavController().navigate(R.id.mainMenuFragment)
     }
 }
