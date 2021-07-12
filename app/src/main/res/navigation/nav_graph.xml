@@ -242,6 +242,9 @@
         <action
             android:id="@+id/action_mascotInfoFragment_to_splashFragment"
             app:destination="@id/splashFragment" />
+        <action
+            android:id="@+id/action_mascotInfoFragment_to_miPerfilFragment"
+            app:destination="@id/miPerfilFragment" />
     </fragment>
     <fragment
         android:id="@+id/locationFragment"

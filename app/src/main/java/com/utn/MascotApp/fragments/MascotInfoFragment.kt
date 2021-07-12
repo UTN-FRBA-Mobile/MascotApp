@@ -2,9 +2,11 @@ package com.utn.MascotApp.fragments
 
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore.Images
+import android.os.StrictMode
+import android.os.StrictMode.ThreadPolicy
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +15,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.FirebaseFirestore
@@ -23,14 +24,11 @@ import com.squareup.picasso.Picasso
 import com.utn.MascotApp.BottomNavBar
 import com.utn.MascotApp.R
 import com.utn.MascotApp.databinding.FragmentMascotInfoBinding
-import kotlinx.android.synthetic.main.fragment_main_menu.*
-import kotlinx.android.synthetic.main.fragment_mascot_info.*
 import kotlinx.android.synthetic.main.fragment_main_menu.bottom_navigation
-import java.lang.Exception
-import java.text.SimpleDateFormat
-import java.time.LocalDate.now
-import java.io.File
-import java.util.*
+import kotlinx.android.synthetic.main.fragment_mascot_info.*
+import java.io.InputStream
+import java.net.HttpURLConnection
+import java.net.URL
 
 
 class MascotInfoFragment : Fragment() {
@@ -105,7 +103,7 @@ class MascotInfoFragment : Fragment() {
 
         var actionFromv = this.arguments?.getString("actionFrom")
         if (actionFromv == "MascotaVistas") {
-            BottomNavBar().setBottomNavBar(bottom_navigation, "MainMenu", findNavController(), null, R.id.action_mascotInfoFragment_to_publicarFragment2, R.id.action_mascotInfoFragment_to_splashFragment)
+            BottomNavBar().setBottomNavBar(bottom_navigation, "MainMenu", findNavController(), null, R.id.action_mascotInfoFragment_to_publicarFragment2, R.id.action_mascotInfoFragment_to_miPerfilFragment)
             call.visibility = View.VISIBLE
             call.text = "CONTACTAR"
 
@@ -146,7 +144,6 @@ class MascotInfoFragment : Fragment() {
             mCall.setOnClickListener {
 
                 var publicationId = ""
-//                var pathimage
 //                try {
                 // TODO - publicationid
                 var pathimage = imagev?.substringAfter("%2F")?.substringBefore("?alt")
@@ -155,30 +152,20 @@ class MascotInfoFragment : Fragment() {
                         .whereEqualTo("imagePath", pathimage).get()
 
                 try {
+                    Thread.sleep(1_000)
                     publicationId = publicationsByNameAndImage.result.documents[0].id
                 } catch (e: Exception) {
                     println("Error get publication: $e")
                 }
 
-//                db.collection("publications").document(publicationId).delete()
-//                    .addOnFailureListener { exception ->
-//                        println("Error delete publication: $exception")
-//                    }
-//                val imagesRef = pathimage?.let { it1 -> storage.reference.child(it1) }
-//                imagesRef?.delete()
-//                    .addOnSuccessListener {
-//                        val action = MascotInfoFragmentDirections.actionMascotInfoFragmentToSplashFragment("Delete")
-//                        findNavController().navigate(action)
-//                    }
-//                    .addOnFailureListener {exception ->
-//                        println("Error delete image storage: $exception") }
-
 
                 try {
                     db.collection("publications").document(publicationId).delete()
                     try {
-                        val imagesRef = pathimage?.let { it1 -> storage.reference.child(it1) }
-                        imagesRef?.delete()
+                        val imagesRef = storage.reference.child(pathimage.toString())
+                        imagesRef.delete()
+//                        val imagesRef = pathimage?.let { it1 -> storage.reference.child(it1) }
+//                        imagesRef?.delete()
                     } catch (e: Exception) {
                         println("Error delete image storage: $e")
                     }
@@ -224,71 +211,15 @@ class MascotInfoFragment : Fragment() {
                         "Raza: " + (breedv ?: "-")
 
             sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
-            var resolver = requireActivity().contentResolver
-//            val myUri  = imagev?.toUri()
-//            val outstreamgf: OutputStream? = resolver?.openOutputStream(myUri!!)
-
-            // Optimizamos la imagen JPEG que será compartida, con calidad 100
-//                gf.compress(Bitmap.CompressFormat.JPEG, 100, outstreamgf)
-//                outstreamgf!!.close()
-
-
-//            val imagePath = File(context?.getCacheDir(), "images")
+//            var resolver = requireActivity().contentResolver
+//            val url = URL(imagev)
+//            val connection: HttpURLConnection = url.openConnection() as HttpURLConnection
+//            connection.setDoInput(true)
+//            connection.connect()
+//            val input: InputStream = connection.getInputStream()
+//            var btmp = BitmapFactory.decodeStream(input)
 //
-//            val newFile = File(imagePath, "image.png");
-//            val contentUri = context?.let { it1 ->
-//                if (imagev != null) {
-//                    FileProvider.getUriForFile(it1, imagev, newFile)
-//                }
-//            };
-//            if (contentUri != null) {
-//                val shareIntent = Intent(); shareIntent.action =
-//                    Intent.ACTION_SEND; shareIntent.addFlags(
-//                    Intent.FLAG_GRANT_READ_URI_PERMISSION
-//                ); // temp permission for receiving app to read this file shareIntent.setDataAndType(contentUri, getContentResolver().getType(contentUri)); shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri); startActivity(Intent.createChooser(shareIntent, "Choose an app")); }
-//
-//
-//                val path: String = Images.Media.insertImage(resolver, imagev, "", null)
-//                val screenshotUri = Uri.parse(path)
-//
-//
-//                sharingIntent.putExtra(Intent.EXTRA_STREAM, screenshotUri)
-
-//            // Instanciamos la imagen
-////            val gf = BitmapFactory.decodeResource(resources, R.drawable.gf)
-//
-//            // Con la clase ContentValues() almacenamos los valores que nuestra imagen va compartir en
-//            // las aplicaciones, definimos un nombre, formato de la imagen
-//            val valoresgf = ContentValues()
-//            valoresgf.put(MediaStore.Images.Media.TITLE, "$namev" )
-//            valoresgf.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
-//
-//            // Con la clase contentResolver() Proporcionamos el acceso de las aplicaciones a nuestra Galería de imágenes
-//            // a contenido externo con EXTERNAL_CONTENT_URI
-//            val urigf = contentResolver.insert(
-//                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-//                valoresgf
-//            )
-//
-//
-//            val outstreamgf: OutputStream?
-//            try {
-//                outstreamgf = contentResolver.openOutputStream(urigf!!)
-//
-//                // Optimizamos la imagen JPEG que será compartida, con calidad 100
-//                gf.compress(Bitmap.CompressFormat.JPEG, 100, outstreamgf)
-//                outstreamgf!!.close()
-//            } catch (e: Exception) {
-//                System.err.println(e.toString())
-//            }
-//
-//            // Suministramos los datos de la imagen que compartiremos con EXTRA_STREAM
-//            compartirgf.putExtra(Intent.EXTRA_STREAM, urigf)
-//
-//            // Iniciamos la Actividad (Activity) con la lógica de nuestro proyecto
-//            startActivity(Intent.createChooser(compartirgf, getString(R.string.compartir_gf_txt)))
-//        }
-//            sharingIntent.putExtra(Intent.EXTRA_STREAM, urigf)
+//            sharingIntent.putExtra(Intent.EXTRA_STREAM, btmp)
 
             startActivity(Intent.createChooser(sharingIntent, "Share using"))
         }
