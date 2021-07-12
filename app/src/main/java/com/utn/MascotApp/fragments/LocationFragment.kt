@@ -16,44 +16,71 @@ import kotlinx.android.synthetic.main.fragment_location.*
 
 
 class LocationFragment : Fragment() {
-    private var petDate2 = "hola"
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_location, container, false)
-
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val petNameParam =this.arguments?.getString("petName")
+        val petTypeParam =this.arguments?.getString("petType")
+        val petBreedParam =this.arguments?.getString("petBreed")
+        val petSexParam =this.arguments?.getString("petSex")
+        val petSizeParam =this.arguments?.getString("petSize")
+        val petColorParam =this.arguments?.getString("petColor")
+        val perAgeParam =this.arguments?.getString("petAge")
+        val petLastSeenParam = this.arguments?.getString("petLastSeen")
+        val petDirectionParam =this.arguments?.getString("petDirection")
+        val petNumberParam =this.arguments?.getString("petNumber")
+        val petCoordinatesParam =this.arguments?.getString("petCoordinates")
+        val petDescriptionParam =this.arguments?.getString("perDescription")
+        val foundOrLostParam =this.arguments?.getString("foundOrLost")
+
+        if (petLastSeenParam != null) { petLastSeen.editText?.setText(petLastSeenParam) }
+        if (petDirectionParam != null) { petDirection.editText?.setText(petDirectionParam) }
+        if (petNumberParam != null) { petNumber.editText?.setText(petNumberParam) }
+        if (petCoordinatesParam != null) { petCoordinates.editText?.setText(petCoordinatesParam) }
+        if (petDescriptionParam != null) { petDescription.editText?.setText(petDescriptionParam) }
+
         bottonSiguienteALoclaidad.setOnClickListener{
-            val petName =this.arguments?.getString("nombreMascota")
-            val petType =this.arguments?.getString("tipoMascota")
-            val petBreed =this.arguments?.getString("razaMascota")
-            val petsex =this.arguments?.getString("sexoMascota")
-            val petsize =this.arguments?.getString("tamañoMascota")
-            val petColor =this.arguments?.getString("colorMascota")
-            val edadMascota =this.arguments?.getString("edadMascota")
-
-
-            val petDirection1 = petDirection.getEditText()?.getText().toString()
-            val petNumber1 = petNumber.getEditText()?.getText().toString()
-            val petCoordenadas1 = petCoordenadas.getEditText()?.getText().toString()
-            val editTextDescripcion1 = editTextDescripcion.getEditText()?.getText().toString()
-
-
-            val action = LocationFragmentDirections.actionLocationFragmentToPhotosFragment(petColor,
-                petType,petBreed,petsex,petsize,edadMascota,
-                petDate2,petName,
-                petDirection1  + " " + petNumber1,
-                petCoordenadas1,editTextDescripcion1)
+            val action = LocationFragmentDirections.actionLocationFragmentToPhotosFragment(
+                petNameParam,
+                petTypeParam,
+                petBreedParam,
+                petSexParam,
+                petSizeParam,
+                petColorParam,
+                perAgeParam,
+                petLastSeen.getEditText()?.getText().toString(),
+                petDirection.getEditText()?.getText().toString(),
+                petNumber.getEditText()?.getText().toString(),
+                petCoordinates.getEditText()?.getText().toString(),
+                petDescription.getEditText()?.getText().toString(),
+                foundOrLostParam)
             findNavController().navigate(action)}
 
 
         bottonAtrasAFiltro.setOnClickListener {
-            findNavController().navigate(R.id.action_locationFragment_to_filtros) }
+            val action = LocationFragmentDirections.actionLocationFragmentToFiltros(
+                petNameParam,
+                petTypeParam,
+                petBreedParam,
+                petSexParam,
+                petSizeParam,
+                petColorParam,
+                perAgeParam,
+                petLastSeen.getEditText()?.getText().toString(),
+                petDirection.getEditText()?.getText().toString(),
+                petNumber.getEditText()?.getText().toString(),
+                petCoordinates.getEditText()?.getText().toString(),
+                petDescription.getEditText()?.getText().toString(),
+                foundOrLostParam)
+            findNavController().navigate(action) }
 
         ///////////Calendario///////////
         petDate.setOnClickListener {
@@ -72,8 +99,7 @@ class LocationFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun onDateSelected(day: Int, month: Int, year: Int) {
-        petDate1.editText?.setText("$day-$month-$year")
-        petDate2 = "$day-$month-$year"
+        petLastSeen.editText?.setText("$day-$month-$year")
 
     }
 //////////////////////////////////////////

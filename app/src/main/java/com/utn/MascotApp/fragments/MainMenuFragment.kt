@@ -10,10 +10,14 @@ import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
+import com.utn.MascotApp.BottomNavBar
+import com.utn.MascotApp.FiltrosDirections
 import com.utn.MascotApp.PagerViewAdapter
 import com.utn.MascotApp.R
 import com.utn.MascotApp.databinding.FragmentMainMenuBinding
+import kotlinx.android.synthetic.main.fragment_filtros.*
 import kotlinx.android.synthetic.main.fragment_main_menu.*
+import kotlinx.android.synthetic.main.fragment_main_menu.bottom_navigation
 
 
 class MainMenuFragment : Fragment() {
@@ -37,9 +41,25 @@ class MainMenuFragment : Fragment() {
 
     private lateinit var listadoBtn: ImageButton
     private lateinit var mapaBtn: ImageButton
+    private lateinit var foundOrLost: String
 
     private lateinit var mViewPager: ViewPager
     private lateinit var mPagerViewAdapter: PagerViewAdapter
+
+    val petNameParam = null
+    val petTypeParam = null
+    val petBreedParam = null
+    val petSexParam = null
+    val petSizeParam = null
+    val petColorParam = null
+    val petAgeParam = null
+    val petLastSeen = null
+    val petDirectionParam = null
+    val petNumberParam = null
+    val petcoordinatesParam = null
+    val petDescriptionParam = null
+    val foundOrLostParam = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,22 +71,12 @@ class MainMenuFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        bottom_navigation.setOnNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.publicarItem -> {
-                    onPublicarButtonClicked()
+        foundOrLost = "lost"
+        val action = MainMenuFragmentDirections.actionMainMenuFragmentToFiltros(petNameParam, petTypeParam, petBreedParam,
+            petSexParam, petSizeParam, petColorParam, petAgeParam, petLastSeen, petDirectionParam, petNumberParam, petcoordinatesParam,
+            petDescriptionParam, foundOrLost).actionId
+        BottomNavBar().setBottomNavBar(bottom_navigation, "MainMenu", findNavController(), null, action, R.id.action_mainMenuFragment_to_miPerfilFragment)
 
-                    floatingActionButton_EncontreUnaMascota.setOnClickListener() {
-                        findNavController().navigate(R.id.action_mainMenuFragment_to_filtros)
-                    }
-
-                }
-                R.id.miPerfilItem -> {
-                    findNavController().navigate(R.id.action_mainMenuFragment_to_miPerfilFragment)
-                }
-            }
-            true
-        }
         listadoBtn = binding.listadoBtn
         mapaBtn = binding.mapaBtn
         mViewPager = binding.viewPager
@@ -169,41 +179,5 @@ class MainMenuFragment : Fragment() {
         }
     }
 
-    private fun onPublicarButtonClicked() {
-        setVisibility(publicar_button_clicked)
-        setAnimation(publicar_button_clicked)
-        setClickable(publicar_button_clicked)
-        publicar_button_clicked = !publicar_button_clicked
-    }
-
-    private fun setVisibility(clicked: Boolean) {
-        if (!clicked) {
-            binding.floatingActionButtonEncontreUnaMascota.visibility = View.VISIBLE
-            binding.floatingActionButtonPerdiMiMascota.visibility = View.VISIBLE
-        } else {
-            binding.floatingActionButtonEncontreUnaMascota.visibility = View.INVISIBLE
-            binding.floatingActionButtonPerdiMiMascota.visibility = View.INVISIBLE
-        }
-    }
-
-    private fun setAnimation(clicked: Boolean) {
-        if (!clicked) {
-            binding.floatingActionButtonEncontreUnaMascota.startAnimation(fromBotton)
-            binding.floatingActionButtonPerdiMiMascota.startAnimation(fromBotton)
-        } else {
-            binding.floatingActionButtonEncontreUnaMascota.startAnimation(toBotton)
-            binding.floatingActionButtonPerdiMiMascota.startAnimation(toBotton)
-        }
-    }
-
-    private fun setClickable(clicked: Boolean) {
-        if (!clicked) {
-            binding.floatingActionButtonEncontreUnaMascota.isClickable = true
-            binding.floatingActionButtonPerdiMiMascota.isClickable = true
-        } else {
-            binding.floatingActionButtonEncontreUnaMascota.isClickable = false
-            binding.floatingActionButtonPerdiMiMascota.isClickable = false
-        }
-    }
 
 }

@@ -194,12 +194,13 @@
     <string name="raza_mascota">Raza Mascota</string>
     <string name="sexo">Sexo</string>
     <string name="tama_o">Tamaño</string>
-    <string name="su_publicacion_se_genero_con_exito">Su publicacion se genero con exito</string>
     <string name="udpate_user_confirmation_alert">¿Esta seguro que quiere actualizar sus datos de perfil?</string>
     <string name="udpate_user_confirmation_alert_ok">Si</string>
     <string name="udpate_user_confirmation_alert_cancel">No</string>
     <string name="udpate_user_success_toast">Sus datos se han actualizado correctamente</string>
     <string name="udpate_user_fail_toast">Hubo un error al actualizar sus datos, por favor reintentelo nuevamente</string>
-
+    <string name="su_publicacion_se_genero_con_exito">Su publicación se generó con éxito</string>
+    <string name="encontre_una_mascota">Encontre una mascota</string>
+    <string name="perdi_una_mascota">Perdi una mascota</string>
 
 </resources>
