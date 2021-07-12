@@ -140,12 +140,35 @@ class MascotInfoFragment : Fragment() {
 
             mCall = view.findViewById(R.id.call)
             mCall.setOnClickListener {
-                var publicationId = ""
-                var pathimage = imagev?.substringAfter("%2F")?.substringBefore("?alt")
-                val capitalCities = db.collection("publications").whereEqualTo("name", namev)
-                    .whereEqualTo("imagePath", pathimage).get()
 
-                publicationId = capitalCities.result.documents[0].id
+                var publicationId = ""
+//                var pathimage
+//                try {
+                // TODO - publicationid
+                var pathimage = imagev?.substringAfter("%2F")?.substringBefore("?alt")
+                val publicationsByNameAndImage =
+                    db.collection("publications").whereEqualTo("name", namev)
+                        .whereEqualTo("imagePath", pathimage).get()
+
+                try {
+                    publicationId = publicationsByNameAndImage.result.documents[0].id
+                } catch (e: Exception) {
+                    println("Error get publication: $e")
+                }
+
+//                db.collection("publications").document(publicationId).delete()
+//                    .addOnFailureListener { exception ->
+//                        println("Error delete publication: $exception")
+//                    }
+//                val imagesRef = pathimage?.let { it1 -> storage.reference.child(it1) }
+//                imagesRef?.delete()
+//                    .addOnSuccessListener {
+//                        val action = MascotInfoFragmentDirections.actionMascotInfoFragmentToSplashFragment("Delete")
+//                        findNavController().navigate(action)
+//                    }
+//                    .addOnFailureListener {exception ->
+//                        println("Error delete image storage: $exception") }
+
 
                 try {
                     db.collection("publications").document(publicationId).delete()
@@ -153,13 +176,14 @@ class MascotInfoFragment : Fragment() {
                         val imagesRef = pathimage?.let { it1 -> storage.reference.child(it1) }
                         imagesRef?.delete()
                     } catch (e: Exception) {
-                        // TODO pantalla que no se pudo eliminar
-                        println(e)
+                        println("Error delete image storage: $e")
                     }
-                    // TODO pantalla que se pudo eliminar
+
+                    val action =
+                        MascotInfoFragmentDirections.actionMascotInfoFragmentToSplashFragment("Delete")
+                    findNavController().navigate(action)
                 } catch (e: Exception) {
-                    // TODO pantalla que no se pudo eliminar
-                    println(e)
+                    println("Error delete image storage: $e")
                 }
             }
         }

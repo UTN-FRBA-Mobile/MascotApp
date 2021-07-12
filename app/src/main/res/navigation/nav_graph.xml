@@ -240,8 +240,8 @@
             android:name="actionFrom"
             app:argType="string" />
         <action
-            android:id="@+id/action_mascotInfoFragment_to_miPerfilFragment"
-            app:destination="@id/miPerfilFragment" />
+            android:id="@+id/action_mascotInfoFragment_to_splashFragment"
+            app:destination="@id/splashFragment" />
     </fragment>
     <fragment
         android:id="@+id/locationFragment"
